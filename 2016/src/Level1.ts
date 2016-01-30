@@ -41,6 +41,14 @@ class Level1 extends State
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd,this);
         
+        var sound:egret.Sound = RES.getRes("sound_test");
+        sound.play();
+        
+        var image:egret.Bitmap = this.createBitmapByName("end_jpg");
+       console.log("image_test",image)
+       image.x = 0;
+       image.y = 0;
+       this.addChild(image);
     }
     private goodTip():void
     {
@@ -177,5 +185,12 @@ class Level1 extends State
             this.missTouch();
         }
         
+    }
+    
+    private createBitmapByName(name:string):egret.Bitmap {
+        var result:egret.Bitmap = new egret.Bitmap();
+        var texture:egret.Texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
     }
 }

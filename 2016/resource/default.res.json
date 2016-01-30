@@ -1,25 +1,49 @@
 {
-	"resources": [
-		{
-			"name": "bgImage",
-			"type": "image",
-			"url": "assets/bg.jpg"
-		},
-		{
-			"name": "egretIcon",
-			"type": "image",
-			"url": "assets/egret_icon.png"
-		},
-		{
-			"name": "description",
-			"type": "json",
-			"url": "config/description.json"
-		}
-	],
-	"groups": [
-		{
-			"name": "preload",
-			"keys": "bgImage,egretIcon"
-		}
-	]
+	"groups":[
+	{
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg",
+		"name":"preload"
+	},
+	{
+		"keys":"",
+		"name":"aa"
+	}],
+	"resources":[
+	{
+		"name":"bgImage",
+		"type":"image",
+		"url":"assets/walk.png"
+	},
+	{
+		"name":"egretIcon",
+		"type":"image",
+		"url":"assets/egret_icon.png"
+	},
+	{
+		"name":"description",
+		"type":"json",
+		"url":"config/description.json"
+	},
+	{
+		"name":"sound_bg",
+		"soundType":"effect",
+		"type":"sound",
+		"url":"assets/sounds/bg.mp3"
+	},
+	{
+		"name":"sound_test",
+		"soundType":"effect",
+		"type":"sound",
+		"url":"assets/sounds/test.mp3"
+	},
+	{
+		"name":"image_test",
+		"type":"image",
+		"url":"assets/walk.png"
+	},
+	{
+		"name":"end_jpg",
+		"type":"image",
+		"url":"assets/end.jpg"
+	}]
 }

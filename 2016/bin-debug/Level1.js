@@ -19,6 +19,13 @@ var Level1 = (function (_super) {
         this.startTime();
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
+        var sound = RES.getRes("sound_test");
+        sound.play();
+        var image = this.createBitmapByName("end_jpg");
+        console.log("image_test", image);
+        image.x = 0;
+        image.y = 0;
+        this.addChild(image);
     };
     p.goodTip = function () {
         this.testSprite.graphics.clear();
@@ -122,6 +129,12 @@ var Level1 = (function (_super) {
         else if (!this._goodDuring && this._touching && this._touchedOver) {
             this.missTouch();
         }
+    };
+    p.createBitmapByName = function (name) {
+        var result = new egret.Bitmap();
+        var texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
     };
     return Level1;
 })(State);

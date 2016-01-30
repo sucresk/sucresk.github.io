@@ -67,8 +67,8 @@ var Main = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
             RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
             //this.createGameScene();
-            this.createBg();
-            this.createLog();
+            //this.createBg();
+            // this.createLog();
             this.addChild(new Game());
         }
     };
@@ -76,7 +76,15 @@ var Main = (function (_super) {
         var bg = new egret.Shape();
         bg.graphics.beginFill(0xff9999);
         bg.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
-        this.addChild(bg);
+        // this.addChild(bg);
+        var sound = RES.getRes("sound_test");
+        console.log("aaa", sound);
+        // sound.play();
+        var image = this.createBitmapByName("image_test");
+        console.log("image_test", image);
+        image.x = 100;
+        image.y = 200;
+        //this.addChild(image);
     };
     p.createLog = function () {
         var logTxt = new egret.TextField();
@@ -153,6 +161,14 @@ var Main = (function (_super) {
         textfield.x = 0;
         textfield.y = stageH / 2 + 100;
         this.textfield = textfield;
+        var icon2 = this.createBitmapByName("image_test");
+        this.addChild(icon2);
+        icon2.scaleX = 0.55;
+        icon2.scaleY = 0.55;
+        icon2.anchorOffsetX = icon2.width / 2;
+        icon2.anchorOffsetY = icon2.height / 2;
+        icon2.x = stageW / 2;
+        icon2.y = stageH / 2 - 60;
         //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         RES.getResAsync("description", this.startAnimation, this);
