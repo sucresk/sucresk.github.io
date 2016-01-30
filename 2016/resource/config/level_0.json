@@ -5,8 +5,12 @@
     "action": 0
   },
   {
+    "beat": 2,
+    "action": 1
+  },
+  {
     "beat": 3,
-    "action": 0
+    "action": 2
   },
   {
     "beat": 4,

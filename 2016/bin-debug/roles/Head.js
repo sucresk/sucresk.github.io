@@ -26,6 +26,18 @@ var Head = (function (_super) {
         twY.wait(20);
         twY.to({ "scaleY": 1 }, 1);
     };
+    p.left = function () {
+        var tw = egret.Tween.get(this.bmp);
+        tw.to({ "rotation": 90 }, 200);
+        tw.wait(20);
+        tw.to({ "rotation": 0 }, 1);
+    };
+    p.right = function () {
+        var tw = egret.Tween.get(this.bmp);
+        tw.to({ "rotation": -90 }, 200);
+        tw.wait(20);
+        tw.to({ "rotation": 0 }, 1);
+    };
     p.createBitmapByName = function (name) {
         var result = new egret.Bitmap();
         var texture = RES.getRes(name);

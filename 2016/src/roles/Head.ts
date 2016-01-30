@@ -32,6 +32,22 @@ class Head extends egret.Sprite
         twY.to({"scaleY": 1}, 1);
     }
     
+    public left():void
+    {
+        var tw = egret.Tween.get(this.bmp);
+        tw.to({"rotation": 90}, 200);
+        tw.wait(20);
+        tw.to({"rotation": 0}, 1);
+    }
+    
+    public right():void
+    {
+        var tw = egret.Tween.get(this.bmp);
+        tw.to({"rotation": -90}, 200);
+        tw.wait(20);
+        tw.to({"rotation": 0}, 1);
+    }
+    
     
     private createBitmapByName(name:string):egret.Bitmap {
         var result:egret.Bitmap = new egret.Bitmap();

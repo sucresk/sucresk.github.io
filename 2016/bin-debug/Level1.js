@@ -5,12 +5,20 @@ var Level1 = (function (_super) {
         this.goodTime = 200;
         this.perfectTime = 50;
         this.hitStepTime = 500;
+        this.maxToken = 4;
         this._curHitIndex = -1;
         this._rhythmArr = [];
         this._rhythmTypeArr = [];
         this._touchType = -1;
         this._pillarArr = [];
         this.heads = [];
+        this.tokens = [];
+        this.roleNames = ["man0", "wei"];
+        this.roles = [];
+        this.decorationNames = ["barrel_png", "flower_png", "chair_png", "toilet_png"];
+        this.decorationPos = [150, 200, 480, 200, 150, 700, 480, 700];
+        this.decorations = [];
+        this.playDecorationNum = 4;
     }
     var d = __define,c=Level1,p=c.prototype;
     p.init = function () {
@@ -29,7 +37,6 @@ var Level1 = (function (_super) {
         this.addChild(this._debugText);
         this.initConfig();
         this.initUI();
-        this.startTime();
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
         var sound = RES.getRes("sound_test");
@@ -38,6 +45,7 @@ var Level1 = (function (_super) {
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
         this.initPillar();
+        this.initDecoration();
         /*
         var man:Man = new Man();
         man.x = 100;
@@ -47,17 +55,20 @@ var Level1 = (function (_super) {
         */
         var head0 = this.createHead("head0_png");
         this.addHeadTo(head0, 0);
-        var head1 = this.createHead("head0_png");
-        this.addHeadTo(head1, 1);
-        var head2 = this.createHead("head0_png");
-        this.addHeadTo(head2, 2);
-        var head3 = this.createHead("head0_png");
-        this.addHeadTo(head3, 3);
-        var head4 = this.createHead("head0_png");
-        this.addHeadTo(head4, 4);
+        /*
+        var head1:Head = this.createHead("head0_png")
+        this.addHeadTo(head1,1);
+        var head2:Head = this.createHead("head0_png")
+        this.addHeadTo(head2,2);
+        var head3:Head = this.createHead("head0_png")
+        this.addHeadTo(head3,3);
+        var head4:Head = this.createHead("head0_png")
+        this.addHeadTo(head4,4);
+        */
         //head.play();
         this.helpSprite = new egret.Sprite();
         this.addChild(this.helpSprite);
+        this.startTime();
     };
     p.initUI = function () {
         this._score = 0;
@@ -84,7 +95,7 @@ var Level1 = (function (_super) {
         this._txtComboo.text = this._comboo.toString();
     };
     p.initConfig = function () {
-        var levelConfig = RES.getRes("level_0_json");
+        var levelConfig = RES.getRes("level_1_json");
         console.log(levelConfig);
         this._rhythmObjs = levelConfig;
         for (var i = 0, len = levelConfig.length; i < len; i++) {
@@ -112,6 +123,15 @@ var Level1 = (function (_super) {
         this._pillarArr.push(p2);
         this._pillarArr.push(p3);
         this._pillarArr.push(p4);
+    };
+    p.initDecoration = function () {
+        for (var i = 0, len = this.decorationNames.length; i < len; i++) {
+            var d = new Decoration(this.decorationNames[i]);
+            d.x = this.decorationPos[i * 2];
+            d.y = this.decorationPos[i * 2 + 1];
+            this.decorations.push(d);
+            this.addChild(d);
+        }
     };
     p.goodTip = function () {
         this.testSprite.graphics.clear();
@@ -153,8 +173,8 @@ var Level1 = (function (_super) {
         console.log("ongesture", e.data);
         if (this._curTouchType == Level1.TYPE_GESTURE) {
             var obj = this._rhythmObjs[this._curIndex];
-            console.log("ddddddddd", obj.line, e.data);
-            if (obj.line == e.data) {
+            console.log("ddddddddd", obj.gesture, e.data);
+            if (obj.gesture == e.data) {
                 this._touchType = Level1.TYPE_GESTURE;
             }
             else {
@@ -186,6 +206,7 @@ var Level1 = (function (_super) {
         console.log("good gesture");
         this._comboo++;
         this._score += this._comboo * 10 + 10;
+        this.addOneToken();
     };
     p.perfectTouch = function () {
         this._touched = true;
@@ -201,6 +222,7 @@ var Level1 = (function (_super) {
     p.missGesture = function () {
         this.missTouch();
         console.log("miss gesture");
+        this.addOneToken();
     };
     p.nextRhythm = function () {
         this._curIndex++;
@@ -227,7 +249,14 @@ var Level1 = (function (_super) {
             this.goodTime = 200;
             console.log("gesture over");
             this.gesture.stop();
+            if (this._curTouchType == Level1.TYPE_LEFT) {
+                this.AllLeft();
+            }
+            else if (this._curTouchType == Level1.TYPE_RIGHT) {
+                this.AllRight();
+            }
         }
+        //this.addOneToken();
     };
     p.tick = function (advancedTime) {
         if (!this._startGame) {
@@ -346,11 +375,58 @@ var Level1 = (function (_super) {
         if (i != this._curHitIndex) {
             this._curHitIndex = i;
             this.AllHit();
+            return;
+            if (this._curTouchType == Level1.TYPE_LEFT) {
+                console.log("left");
+                this.AllLeft();
+            }
+            else if (this._curTouchType == Level1.TYPE_RIGHT) {
+                console.log("right");
+                this.AllRight();
+            }
+            else {
+                console.log("hit");
+                this.AllHit();
+            }
         }
     };
     p.AllHit = function () {
         for (var i = 0, len = this.heads.length; i < len; i++) {
             this.heads[i].play();
+        }
+        for (i = 0, len = this.roles.length; i < len; i++) {
+            this.roles[i].play("hit");
+        }
+        var n = this.playDecorationNum < this.decorations.length ?
+            this.playDecorationNum : this.decorations.length;
+        for (i = 0, len = n; i < len; i++) {
+            this.decorations[i].play();
+        }
+    };
+    p.AllLeft = function () {
+        for (var i = 0, len = this.heads.length; i < len; i++) {
+            this.heads[i].left();
+        }
+        for (i = 0, len = this.roles.length; i < len; i++) {
+            this.roles[i].play("left");
+        }
+        var n = this.playDecorationNum < this.decorations.length ?
+            this.playDecorationNum : this.decorations.length;
+        for (i = 0, len = n; i < len; i++) {
+            this.decorations[i].play();
+        }
+    };
+    p.AllRight = function () {
+        for (var i = 0, len = this.heads.length; i < len; i++) {
+            this.heads[i].right();
+        }
+        for (i = 0, len = this.roles.length; i < len; i++) {
+            this.roles[i].play("left");
+        }
+        var n = this.playDecorationNum < this.decorations.length ?
+            this.playDecorationNum : this.decorations.length;
+        for (i = 0, len = n; i < len; i++) {
+            this.decorations[i].play();
         }
     };
     p.drawHelp = function (index) {
@@ -365,10 +441,67 @@ var Level1 = (function (_super) {
     p.clearHelp = function () {
         this.helpSprite.graphics.clear();
     };
+    p.addOneToken = function () {
+        if (this.tokens.length >= this.maxToken) {
+            this.clearToken();
+        }
+        var i = Math.floor(Math.random() * 4);
+        var t = this.createToken(i);
+        this.addToken(t);
+        if (this.tokens.length >= this.maxToken) {
+            this.addOneRole();
+        }
+    };
+    p.createToken = function (index) {
+        var bmp = this.createBitmapByName("token_" + index + "_png");
+        return bmp;
+    };
+    p.addToken = function (bmp) {
+        this.tokens.push(bmp);
+        bmp.x = this.tokens.length * 100;
+        this.addChild(bmp);
+    };
+    p.clearToken = function () {
+        for (var i = 0, len = this.tokens.length; i < len; i++) {
+            if (this.tokens[i].parent) {
+                this.removeChild(this.tokens[i]);
+            }
+        }
+        this.tokens.length = 0;
+    };
+    p.addOneRole = function () {
+        var i = Math.floor(Math.random() * this.roleNames.length);
+        console.log("ccccccccccccc", i, this.roleNames.length);
+        var r = this.createRole(i);
+        this.addRole(r);
+    };
+    p.createRole = function (index) {
+        var name = this.roleNames[index];
+        var role = new Role(name);
+        return role;
+    };
+    p.addRole = function (r) {
+        this.roles.push(r);
+        r.play("hit");
+        r.x = this.roles.length * 100;
+        r.y = 955;
+        this.addChild(r);
+    };
+    p.clearRole = function () {
+        for (var i = 0, len = this.roles.length; i < len; i++) {
+            this.roles[i].remove();
+            if (this.roles[i].parent) {
+                this.removeChild(this.roles[i]);
+            }
+        }
+        this.roles.length = 0;
+    };
     Level1.TYPE_TAP = 0;
     Level1.TYPE_DRAW = -1;
     Level1.TYPE_CLEAR = -2;
     Level1.TYPE_GESTURE = 3;
+    Level1.TYPE_RIGHT = 1;
+    Level1.TYPE_LEFT = 2;
     return Level1;
 })(State);
 egret.registerClass(Level1,'Level1');
