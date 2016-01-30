@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png",
 		"name":"preload"
 	},
 	{
@@ -12,7 +12,7 @@
 	{
 		"name":"bgImage",
 		"type":"image",
-		"url":"assets/walk.png"
+		"url":"assets/bg.jpg"
 	},
 	{
 		"name":"egretIcon",
@@ -55,5 +55,30 @@
 		"name":"level_0_json",
 		"type":"json",
 		"url":"config/level_0.json"
+	},
+	{
+		"name":"bg2_jpg",
+		"type":"image",
+		"url":"assets/bg2.jpg"
+	},
+	{
+		"name":"man0_json",
+		"type":"json",
+		"url":"assets/anim/man0/man0.json"
+	},
+	{
+		"name":"man0_texture_json",
+		"type":"json",
+		"url":"assets/anim/man0/texture.json"
+	},
+	{
+		"name":"man0_texture_png",
+		"type":"image",
+		"url":"assets/anim/man0/texture.png"
+	},
+	{
+		"name":"head0_png",
+		"type":"image",
+		"url":"assets/head/head0.png"
 	}]
 }

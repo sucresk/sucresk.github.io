@@ -1,12 +1,16 @@
-class GestureController
+class GestureController extends egret.EventDispatcher
 {
 
 	//手势识别 来自 http://www.ketzler.de/2008/12/1-recognizer-for-flash-actionscript/
     private _stage:egret.Stage;
     private _myRec:GestureRecognizer;
+    private _start:boolean;
+    private _canvas:egret.Shape;
     
     public constructor(stage:egret.Stage)
     {
+        super();
+        this._canvas = new egret.Shape();
         this._myRec = new GestureRecognizer();
 		this._myRec.addTemplate("triangle", new Array(new egret.Point(137,139),new egret.Point(135,141),new egret.Point(133,144),new egret.Point(132,146),new egret.Point(130,149),new egret.Point(128,151),new egret.Point(126,155),new egret.Point(123,160),new egret.Point(120,166),new egret.Point(116,171),new egret.Point(112,177),new egret.Point(107,183),new egret.Point(102,188),new egret.Point(100,191),new egret.Point(95,195),new egret.Point(90,199),new egret.Point(86,203),new egret.Point(82,206),new egret.Point(80,209),new egret.Point(75,213),new egret.Point(73,213),new egret.Point(70,216),new egret.Point(67,219),new egret.Point(64,221),new egret.Point(61,223),new egret.Point(60,225),new egret.Point(62,226),new egret.Point(65,225),new egret.Point(67,226),new egret.Point(74,226),new egret.Point(77,227),new egret.Point(85,229),new egret.Point(91,230),new egret.Point(99,231),new egret.Point(108,232),new egret.Point(116,233),new egret.Point(125,233),new egret.Point(134,234),new egret.Point(145,233),new egret.Point(153,232),new egret.Point(160,233),new egret.Point(170,234),new egret.Point(177,235),new egret.Point(179,236),new egret.Point(186,237),new egret.Point(193,238),new egret.Point(198,239),new egret.Point(200,237),new egret.Point(202,239),new egret.Point(204,238),new egret.Point(206,234),new egret.Point(205,230),new egret.Point(202,222),new egret.Point(197,216),new egret.Point(192,207),new egret.Point(186,198),new egret.Point(179,189),new egret.Point(174,183),new egret.Point(170,178),new egret.Point(164,171),new egret.Point(161,168),new egret.Point(154,160),new egret.Point(148,155),new egret.Point(143,150),new egret.Point(138,148),new egret.Point(136,148)));
 		this._myRec.addTemplate("x", new Array(new egret.Point(87,142),new egret.Point(89,145),new egret.Point(91,148),new egret.Point(93,151),new egret.Point(96,155),new egret.Point(98,157),new egret.Point(100,160),new egret.Point(102,162),new egret.Point(106,167),new egret.Point(108,169),new egret.Point(110,171),new egret.Point(115,177),new egret.Point(119,183),new egret.Point(123,189),new egret.Point(127,193),new egret.Point(129,196),new egret.Point(133,200),new egret.Point(137,206),new egret.Point(140,209),new egret.Point(143,212),new egret.Point(146,215),new egret.Point(151,220),new egret.Point(153,222),new egret.Point(155,223),new egret.Point(157,225),new egret.Point(158,223),new egret.Point(157,218),new egret.Point(155,211),new egret.Point(154,208),new egret.Point(152,200),new egret.Point(150,189),new egret.Point(148,179),new egret.Point(147,170),new egret.Point(147,158),new egret.Point(147,148),new egret.Point(147,141),new egret.Point(147,136),new egret.Point(144,135),new egret.Point(142,137),new egret.Point(140,139),new egret.Point(135,145),new egret.Point(131,152),new egret.Point(124,163),new egret.Point(116,177),new egret.Point(108,191),new egret.Point(100,206),new egret.Point(94,217),new egret.Point(91,222),new egret.Point(89,225),new egret.Point(87,226),new egret.Point(87,224)));
@@ -38,6 +42,10 @@ class GestureController
     private _recordedPoints:Array<egret.Point>;
     private onTouchBegin(e:egret.TouchEvent):void
     {
+        if(!this._start)
+        {
+            return;
+        }
         if(this._record)
         {
             return;
@@ -45,28 +53,70 @@ class GestureController
         this._record = true;
         this._recordedPoints = new Array<egret.Point>();
         this._touchId = e.touchPointID;
-        console.log("gesture touch start")
+        //console.log("gesture touch start")
+        this._canvas.graphics.lineStyle(30,0xff00ff,0.5);
     }
     
     private onTouchMove(e:egret.TouchEvent):void
     {
+        if(!this._start)
+        {
+            return;
+        }
         if(e.touchPointID != this._touchId)
         {
             return;
         }
         this._recordedPoints.push(new egret.Point(e.stageX,e.stageY));
-         console.log("gesture touch move")
+         //console.log("gesture touch move")
+         if(this._recordedPoints.length == 1)
+         {
+             this._canvas.graphics.moveTo(e.stageX, e.stageY);
+         }
+         else
+         {
+             this._canvas.graphics.lineTo(e.stageX, e.stageY);
+         }
     }
     
     private onTouchEnd(e:egret.TouchEvent):void
     {
+        this._canvas.graphics.clear();
+        if(!this._start)
+        {
+            return;
+        }
         if(e.touchPointID != this._touchId)
         {
             return;
         }
         this._record = false;
         var myResult:GestureResult = this._myRec.recognize(this._recordedPoints);
+        if(myResult)
+        {
+            console.log(myResult.name, myResult.score);	
+        this.dispatchEvent(new GestureEvent(GestureEvent.GESTURE,true,false,myResult.name));
+        }
         
-        console.log(myResult.name, myResult.score);	
+    }
+    
+    public start():void
+    {
+        this._start = true;
+        this._stage.addChild(this._canvas);
+        
+    }
+    public stop():void
+    {
+        this._start = false;
+        this._record = false;
+        if(this._recordedPoints)
+        {
+            this._recordedPoints.length = 0;
+        }
+        if(this._canvas.parent != null)
+        {
+            this._canvas.parent.removeChild(this._canvas);
+        }
     }
 }

@@ -4,6 +4,9 @@ var GestureRecognizer = (function () {
     }
     var d = __define,c=GestureRecognizer,p=c.prototype;
     p.recognize = function (points) {
+        if (points[0] == null) {
+            return null;
+        }
         points = GestureRecognizer.resample(points, GestureRecognizer.numPoints);
         points = GestureRecognizer.rotate2Zero(points);
         points = GestureRecognizer.scale2Square(points, GestureRecognizer.squareSize);
@@ -57,6 +60,9 @@ var GestureRecognizer = (function () {
     };
     GestureRecognizer.rotate2Zero = function (points) {
         var c = GestureRecognizer.Centroid(points);
+        if (points[0] == null) {
+            theta = 0;
+        }
         var theta = Math.atan2(c.y - points[0].y, c.x - points[0].x);
         return GestureRecognizer.RotateBy(points, -theta);
     };
@@ -117,6 +123,9 @@ var GestureRecognizer = (function () {
     GestureRecognizer.Centroid = function (points) {
         var x = 0.0, y = 0.0;
         for (var i = 0; i < points.length; i++) {
+            if (points[1] == null) {
+                continue;
+            }
             x += points[i].x;
             y += points[i].y;
         }

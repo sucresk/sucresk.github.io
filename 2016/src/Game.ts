@@ -70,4 +70,6 @@ class Game extends egret.DisplayObjectContainer
         w.add(ab);
         */
     }
+    
+    
 }

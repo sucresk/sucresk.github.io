@@ -2,9 +2,18 @@ class Level1 extends State
 {
     public testSprite:egret.Sprite;
     
+    public static TYPE_TAP:number = 0;
+    public static TYPE_DRAW:number = -1;
+    public static TYPE_CLEAR:number = -2;
+    public static TYPE_GESTURE:number = 3;
+    
     public goodTime:number = 200;
     public perfectTime:number = 50;
+    public hitStepTime:number = 500;
     
+    private _curHitIndex:number = -1;
+    
+    private _rhythmObjs:any[];
     private _rhythmArr:number[] = [];
     private _rhythmTypeArr:number[] = [];
     
@@ -30,9 +39,14 @@ class Level1 extends State
     private _labelComboo:egret.TextField;
     private _txtComboo:egret.TextField;
     
+    private _drawed:boolean;
     private _score:number;
     private _comboo:number;
     
+    private _pillarArr:egret.Point[] = [];
+    public heads:Head[] = [];
+    public helpSprite:egret.Sprite;
+    public gesture:GestureController;
     
     public constructor()
     {
@@ -42,7 +56,7 @@ class Level1 extends State
     public init():void
     {
         
-        var image:egret.Bitmap = this.createBitmapByName("end_jpg");
+        var image:egret.Bitmap = this.createBitmapByName("bg2_jpg");
        console.log("image_test",image)
        image.x = 0;
        image.y = 0;
@@ -54,7 +68,7 @@ class Level1 extends State
         this.testSprite.x = 200;
         this.testSprite.y = 50;
         this._debugText = new egret.TextField();
-        this._debugText.x = 300;
+        this._debugText.x = 400;
         this.addChild(this._debugText);
         
         this.initConfig();
@@ -67,8 +81,33 @@ class Level1 extends State
         var sound:egret.Sound = RES.getRes("sound_test");
         sound.play(0,1);
         
+        this.gesture = new GestureController(this.stage);
+        this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
+        //this.gesture.start();
         
+        this.initPillar();
+        /*
+        var man:Man = new Man();
+        man.x = 100;
+        man.y = 300;
+        this.addChild(man);
+        man.play("hit");
+        */
+        var head0:Head = this.createHead("head0_png")
+        this.addHeadTo(head0,0);
+        var head1:Head = this.createHead("head0_png")
+        this.addHeadTo(head1,1);
+        var head2:Head = this.createHead("head0_png")
+        this.addHeadTo(head2,2);
+        var head3:Head = this.createHead("head0_png")
+        this.addHeadTo(head3,3);
+        var head4:Head = this.createHead("head0_png")
+        this.addHeadTo(head4,4);
+        //head.play();
+        this.helpSprite = new egret.Sprite();
+        this.addChild(this.helpSprite);
     }
+    
     private initUI():void
     {
         this._score = 0;
@@ -100,14 +139,15 @@ class Level1 extends State
     }
     private initConfig():void
     {
-        var levelConfig:any = RES.getRes("level1_rhy_json");
+        var levelConfig:any = RES.getRes("level_0_json");
         console.log(levelConfig)
+        this._rhythmObjs = levelConfig;
         for(var i:number = 0, len:number = levelConfig.length; i < len; i++)
         {
             this._rhythmArr.push(levelConfig[i].beat * 500);
             this._rhythmTypeArr.push(levelConfig[i].action);
         }
-        console.log(this._rhythmArr, this._rhythmTypeArr);
+        console.log(this._rhythmArr.length , "aaaaaaaaaaaaa");
         this._endIndex = this._rhythmArr.length;
     }
     
@@ -121,25 +161,38 @@ class Level1 extends State
         this._endIndex = this._rhythmArr.length;
     }
     
+    private initPillar():void
+    {
+        var p0:egret.Point = new egret.Point(299,310);
+        var p1:egret.Point = new egret.Point(453,424);
+        var p2:egret.Point = new egret.Point(389,567);
+        var p3:egret.Point = new egret.Point(202,569);
+        var p4:egret.Point = new egret.Point(153,398);
+        this._pillarArr.push(p0);
+        this._pillarArr.push(p1);
+        this._pillarArr.push(p2);
+        this._pillarArr.push(p3);
+        this._pillarArr.push(p4);
+    }
     private goodTip():void
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0xffff00);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     private perfectTip():void
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0xff0000);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     private normalTip():void
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0x0000ff);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     
@@ -153,15 +206,37 @@ class Level1 extends State
         this._touching = false;
         this._touchedOver = true;
         var d:number = e.localX - this._startTouchX;
-        if(d > 0)// right
+        if(this._curTouchType == Level1.TYPE_TAP)
         {
-            this._touchType = 1;
+            if(d > 0)// right
+            {
+                this._touchType = 1;
+            }
+            else //lefts
+            {
+                this._touchType = 2;
+            }
+            console.log("touch", this._touchType)
         }
-        else //lefts
+        
+    }
+    private onGesture(e:GestureEvent):void
+    {
+        console.log("ongesture",e.data);
+        if(this._curTouchType == Level1.TYPE_GESTURE)
         {
-            this._touchType = 2;
+            var obj:any = this._rhythmObjs[this._curIndex];
+            console.log("ddddddddd", obj.line, e.data)
+            if(obj.line == e.data)
+            {
+                this._touchType = Level1.TYPE_GESTURE;
+            }
+            else
+            {
+                this.missGesture();
+            }
         }
-        console.log("touch", this._touchType)
+        
     }
     public startTime():void
     {
@@ -185,6 +260,14 @@ class Level1 extends State
         this._comboo++;
         this._score += this._comboo * 10 + 10;
     }
+    private goodGesture():void
+    {
+        this._touched = true;
+        this._touchedOver = false;
+        console.log("good gesture");
+        this._comboo++;
+        this._score += this._comboo * 10 + 10;
+    }
     
     private perfectTouch():void
     {
@@ -201,17 +284,47 @@ class Level1 extends State
         this._comboo = 0;
     }
     
+    private missGesture():void
+    {
+        this.missTouch();
+        console.log("miss gesture");
+    }
+    
     private nextRhythm():void
     {
        this._curIndex++;
-       this._curHitTime = this._rhythmArr[this._curIndex];
-       this._curTouchType = this._rhythmTypeArr[this._curIndex];
+       
        if(!this._touched)
        {
-           this.missTouch();
+           if(this._curTouchType == Level1.TYPE_TAP)
+           {
+               this.missTouch();
+           }
+           else if(this._curTouchType == Level1.TYPE_GESTURE)
+           {
+               this.missGesture();
+           }
+           
        }
+       this._drawed = false;
+       this._curHitTime = this._rhythmArr[this._curIndex];
+       this._curTouchType = this._rhythmTypeArr[this._curIndex];
+       
        this._touched = false;
        this._touchType = -1;
+       if(this._curTouchType == Level1.TYPE_GESTURE)
+       {
+           var obj:any = this._rhythmObjs[this._curIndex];
+           this.goodTime = obj.duration * this.hitStepTime;
+           console.log("gesture begin");
+           this.gesture.start();
+       }
+       else
+       {
+           this.goodTime = 200;
+           console.log("gesture over");
+           this.gesture.stop();
+       }
     }
     public tick(advancedTime:number):void
     {
@@ -229,29 +342,69 @@ class Level1 extends State
         {
             this.levelEnd();
         }
-        
-        if(this._curTime > this._curHitTime - this.perfectTime &&
-           this._curTime < this._curHitTime + this.perfectTime)
-           {
-               this._perfectDuring = true;
-               //this.perfectTip();
-               this.goodTip();
-           }
-        else
+        if(this._curTouchType == Level1.TYPE_TAP)
         {
-            this._perfectDuring = false;
-            if(this._curTime > this._curHitTime - this.goodTime &&
-                this._curTime < this._curHitTime + this.goodTime)
+            if(this._curTime > this._curHitTime - this.perfectTime &&
+            this._curTime < this._curHitTime + this.perfectTime)
             {
-                this._goodDuring = true;
+                this._perfectDuring = true;
+                //this.perfectTip();
                 this.goodTip();
             }
             else
             {
-                this._goodDuring = false;
-                this.normalTip();
+                this._perfectDuring = false;
+                if(this._curTime > this._curHitTime - this.goodTime &&
+                    this._curTime < this._curHitTime + this.goodTime)
+                {
+                    this._goodDuring = true;
+                    this.goodTip();
+                }
+                else
+                {
+                    this._goodDuring = false;
+                    this.normalTip();
+                }
+            }
+            
+            if(this._goodDuring && !this._touched && this.checkTouchType(this._touchType))
+            {
+                this.goodTouch();
             }
         }
+        else if(this._curTouchType == Level1.TYPE_DRAW)
+        {
+            if(this._curTime > this._curHitTime)
+            {
+                this.drawHelp(this._curIndex);
+            }
+        }
+        else if(this._curTouchType == Level1.TYPE_CLEAR)
+        {
+            if(this._curTime > this._curHitTime)
+            {
+                this.clearHelp();
+            }
+        }
+        else if(this._curTouchType == Level1.TYPE_GESTURE)
+        {
+            var obj:any = this._rhythmObjs[this._curIndex];
+            
+            if(this._curTime > this._curHitTime 
+            && this._curTime < this._curHitTime + obj.duration * this.hitStepTime)
+            {
+                this._goodDuring = true;
+            }
+            else
+            {
+                this._goodDuring = false;
+            }
+            if(this._goodDuring && !this._touched && this.checkTouchType(this._touchType))
+            {
+                this.goodGesture();
+            }
+        }
+        
         
         /*
         if(this._perfectDuring && this.checkTouchType(this._touchType))
@@ -259,10 +412,7 @@ class Level1 extends State
             this.perfectTouch();
         }
         */
-        if(this._goodDuring && !this._touched && this.checkTouchType(this._touchType))
-        {
-            this.goodTouch();
-        }
+        
         //else if(!this._goodDuring)
         /*
         if(this._perfectDuring && this._touching && !this._touched && this._touchedOver)
@@ -279,11 +429,13 @@ class Level1 extends State
         }
         */
         this.updateUI();
+        this.hitStep(this._curTime);
+        dragonBones.WorldClock.clock.advanceTime(advancedTime / 1000);
     }
     
     private checkTouchType(type:number):boolean
     {
-        console.log(this._curTouchType, type, "checktouchtype")
+        //console.log(this._curTouchType, type, "checktouchtype")
         if(this._curTouchType == 0)
         {
             if(type >= 0)
@@ -303,5 +455,54 @@ class Level1 extends State
         var texture:egret.Texture = RES.getRes(name);
         result.texture = texture;
         return result;
+    }
+    
+    public addHeadTo(head:Head, index:number):void
+    {
+        var x:number = this._pillarArr[index].x;
+        var y:number = this._pillarArr[index].y;
+        head.x = x;
+        head.y = y;
+        this.heads.push(head);
+        this.addChild(head);
+    }
+    public createHead(name:string):Head
+    {
+        return new Head(name);
+    }
+    public hitStep(curTime:number):void
+    {
+        var i:number = Math.floor(curTime/this.hitStepTime);
+        if( i != this._curHitIndex)
+        {
+            this._curHitIndex = i;
+            this.AllHit();
+        }
+    }
+    
+    public AllHit():void
+    {
+        for(var i:number = 0,len:number = this.heads.length; i < len; i++)
+        {
+            this.heads[i].play();
+        }
+    }
+    
+    public drawHelp(index:number):void
+    {
+        if(!this._drawed)
+        {
+            this._drawed = true;
+            var obj:any = this._rhythmObjs[index];
+            this.helpSprite.graphics.lineStyle(20,0xff0000,1);
+            
+            this.helpSprite.graphics.moveTo(<number>obj.line[0],<number>obj.line[1]);
+            this.helpSprite.graphics.lineTo(<number>obj.line[2],<number>obj.line[3]);
+        }
+        
+    }
+    public clearHelp():void
+    {
+        this.helpSprite.graphics.clear();
     }
 }

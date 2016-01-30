@@ -15,6 +15,10 @@ class GestureRecognizer
     
     public recognize(points:egret.Point[]):GestureResult
     {
+        if(points[0] == null)
+        {
+            return null;
+        }
         points = GestureRecognizer.resample(points,GestureRecognizer.numPoints);
         points = GestureRecognizer.rotate2Zero(points);
         points = GestureRecognizer.scale2Square(points, GestureRecognizer.squareSize);
@@ -86,6 +90,10 @@ class GestureRecognizer
     public static  rotate2Zero(points:egret.Point[]):egret.Point[]
     {
         var c = GestureRecognizer.Centroid(points);
+        if(points[0] == null)
+        {
+            theta = 0;
+        }
         var theta = Math.atan2(c.y - points[0].y, c.x - points[0].x);
         return GestureRecognizer.RotateBy(points, -theta);
     }
@@ -162,6 +170,10 @@ class GestureRecognizer
         var x = 0.0, y = 0.0;
         for (var i = 0; i < points.length; i++)
         {
+            if(points[1] == null)
+            {
+                continue;
+            }
             x += points[i].x;
             y += points[i].y;
         }
