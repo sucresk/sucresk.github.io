@@ -31,8 +31,9 @@ var Game = (function (_super) {
         stateManager.registerState("spring",new SpringsState());
         stateManager.registerState("tearable",new TearableState());
         stateManager.registerState("applePhy",new AppleState());
+        stateManager.registerState("p2",new P2State());
         
-        stateManager.setCurStateName("applePhy");
+        stateManager.setCurStateName("p2");
         stateManager.startTick();
         console.log("aa")
         var pad:GamePad = new GamePad(this.stage,"");

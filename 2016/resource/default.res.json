@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json",
 		"name":"preload"
 	},
 	{
@@ -45,5 +45,15 @@
 		"name":"end_jpg",
 		"type":"image",
 		"url":"assets/end.jpg"
+	},
+	{
+		"name":"level1_rhy_json",
+		"type":"json",
+		"url":"config/level1_rhy.json"
+	},
+	{
+		"name":"level_0_json",
+		"type":"json",
+		"url":"config/level_0.json"
 	}]
 }

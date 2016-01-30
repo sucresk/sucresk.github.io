@@ -20,10 +20,6 @@
 		},
 		{
 			"name": "res"
-		},
-        {
-            "name": "physics",
-            "path":"/libsrc/p2"
-        }
+		}
 	]
 }
