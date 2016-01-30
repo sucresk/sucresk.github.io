@@ -12,7 +12,9 @@ var Game = (function (_super) {
     p.init = function () {
         console.log("this is a new game!");
         var stateManager = new StateManager(this);
-        stateManager.registerState("level1", new Level1);
+        stateManager.registerState("levelInfo", new LevelInfo());
+        stateManager.registerState("level1", new Level1());
+        stateManager.registerState("over0", new LevelOver("kui"));
         stateManager.setCurStateName("level1");
         stateManager.startTick();
         /*

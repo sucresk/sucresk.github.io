@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png,arrow_png,caret_png,delete_png,left_square_bracket_png,rectangle_png,right_square_bracket_png,star_png,triangle_png,v_png,x_png,kui_json,kui_texture_json,kui_texture_png",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png,arrow_png,caret_png,delete_png,left_square_bracket_png,rectangle_png,right_square_bracket_png,star_png,triangle_png,v_png,x_png,kui_json,kui_texture_json,kui_texture_png,lei_json,lei_texture_json,lei_texture_png,meng_json,meng_texture_json,meng_texture_png,zhi_texture_json,zhi_texture_png,zhi_json,kui_png,lei_png,meng_png,wei_png,zhi_png,info0_jpg,info1_jpg,info2_jpg,info3_jpg,info4_jpg,level_mp3,altar_json,altar_texture_json,altar_texture_png",
 		"name":"preload"
 	},
 	{
@@ -210,5 +210,120 @@
 		"name":"kui_texture_png",
 		"type":"image",
 		"url":"assets/anim/kui/kui_texture.png"
+	},
+	{
+		"name":"lei_json",
+		"type":"json",
+		"url":"assets/anim/lei/lei.json"
+	},
+	{
+		"name":"lei_texture_json",
+		"type":"json",
+		"url":"assets/anim/lei/texture.json"
+	},
+	{
+		"name":"lei_texture_png",
+		"type":"image",
+		"url":"assets/anim/lei/texture.png"
+	},
+	{
+		"name":"meng_json",
+		"type":"json",
+		"url":"assets/anim/meng/meng.json"
+	},
+	{
+		"name":"meng_texture_json",
+		"type":"json",
+		"url":"assets/anim/meng/texture.json"
+	},
+	{
+		"name":"meng_texture_png",
+		"type":"image",
+		"url":"assets/anim/meng/texture.png"
+	},
+	{
+		"name":"zhi_texture_json",
+		"type":"json",
+		"url":"assets/anim/zhi/texture.json"
+	},
+	{
+		"name":"zhi_texture_png",
+		"type":"image",
+		"url":"assets/anim/zhi/texture.png"
+	},
+	{
+		"name":"zhi_json",
+		"type":"json",
+		"url":"assets/anim/zhi/zhi.json"
+	},
+	{
+		"name":"kui_png",
+		"type":"image",
+		"url":"assets/head/kui.png"
+	},
+	{
+		"name":"lei_png",
+		"type":"image",
+		"url":"assets/head/lei.png"
+	},
+	{
+		"name":"meng_png",
+		"type":"image",
+		"url":"assets/head/meng.png"
+	},
+	{
+		"name":"wei_png",
+		"type":"image",
+		"url":"assets/head/wei.png"
+	},
+	{
+		"name":"zhi_png",
+		"type":"image",
+		"url":"assets/head/zhi.png"
+	},
+	{
+		"name":"info0_jpg",
+		"type":"image",
+		"url":"assets/levelInfo/info0.jpg"
+	},
+	{
+		"name":"info1_jpg",
+		"type":"image",
+		"url":"assets/levelInfo/info1.jpg"
+	},
+	{
+		"name":"info2_jpg",
+		"type":"image",
+		"url":"assets/levelInfo/info2.jpg"
+	},
+	{
+		"name":"info3_jpg",
+		"type":"image",
+		"url":"assets/levelInfo/info3.jpg"
+	},
+	{
+		"name":"info4_jpg",
+		"type":"image",
+		"url":"assets/levelInfo/info4.jpg"
+	},
+	{
+		"name":"level_mp3",
+		"type":"sound",
+		"url":"assets/sounds/level.mp3"
+	},
+	{
+		"name":"altar_json",
+		"type":"json",
+		"url":"assets/anim/altar/altar.json"
+	},
+	{
+		"name":"altar_texture_json",
+		"type":"json",
+		"url":"assets/anim/altar/texture.json"
+	},
+	{
+		"name":"altar_texture_png",
+		"type":"image",
+		"url":"assets/anim/altar/texture.png"
 	}]
 }

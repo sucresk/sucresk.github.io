@@ -1,9 +1,12 @@
 var Role = (function (_super) {
     __extends(Role, _super);
-    function Role(name) {
+    function Role(name, scale) {
         if (name === void 0) { name = "man0"; }
+        if (scale === void 0) { scale = 0.35; }
         _super.call(this);
         this.name = name;
+        this._scale = scale;
+        console.log("name armature", name);
         var skeletonData = RES.getRes(name + "_json");
         var textureData = RES.getRes(name + "_texture_json");
         var texture = RES.getRes(name + "_texture_png");
@@ -15,8 +18,8 @@ var Role = (function (_super) {
         factory.addTextureAtlas(new dragonBones.EgretTextureAtlas(texture, textureData));
         this.armature = factory.buildArmature(name);
         var armatureDisplay = this.armature.display;
-        armatureDisplay.scaleX = 0.4;
-        armatureDisplay.scaleY = 0.4;
+        armatureDisplay.scaleX = this._scale;
+        armatureDisplay.scaleY = this._scale;
         dragonBones.WorldClock.clock.add(this.armature);
         this.addChild(armatureDisplay);
     }

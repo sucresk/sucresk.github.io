@@ -3,11 +3,14 @@ class Role extends egret.Sprite
     
     public armature:dragonBones.Armature;
     public name:string;
+    private _scale:number;
     
-    public constructor(name:string = "man0")
+    public constructor(name:string = "man0", scale:number = 0.35)
     {
         super();
         this.name = name;
+        this._scale = scale;
+        console.log("name armature",name)
         var skeletonData = RES.getRes(name + "_json");
         var textureData = RES.getRes(name + "_texture_json");
         var texture = RES.getRes(name + "_texture_png");
@@ -22,8 +25,8 @@ class Role extends egret.Sprite
         
         this.armature = factory.buildArmature(name);
         var armatureDisplay = this.armature.display;
-        armatureDisplay.scaleX = 0.4;
-        armatureDisplay.scaleY = 0.4;
+        armatureDisplay.scaleX = this._scale;
+        armatureDisplay.scaleY = this._scale;
         dragonBones.WorldClock.clock.add(this.armature);
         this.addChild(armatureDisplay);
     }

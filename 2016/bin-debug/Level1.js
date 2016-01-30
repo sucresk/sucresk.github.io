@@ -13,7 +13,8 @@ var Level1 = (function (_super) {
         this._pillarArr = [];
         this.heads = [];
         this.tokens = [];
-        this.roleNames = ["man0", "wei", "kui"];
+        this.headNames = ["lei_png", "wei_png", "kui_png", "meng_png", "zhi_png"];
+        this.roleNames = ["lei", "wei", "kui", "meng", "zhi"];
         this.roles = [];
         this.decorationNames = ["barrel_png", "flower_png", "chair_png", "toilet_png"];
         this.decorationPos = [150, 200, 480, 200, 150, 700, 480, 700];
@@ -21,33 +22,39 @@ var Level1 = (function (_super) {
         this.playDecorationNum = 4;
         this.tokenNames = ["v_png", "caret_png", "x_png", "delete_png", "triangle_png", "left_square_bracket_png",
             "right_square_bracket_png", "rectangle_png", "star_png", "arrow_png"];
+        this.headLayer = new egret.DisplayObjectContainer();
+        this.userGestureLayer = new egret.DisplayObjectContainer();
     }
     var d = __define,c=Level1,p=c.prototype;
     p.init = function () {
-        var image = this.createBitmapByName("bg2_jpg");
+        var image = this.createBitmapByName("bgImage");
         console.log("image_test", image);
         image.x = 0;
         image.y = 0;
         this.addChild(image);
         //this.initRhythm();
         this.testSprite = new egret.Sprite();
-        this.addChild(this.testSprite);
+        //this.addChild(this.testSprite);
         this.testSprite.x = 200;
         this.testSprite.y = 50;
         this._debugText = new egret.TextField();
         this._debugText.x = 400;
-        this.addChild(this._debugText);
+        //this.addChild(this._debugText);
         this.initConfig();
-        this.initUI();
+        //this.initUI();
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
-        var sound = RES.getRes("sound_test");
-        sound.play(0, 1);
-        this.gesture = new GestureController(this.stage);
+        // this.bgSound = RES.getRes("sound_test");
+        this.bgSound = RES.getRes("level_mp3");
+        this.bgChannel = this.bgSound.play(0, 1);
+        this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
+        this.initAltar();
         this.initPillar();
         this.initDecoration();
+        this.addChild(this.headLayer);
+        this.addChild(this.userGestureLayer);
         /*
         var man:Man = new Man();
         man.x = 100;
@@ -55,8 +62,9 @@ var Level1 = (function (_super) {
         this.addChild(man);
         man.play("hit");
         */
-        var head0 = this.createHead("head0_png");
-        this.addHeadTo(head0, 0);
+        //var head0:Head = this.createHead("head0_png")
+        //this.addHeadTo(head0,0);
+        this.addOneRole();
         /*
         var head1:Head = this.createHead("head0_png")
         this.addHeadTo(head1,1);
@@ -114,6 +122,13 @@ var Level1 = (function (_super) {
         }
         this._endIndex = this._rhythmArr.length;
     };
+    p.initAltar = function () {
+        this.altar = new Altar();
+        this.altar.x = 300;
+        this.altar.y = 580;
+        this.addChild(this.altar);
+        this.altar.normal();
+    };
     p.initPillar = function () {
         var p0 = new egret.Point(299, 310);
         var p1 = new egret.Point(453, 424);
@@ -130,7 +145,7 @@ var Level1 = (function (_super) {
         for (var i = 0, len = this.decorationNames.length; i < len; i++) {
             var d = new Decoration(this.decorationNames[i]);
             d.x = this.decorationPos[i * 2];
-            d.y = this.decorationPos[i * 2 + 1];
+            d.y = this.decorationPos[i * 2 + 1] + 120;
             this.decorations.push(d);
             this.addChild(d);
         }
@@ -193,8 +208,34 @@ var Level1 = (function (_super) {
         this._curTouchType = this._rhythmTypeArr[this._curTouchType];
     };
     p.levelEnd = function () {
+        var end = function () {
+            this.dispose();
+            console.log("end end end ");
+            //this.next("levelOver");
+        };
         this._startGame = false;
+        var self = this;
         console.log("end game");
+        var black = new egret.Shape();
+        black.graphics.beginFill(0);
+        black.graphics.drawRect(0, 0, 600, 960);
+        black.graphics.endFill();
+        black.alpha = 0;
+        this.addChild(black);
+        if (this.bgChannel) {
+            this.bgChannel.stop();
+        }
+        var tw = egret.Tween.get(black);
+        tw.wait(2000);
+        tw.to({ "alpha": 1 }, 5000);
+        tw.wait(20);
+        tw.to({ "scaleX": 1 }, 1);
+        tw.call(end, self);
+    };
+    p.dispose = function () {
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
+        this.gesture.removeEventListener(GestureEvent.GESTURE, this.onGesture, this);
     };
     p.goodTouch = function () {
         this._touched = true;
@@ -202,6 +243,7 @@ var Level1 = (function (_super) {
         console.log("good touch");
         this._comboo++;
         this._score += this._comboo * 10 + 10;
+        this.altar.correct();
     };
     p.goodGesture = function () {
         this._touched = true;
@@ -210,6 +252,7 @@ var Level1 = (function (_super) {
         this._comboo++;
         this._score += this._comboo * 10 + 10;
         this.addOneToken(this.curTokenName);
+        this.altar.correct();
     };
     p.perfectTouch = function () {
         this._touched = true;
@@ -221,6 +264,7 @@ var Level1 = (function (_super) {
         this._touchedOver = false;
         console.log("missing");
         this._comboo = 0;
+        this.altar.wrong();
     };
     p.missGesture = function () {
         this.missTouch();
@@ -340,7 +384,7 @@ var Level1 = (function (_super) {
             this.missTouch();
         }
         */
-        this.updateUI();
+        //this.updateUI();
         this.hitStep(this._curTime);
         dragonBones.WorldClock.clock.advanceTime(advancedTime / 1000);
     };
@@ -366,9 +410,9 @@ var Level1 = (function (_super) {
         var x = this._pillarArr[index].x;
         var y = this._pillarArr[index].y;
         head.x = x;
-        head.y = y;
+        head.y = y + 120;
         this.heads.push(head);
-        this.addChild(head);
+        this.headLayer.addChild(head);
     };
     p.createHead = function (name) {
         return new Head(name);
@@ -424,7 +468,7 @@ var Level1 = (function (_super) {
             this.heads[i].right();
         }
         for (i = 0, len = this.roles.length; i < len; i++) {
-            this.roles[i].play("left");
+            this.roles[i].play("right");
         }
         var n = this.playDecorationNum < this.decorations.length ?
             this.playDecorationNum : this.decorations.length;
@@ -453,7 +497,9 @@ var Level1 = (function (_super) {
         if (name == null) {
             i = Math.floor(Math.random() * this.tokenNames.length);
         }
-        i = this.getTokenIndex(name);
+        else {
+            i = this.getTokenIndex(name);
+        }
         var t = this.createToken(i);
         this.addToken(t);
         if (this.tokens.length >= this.maxToken) {
@@ -467,6 +513,7 @@ var Level1 = (function (_super) {
     p.addToken = function (bmp) {
         this.tokens.push(bmp);
         bmp.x = this.tokens.length * 100;
+        bmp.y = 800;
         this.addChild(bmp);
     };
     p.clearToken = function () {
@@ -479,9 +526,12 @@ var Level1 = (function (_super) {
     };
     p.addOneRole = function () {
         var i = Math.floor(Math.random() * this.roleNames.length);
-        console.log("ccccccccccccc", i, this.roleNames.length);
         var r = this.createRole(i);
         this.addRole(r);
+        if (this.heads.length < 5) {
+            var head = this.createHead(this.headNames[i]);
+            this.addHeadTo(head, this.heads.length);
+        }
     };
     p.createRole = function (index) {
         var name = this.roleNames[index];
@@ -491,8 +541,8 @@ var Level1 = (function (_super) {
     p.addRole = function (r) {
         this.roles.push(r);
         r.play("hit");
-        r.x = this.roles.length * 140 - 80;
-        r.y = 955;
+        r.x = this.roles.length * 120 - 60;
+        r.y = 200;
         this.addChild(r);
     };
     p.clearRole = function () {

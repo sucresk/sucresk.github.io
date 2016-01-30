@@ -52,7 +52,8 @@ class Level1 extends State
     public gesture:GestureController;
     
     public tokens:egret.Bitmap[] = [];
-    public roleNames:string[] = ["man0","wei","kui"];
+    public headNames:string[] = ["lei_png","wei_png","kui_png","meng_png","zhi_png"];
+    public roleNames:string[] = ["lei","wei","kui","meng","zhi"];
     public roles:Role[] = [];
     
     public decorationNames:string[] = ["barrel_png","flower_png","chair_png","toilet_png"];
@@ -64,15 +65,26 @@ class Level1 extends State
                                   "right_square_bracket_png","rectangle_png","star_png","arrow_png"];
     
     public curTokenName:string;
+    
+    public headLayer:egret.DisplayObjectContainer;
+    public userGestureLayer:egret.DisplayObjectContainer;
+   
+    public altar:Altar;
+    
+    public bgSound:egret.Sound;
+    public bgChannel:egret.SoundChannel;
+    
     public constructor()
     {
         super();
+        this.headLayer = new egret.DisplayObjectContainer();
+        this.userGestureLayer = new egret.DisplayObjectContainer();
     }
     
     public init():void
     {
         
-        var image:egret.Bitmap = this.createBitmapByName("bg2_jpg");
+        var image:egret.Bitmap = this.createBitmapByName("bgImage");
        console.log("image_test",image)
        image.x = 0;
        image.y = 0;
@@ -80,29 +92,32 @@ class Level1 extends State
        
         //this.initRhythm();
         this.testSprite = new egret.Sprite();
-        this.addChild(this.testSprite);
+        //this.addChild(this.testSprite);
         this.testSprite.x = 200;
         this.testSprite.y = 50;
         this._debugText = new egret.TextField();
         this._debugText.x = 400;
-        this.addChild(this._debugText);
+        //this.addChild(this._debugText);
         
         this.initConfig();
-        this.initUI();
+        //this.initUI();
         
         
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd,this);
         
-        var sound:egret.Sound = RES.getRes("sound_test");
-        sound.play(0,1);
+        // this.bgSound = RES.getRes("sound_test");
+        this.bgSound = RES.getRes("level_mp3");
+        this.bgChannel = this.bgSound.play(0,1);
         
-        this.gesture = new GestureController(this.stage);
+        this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
-        
+        this.initAltar();
         this.initPillar();
         this.initDecoration();
+        this.addChild(this.headLayer);
+        this.addChild(this.userGestureLayer);
         /*
         var man:Man = new Man();
         man.x = 100;
@@ -110,8 +125,9 @@ class Level1 extends State
         this.addChild(man);
         man.play("hit");
         */
-        var head0:Head = this.createHead("head0_png")
-        this.addHeadTo(head0,0);
+        //var head0:Head = this.createHead("head0_png")
+        //this.addHeadTo(head0,0);
+        this.addOneRole();
         /*
         var head1:Head = this.createHead("head0_png")
         this.addHeadTo(head1,1);
@@ -181,6 +197,14 @@ class Level1 extends State
         this._endIndex = this._rhythmArr.length;
     }
     
+    private initAltar():void
+    {
+        this.altar = new Altar();
+        this.altar.x = 300;
+        this.altar.y = 580;
+        this.addChild(this.altar);
+        this.altar.normal();
+    }
     private initPillar():void
     {
         var p0:egret.Point = new egret.Point(299,310);
@@ -200,7 +224,7 @@ class Level1 extends State
         {
             var d:Decoration = new Decoration(this.decorationNames[i]);
             d.x = this.decorationPos[i * 2];
-            d.y = this.decorationPos[i * 2 + 1];
+            d.y = this.decorationPos[i * 2 + 1] + 120;
             this.decorations.push(d);
             this.addChild(d);
         }
@@ -280,8 +304,43 @@ class Level1 extends State
     }
     public levelEnd():void
     {
+        
+        var end:Function = function () {
+            this.dispose();
+            console.log("end end end ")
+            //this.next("levelOver");
+        }
+        
+        
         this._startGame = false;
-        console.log("end game");
+        var self:any = this;
+        
+        console.log("end game")
+        var black:egret.Shape = new egret.Shape();
+        black.graphics.beginFill(0);
+        black.graphics.drawRect(0,0,600,960);
+        black.graphics.endFill();
+        black.alpha = 0;
+        this.addChild(black);
+       
+        if(this.bgChannel)
+        {
+            this.bgChannel.stop();
+        }
+        var tw = egret.Tween.get(black);
+        tw.wait(2000);
+        tw.to({"alpha": 1}, 5000);
+        tw.wait(20);
+        tw.to({"scaleX": 1}, 1)
+        tw.call(end,self); 
+    }
+    
+    private dispose():void
+    {
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd,this);
+        
+        this.gesture.removeEventListener(GestureEvent.GESTURE, this.onGesture, this);
     }
     
     private goodTouch():void
@@ -291,6 +350,7 @@ class Level1 extends State
         console.log("good touch");
         this._comboo++;
         this._score += this._comboo * 10 + 10;
+        this.altar.correct();
     }
     private goodGesture():void
     {
@@ -300,6 +360,7 @@ class Level1 extends State
         this._comboo++;
         this._score += this._comboo * 10 + 10;
         this.addOneToken(this.curTokenName);
+        this.altar.correct();
     }
     
     private perfectTouch():void
@@ -315,6 +376,7 @@ class Level1 extends State
         this._touchedOver = false;
         console.log("missing");
         this._comboo = 0;
+        this.altar.wrong();
     }
     
     private missGesture():void
@@ -471,7 +533,7 @@ class Level1 extends State
             this.missTouch();
         }
         */
-        this.updateUI();
+        //this.updateUI();
         this.hitStep(this._curTime);
         dragonBones.WorldClock.clock.advanceTime(advancedTime / 1000);
     }
@@ -505,9 +567,9 @@ class Level1 extends State
         var x:number = this._pillarArr[index].x;
         var y:number = this._pillarArr[index].y;
         head.x = x;
-        head.y = y;
+        head.y = y + 120;
         this.heads.push(head);
-        this.addChild(head);
+        this.headLayer.addChild(head);
     }
     public createHead(name:string):Head
     {
@@ -584,7 +646,7 @@ class Level1 extends State
         }
         for(i = 0,len = this.roles.length; i < len; i++)
         {
-            this.roles[i].play("left");
+            this.roles[i].play("right");
         }
         
         var n:number = this.playDecorationNum < this.decorations.length ? 
@@ -624,8 +686,11 @@ class Level1 extends State
         {
             i = Math.floor(Math.random() * this.tokenNames.length);
         }
+        else
+        {
+            i = this.getTokenIndex(name);
+        }
         
-        i = this.getTokenIndex(name);
         var t:egret.Bitmap = this.createToken(i);
         this.addToken(t);
         if(this.tokens.length >= this.maxToken)
@@ -643,6 +708,7 @@ class Level1 extends State
     {
         this.tokens.push(bmp);
         bmp.x = this.tokens.length * 100;
+        bmp.y = 800;
         this.addChild(bmp);
     }
     
@@ -661,9 +727,14 @@ class Level1 extends State
     private addOneRole():void
     {
         var i:number = Math.floor(Math.random() * this.roleNames.length);
-        console.log("ccccccccccccc", i , this.roleNames.length)
         var r:Role = this.createRole(i);
         this.addRole(r);
+        if( this.heads.length < 5)
+        {
+            var head:Head = this.createHead(this.headNames[i]);
+            this.addHeadTo(head,this.heads.length);
+        }
+        
     }
     private createRole(index:number):Role
     {
@@ -676,8 +747,8 @@ class Level1 extends State
     {
         this.roles.push(r);
         r.play("hit");
-        r.x = this.roles.length * 140 - 80;
-        r.y = 955;
+        r.x = this.roles.length * 120 - 60;
+        r.y = 200;
         this.addChild(r);
     }
     
