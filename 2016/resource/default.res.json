@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png,arrow_png,caret_png,delete_png,left_square_bracket_png,rectangle_png,right_square_bracket_png,star_png,triangle_png,v_png,x_png,kui_json,kui_texture_json,kui_texture_png",
 		"name":"preload"
 	},
 	{
@@ -145,5 +145,70 @@
 		"name":"toilet_png",
 		"type":"image",
 		"url":"assets/decoration/toilet.png"
+	},
+	{
+		"name":"arrow_png",
+		"type":"image",
+		"url":"assets/token/arrow.png"
+	},
+	{
+		"name":"caret_png",
+		"type":"image",
+		"url":"assets/token/caret.png"
+	},
+	{
+		"name":"delete_png",
+		"type":"image",
+		"url":"assets/token/delete.png"
+	},
+	{
+		"name":"left_square_bracket_png",
+		"type":"image",
+		"url":"assets/token/left_square_bracket.png"
+	},
+	{
+		"name":"rectangle_png",
+		"type":"image",
+		"url":"assets/token/rectangle.png"
+	},
+	{
+		"name":"right_square_bracket_png",
+		"type":"image",
+		"url":"assets/token/right_square_bracket.png"
+	},
+	{
+		"name":"star_png",
+		"type":"image",
+		"url":"assets/token/star.png"
+	},
+	{
+		"name":"triangle_png",
+		"type":"image",
+		"url":"assets/token/triangle.png"
+	},
+	{
+		"name":"v_png",
+		"type":"image",
+		"url":"assets/token/v.png"
+	},
+	{
+		"name":"x_png",
+		"type":"image",
+		"url":"assets/token/x.png"
+	},
+	{
+		"name":"kui_json",
+		"type":"json",
+		"url":"assets/anim/kui/kui.json"
+	},
+	{
+		"name":"kui_texture_json",
+		"type":"json",
+		"url":"assets/anim/kui/kui_texture.json"
+	},
+	{
+		"name":"kui_texture_png",
+		"type":"image",
+		"url":"assets/anim/kui/kui_texture.png"
 	}]
 }

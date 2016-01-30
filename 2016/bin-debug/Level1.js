@@ -13,12 +13,14 @@ var Level1 = (function (_super) {
         this._pillarArr = [];
         this.heads = [];
         this.tokens = [];
-        this.roleNames = ["man0", "wei"];
+        this.roleNames = ["man0", "wei", "kui"];
         this.roles = [];
         this.decorationNames = ["barrel_png", "flower_png", "chair_png", "toilet_png"];
         this.decorationPos = [150, 200, 480, 200, 150, 700, 480, 700];
         this.decorations = [];
         this.playDecorationNum = 4;
+        this.tokenNames = ["v_png", "caret_png", "x_png", "delete_png", "triangle_png", "left_square_bracket_png",
+            "right_square_bracket_png", "rectangle_png", "star_png", "arrow_png"];
     }
     var d = __define,c=Level1,p=c.prototype;
     p.init = function () {
@@ -174,6 +176,7 @@ var Level1 = (function (_super) {
         if (this._curTouchType == Level1.TYPE_GESTURE) {
             var obj = this._rhythmObjs[this._curIndex];
             console.log("ddddddddd", obj.gesture, e.data);
+            this.curTokenName = obj.gesture;
             if (obj.gesture == e.data) {
                 this._touchType = Level1.TYPE_GESTURE;
             }
@@ -206,7 +209,7 @@ var Level1 = (function (_super) {
         console.log("good gesture");
         this._comboo++;
         this._score += this._comboo * 10 + 10;
-        this.addOneToken();
+        this.addOneToken(this.curTokenName);
     };
     p.perfectTouch = function () {
         this._touched = true;
@@ -256,7 +259,7 @@ var Level1 = (function (_super) {
                 this.AllRight();
             }
         }
-        //this.addOneToken();
+        this.addOneToken();
     };
     p.tick = function (advancedTime) {
         if (!this._startGame) {
@@ -441,11 +444,16 @@ var Level1 = (function (_super) {
     p.clearHelp = function () {
         this.helpSprite.graphics.clear();
     };
-    p.addOneToken = function () {
+    p.addOneToken = function (name) {
+        if (name === void 0) { name = null; }
         if (this.tokens.length >= this.maxToken) {
             this.clearToken();
         }
-        var i = Math.floor(Math.random() * 4);
+        var i;
+        if (name == null) {
+            i = Math.floor(Math.random() * this.tokenNames.length);
+        }
+        i = this.getTokenIndex(name);
         var t = this.createToken(i);
         this.addToken(t);
         if (this.tokens.length >= this.maxToken) {
@@ -453,7 +461,7 @@ var Level1 = (function (_super) {
         }
     };
     p.createToken = function (index) {
-        var bmp = this.createBitmapByName("token_" + index + "_png");
+        var bmp = this.createBitmapByName(this.tokenNames[index]);
         return bmp;
     };
     p.addToken = function (bmp) {
@@ -483,7 +491,7 @@ var Level1 = (function (_super) {
     p.addRole = function (r) {
         this.roles.push(r);
         r.play("hit");
-        r.x = this.roles.length * 100;
+        r.x = this.roles.length * 140 - 80;
         r.y = 955;
         this.addChild(r);
     };
@@ -495,6 +503,32 @@ var Level1 = (function (_super) {
             }
         }
         this.roles.length = 0;
+    };
+    p.getTokenIndex = function (name) {
+        switch (name) {
+            case "v":
+                return 0;
+            case "caret":
+                return 1;
+            case "x":
+                return 2;
+            case "delete":
+                return 3;
+            case "triangle":
+                return 4;
+            case "left square bracket":
+                return 5;
+            case "right square bracket":
+                return 6;
+            case "rectangle":
+                return 7;
+            case "star":
+                return 8;
+            case "arrow":
+                return 9;
+            default:
+                return 0;
+        }
     };
     Level1.TYPE_TAP = 0;
     Level1.TYPE_DRAW = -1;

@@ -52,7 +52,7 @@ class Level1 extends State
     public gesture:GestureController;
     
     public tokens:egret.Bitmap[] = [];
-    public roleNames:string[] = ["man0","wei"];
+    public roleNames:string[] = ["man0","wei","kui"];
     public roles:Role[] = [];
     
     public decorationNames:string[] = ["barrel_png","flower_png","chair_png","toilet_png"];
@@ -60,6 +60,10 @@ class Level1 extends State
     public decorations:Decoration[] = [];
     public playDecorationNum:number = 4;
     
+    public tokenNames:string[] = ["v_png","caret_png","x_png","delete_png","triangle_png","left_square_bracket_png",
+                                  "right_square_bracket_png","rectangle_png","star_png","arrow_png"];
+    
+    public curTokenName:string;
     public constructor()
     {
         super();
@@ -254,6 +258,7 @@ class Level1 extends State
         {
             var obj:any = this._rhythmObjs[this._curIndex];
             console.log("ddddddddd", obj.gesture, e.data)
+            this.curTokenName = obj.gesture;
             if(obj.gesture == e.data)
             {
                 this._touchType = Level1.TYPE_GESTURE;
@@ -294,7 +299,7 @@ class Level1 extends State
         console.log("good gesture");
         this._comboo++;
         this._score += this._comboo * 10 + 10;
-        this.addOneToken();
+        this.addOneToken(this.curTokenName);
     }
     
     private perfectTouch():void
@@ -362,7 +367,7 @@ class Level1 extends State
                this.AllRight();
            }
        }
-       //this.addOneToken();
+       this.addOneToken();
     }
     public tick(advancedTime:number):void
     {
@@ -608,13 +613,19 @@ class Level1 extends State
         this.helpSprite.graphics.clear();
     }
     
-    private addOneToken():void
+    private addOneToken(name:string = null):void
     {
         if(this.tokens.length >= this.maxToken)
         {
             this.clearToken();
         }
-        var i:number = Math.floor(Math.random() * 4);
+        var i:number;
+        if(name == null)
+        {
+            i = Math.floor(Math.random() * this.tokenNames.length);
+        }
+        
+        i = this.getTokenIndex(name);
         var t:egret.Bitmap = this.createToken(i);
         this.addToken(t);
         if(this.tokens.length >= this.maxToken)
@@ -624,7 +635,7 @@ class Level1 extends State
     }
     private createToken(index:number):egret.Bitmap
     {
-        var bmp:egret.Bitmap = this.createBitmapByName("token_" + index + "_png");
+        var bmp:egret.Bitmap = this.createBitmapByName(this.tokenNames[index]);
         return bmp;
     }
     
@@ -665,7 +676,7 @@ class Level1 extends State
     {
         this.roles.push(r);
         r.play("hit");
-        r.x = this.roles.length * 100;
+        r.x = this.roles.length * 140 - 80;
         r.y = 955;
         this.addChild(r);
     }
@@ -681,5 +692,34 @@ class Level1 extends State
             }
         }
         this.roles.length = 0;
+    }
+    
+    private getTokenIndex(name:string):number
+    {
+        switch(name)
+        {
+            case "v":
+            return 0;
+            case "caret":
+            return 1;
+            case "x":
+            return 2;
+            case "delete":
+            return 3;
+            case "triangle":
+            return 4;
+            case "left square bracket":
+            return 5;
+            case "right square bracket":
+            return 6;
+            case "rectangle":
+            return 7;
+            case "star":
+            return 8;
+            case "arrow":
+            return 9;
+            default:
+            return 0;
+        }
     }
 }
