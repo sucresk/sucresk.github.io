@@ -1,0 +1,498 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/input/gamePad/GamePad.ts",
+			"settings":
+			{
+				"buffer_size": 4311,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".git/config",
+			"settings":
+			{
+				"buffer_size": 415,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/sukui/Documents/jsLibs/egret-game-library/physics/libsrc/package.json",
+			"settings":
+			{
+				"buffer_size": 193,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Template.as",
+			"settings":
+			{
+				"buffer_size": 1139,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Result.as",
+			"settings":
+			{
+				"buffer_size": 795,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Recognizer.as",
+			"settings":
+			{
+				"buffer_size": 6330,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/User/egret.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/sukui/Documents/EgretProjects/gameJam2016/tsconfiga.json",
+		"/C/Users/sukui/Documents/EgretProjects/gameJam2016/.git/config",
+		"/C/Users/sukui/Documents/EgretProjects/jsLib/nipplejs/src/collection.js",
+		"/C/Users/sukui/AppData/Roaming/Sublime Text 2/Packages/User/egret.sublime-build",
+		"/C/Users/sukui/Documents/EgretProjects/gameJam2016/egretProperties.json",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/index.js",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/client.js",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/app.js",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/server.js",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/client.html",
+		"/C/Users/sukui/Documents/EgretProjects/firstWing/egretProperties.json",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/node_modules/socket.io/lib/socket.js",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/index.html",
+		"/C/Users/sukui/Desktop/desktop.ini",
+		"/C/Program Files/Egret/EgretEngine/win/egret/src/extension/socket/WebSocket.ts",
+		"/C/Users/sukui/Documents/EgretProjects/firstSocket/package.json",
+		"/C/Users/sukui/Documents/EgretProjects/Client.Egret/index.html",
+		"/C/Users/sukui/Documents/EgretProjects/firstWing/wingProperties.json",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/C/快盘/workspace2/p2.js-master/src/math/vec2.js",
+		"/C/快盘/workspace2/p2.js-master/src/collision/AABB.js",
+		"/C/快盘/workspace2/p2.js-master/src/p2.js",
+		"/C/快盘/workspace2/p2.js-master/src/objects/Body.js",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Desktop/..txt",
+		"/E/其他/p2.js-master/src/constraints/Constraint.js",
+		"/E/work/egret-core/src/extension/dragonbones/core/armature/Armature.ts",
+		"/E/其他/p2.js-master/src/collision/Broadphase.js",
+		"/E/work/egret-core/src/extension/dragonbones/core/animation/AnimationState.ts",
+		"/E/其他/p2.js-master/src/collision/Narrowphase.js",
+		"/E/其他/p2.js-master/src/collision/SAPBroadphase.js",
+		"/C/spineboy/spineboy/hero_200012/hero_200012.dbproj",
+		"/E/work/egretdragonbones/.git/config",
+		"/E/work/egretdragonbones/.gitignore",
+		"/E/work/egretdragonbones/.git/info/exclude",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Desktop/xml4.0",
+		"/E/work/egretdragonbones/bin/testLib/Warrior2_1/Warrior2.xml",
+		"/E/work/egretdragonbones/EgretDragonBones.as3proj",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/EgretProjects/helloWorld/resource/resource.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/EgretProjects/helloWorld/libs/core/core.d.ts",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/EgretProjects/helloWorld/libs/exml.d.ts",
+		"/E/work/egretdragonbones/.git/HEAD",
+		"/E/work/egretdragonbones/.git/description",
+		"/E/work/egretdragonbones/.git/tortoisegit.data",
+		"/E/work/egret-core/src/extension/dragonbones/core/pasers/Data3Parser.ts",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/Robot_/Robot__3/texture.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/Robot_/Robot__3/Robot__3.json",
+		"/E/work/webStormWorkspaces/dragonBonesDemo522/resource/assets/robot/skeleton.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/haa_2/library/texture1.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Desktop/xml3.0",
+		"/E/work/egret-core/src/extension/dragonbones/core/pasers/DataParser.ts",
+		"/E/work/egretdragonbones/.git/COMMIT_EDITMSG",
+		"/E/downloads/行政/【重要】特别提醒：关于大会当天工作人员对外口径.eml",
+		"/E/downloads/梁宇鑫/haa_2/haa_2.json",
+		"/E/work/egret-core/src/extension/dragonbones/core/animation/SlotTimelineState.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/animation/TimelineState.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/model/TransformTimeline.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/model/SlotTimeline.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/model/TransformFrame.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/model/SlotFrame.ts",
+		"/E/work/egret-core/src/extension/dragonbones/core/model/BoneData.ts",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo1/resource/assets/armature/skeleton.json",
+		"/E/work/egret-core/src/extension/dragonbones/core/animation/Animation.ts",
+		"/E/work/DragonBonesTest/assets/test_1c/test_1.xml",
+		"/E/work/DragonBonesTest/assets/test_1/test_1.xml",
+		"/E/work/dragonBonesT/assets/test_1/test_1.json",
+		"/E/work/dragonBonesT/dragonBonesT.as3proj",
+		"/E/work/webStormWorkspaces/.cts",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo1/resource/assets/armature/texture.png",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo1/resource/assets/armature/texture.json",
+		"/E/downloads/晨光/Test 2/TestBug/resource/assets/hero_monkey_s3_ske.json",
+		"/E/work/webStormWorkspaces/TestBug/resource/assets/hero_monkey_s3_ske.json",
+		"/E/work/DragonBonesTest/assets/test_1/test_1.json",
+		"/E/work/DragonBonesTest/assets/test_1a/test_1.json",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo2/egretProperties.json",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo2/resource/assets/armature/NewProject1/skeleton.json",
+		"/E/work/webStormWorkspaces/dragonBonesTsDemo2/resource/assets/armature/skeleton.json",
+		"/E/work/DragonBonesTest/assets/test_1/texture.json",
+		"/E/work/DragonBonesTest/assets/test_1a/texture.json",
+		"/E/work/egret-core/src/extension/dragonbones/core/DragonBones.ts",
+		"/E/work/DragonBonesTest/assets/test_1x/test_1.xml",
+		"/E/work/DragonBonesTest/assets/test_1s/test_1.xml",
+		"/E/work/DragonBonesTest/assets/test_1j4/test_1.json",
+		"/E/work/DragonBonesTS/DragonBonesTs/src/dragonBones/utils/BytesType.ts",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/s2/s2/s2.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/s2/s2_1/s2.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/d/d_1/d_1.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/dragonss/dragon.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/ss/d/d.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/Cyborg2/skeleton.json",
+		"/E/work/DragonBonesTest/assets/Cyborg_2/Cyborg.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test/test/test.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/Zombie/skeleton.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/Zombie3/skeleton.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/ZombieTest1/skeleton.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/a12/a12/a12.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/Dragon3/skeleton.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/Dragon_1/Dragon.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test1/test_181_5/test_181.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/aa2/aa2/aa2.xml",
+		"/E/work/dragonBones/bin-debug/xml4.0",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test/aa_5.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/cc/test_1/test_1.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/dd/test_1/test_1.xml",
+		"/E/work/egretdragonbones/bin/testAsset/test3/Dragon3aaaaaaaa_1/Dragon3aaaaaaaa.xml",
+		"/E/work/egretdragonbones/bin/testAsset/test3/Dragon3aaaaaaaa_2/Dragon3aaaaaaaa.json",
+		"/E/work/egretdragonbones/bin/testAsset/test8/Test.json",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test/test.xml",
+		"/E/work/egretdragonbones/bin/testAsset/test10/Dragon3aaa/Dragon3aaa.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test_1/test.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test_2/texture.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Documents/DragonBonesProjects/test_2/test.xml",
+		"/E/downloads/7yue/Lark产品白皮书v0.2.pages",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon/dragon5.json",
+		"/E/work/egretdragonbones/bin/testAsset/新建文件夹/skeleton.xml",
+		"/E/work/egretdragonbones/bin/testAsset/test1/Motorcycle/skeleton.json",
+		"/E/work/egretdragonbones/bin/testAsset/test3/Motorcycle_2/Motorcycle_2.json",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon/texture.json",
+		"/E/work/egretdragonbones/bin/testAsset/test3/Dragon3aaaaaaaa_1_1/Dragon3aaaaaaaa_1_1.xml",
+		"/E/work/egretdragonbones/bin/testAsset/新建文件夹/Robot/skeleton.xml",
+		"/E/work/egretdragonbones/bin/testAsset/新建文件夹/Robot/texture.xml",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon4/aa.json",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon3/skeleton.xml",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon3/skeletonOne.xml",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon3/texture.xml",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon3/aa.json",
+		"/E/work/egretdragonbones/bin/testAsset/Dragon4/skeleton.json",
+		"/E/work/egretdragonbones/bin/testAsset/DragonGolbal/skeleton.xml",
+		"/C/Users/Administrator.WINDOWS-B3T4IE5/Downloads/dm/bin/index.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"io",
+			"addBoneToBoneMask",
+			"boneName",
+			"hide",
+			"maina",
+			"tweenEasing",
+			"ease",
+			"displayindex\": 5",
+			"top",
+			"5",
+			"dolphinlowerbody",
+			"top",
+			"-152.95",
+			"duration=\"0\"",
+			"float",
+			"83",
+			"attack",
+			"z=\"0\"",
+			"z=\"14\"",
+			"z=\"13\"",
+			"z=\"12\"",
+			"displayindex"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/input/gamePad/GamePad.ts",
+					"settings":
+					{
+						"buffer_size": 4311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/typescript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".git/config",
+					"settings":
+					{
+						"buffer_size": 415,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								353,
+								353
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/sukui/Documents/jsLibs/egret-game-library/physics/libsrc/package.json",
+					"settings":
+					{
+						"buffer_size": 193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Template.as",
+					"settings":
+					{
+						"buffer_size": 1139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Result.as",
+					"settings":
+					{
+						"buffer_size": 795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/sukui/Downloads/dollarflashgestures/de/yuv/gestures/Recognizer.as",
+					"settings":
+					{
+						"buffer_size": 6330,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 149.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 226.0,
+	"status_bar_visible": true
+}
