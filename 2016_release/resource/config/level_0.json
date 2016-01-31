@@ -1,0 +1,48 @@
+[
+  
+  {
+    "beat": 1,
+    "action": 0
+  },
+  {
+    "beat": 2,
+    "action": 1
+  },
+  {
+    "beat": 3,
+    "action": 2
+  },
+  {
+    "beat": 4,
+    "action": 0
+  },
+  {
+    "beat": 5,
+    "action": -1,
+    "line": [300,270,60,685]
+  },
+  {
+    "beat": 6,
+    "action": -1,
+    "line": [60,685,540,685]
+  },
+  {
+    "beat": 7,
+    "action": -1,
+    "line":[540,685,300,270]
+  },
+  {
+     "beat": 8,
+    "action": -2
+  },
+  {
+    "beat": 9,
+    "action": 3,
+    "duration": 5,
+    "line": "triangle"
+  },
+  {
+     "beat": 14,
+    "action": 0
+  }
+]
