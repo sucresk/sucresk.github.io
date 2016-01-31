@@ -414,7 +414,7 @@ class Level1 extends State
            var obj:any = this._rhythmObjs[this._curIndex];
            this.goodTime = obj.duration * this.hitStepTime;
            this.curTokenName = obj.gesture;
-           console.log("gesture begin");
+           console.log("gesture begin", this.curTokenName);
            this.gesture.start();
        }
        else
