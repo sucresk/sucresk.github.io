@@ -58,6 +58,7 @@ var Level1 = (function (_super) {
         this.getCardSound = RES.getRes("get_card_mp3");
         this.drawSound = RES.getRes("write_mp3");
         this.hitSound = RES.getRes("good_hit_mp3");
+        this.toiletSound = RES.getRes("tolet_mp3");
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
@@ -235,6 +236,7 @@ var Level1 = (function (_super) {
             GameData.globalMaxScore = GameData.score;
         }
         var end = function () {
+            this.toiletSound.play(0, 1);
             this.dispose();
             console.log("end end end ");
             this.next("levelScore");

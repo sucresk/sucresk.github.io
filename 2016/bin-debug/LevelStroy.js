@@ -1,19 +1,14 @@
-var LevelInfo = (function (_super) {
-    __extends(LevelInfo, _super);
-    function LevelInfo() {
+var LevelStroy = (function (_super) {
+    __extends(LevelStroy, _super);
+    function LevelStroy() {
         _super.call(this);
-        this.imageNames = ["info0_jpg", "info1_jpg", "info2_jpg", "info3_jpg", "info4_jpg",
-            "info5_jpg", "info6_jpg", "info7_jpg", "info8_jpg", "info9_jpg", "info10_jpg"];
+        this.imageNames = ["story0_png", "story1_png", "story2_png"];
         this.images = [];
         this.centerX = 300;
         this.centerY = 480;
-        this.bg1Sound = RES.getRes("title_bg_1_mp3");
-        this.bg2Sound = RES.getRes("title_bg_2_mp3");
     }
-    var d = __define,c=LevelInfo,p=c.prototype;
+    var d = __define,c=LevelStroy,p=c.prototype;
     p.init = function () {
-        _super.prototype.init.call(this);
-        this.bg1Channel = this.bg1Sound.play(0, 1);
         var i;
         var len;
         for (i = 0, len = this.imageNames.length; i < len; i++) {
@@ -35,12 +30,6 @@ var LevelInfo = (function (_super) {
     };
     p.onTouchBegin = function (e) {
         this._curIndex++;
-        if (this._curIndex == 7) {
-            if (this.bg1Channel) {
-                this.bg1Channel.stop();
-            }
-            this.bg2Channel = this.bg2Sound.play(0, 1);
-        }
         if (this._curIndex >= this.imageNames.length) {
             this.over();
             return;
@@ -55,7 +44,7 @@ var LevelInfo = (function (_super) {
     };
     p.over = function () {
         this.dispose();
-        this.next("levelTitle");
+        this.next("level1");
         //this.next("levelOver4");
     };
     p.createBitmapByName = function (name) {
@@ -66,7 +55,7 @@ var LevelInfo = (function (_super) {
         result.anchorOffsetY = result.height / 2;
         return result;
     };
-    return LevelInfo;
+    return LevelStroy;
 })(State);
-egret.registerClass(LevelInfo,'LevelInfo');
-//# sourceMappingURL=LevelInfo.js.map
+egret.registerClass(LevelStroy,'LevelStroy');
+//# sourceMappingURL=LevelStroy.js.map

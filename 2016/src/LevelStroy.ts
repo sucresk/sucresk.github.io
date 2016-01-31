@@ -1,36 +1,20 @@
-class LevelInfo extends State
+class LevelStroy extends State
 {
-    
-    public imageNames:string[] = ["info0_jpg","info1_jpg","info2_jpg","info3_jpg","info4_jpg",
-                                  "info5_jpg","info6_jpg","info7_jpg","info8_jpg","info9_jpg","info10_jpg"];
+    public imageNames:string[] = ["story0_png","story1_png","story2_png"];
     public images:egret.Bitmap[] = [];
-    public bg:egret.Bitmap;
     
     public centerX:number = 300;
     public centerY:number = 480;
     
     private _curIndex:number;
     
-    
-    public bg1Sound:egret.Sound;
-    public bg1Channel:egret.SoundChannel;
-    public bg2Sound:egret.Sound;
-    public bg2Channel:egret.SoundChannel;
-    
     public constructor()
     {
-        super();
-        
-        this.bg1Sound = RES.getRes("title_bg_1_mp3");
-        this.bg2Sound = RES.getRes("title_bg_2_mp3");
+       super();
     }
     
-    public init()
+    public init():void
     {
-        super.init();
-        
-        this.bg1Channel = this.bg1Sound.play(0,1);
-        
         var i:number;
         var len:number;
         for(i = 0,len = this.imageNames.length; i < len; i++)
@@ -58,15 +42,6 @@ class LevelInfo extends State
     private onTouchBegin(e:egret.TouchEvent):void
     {
         this._curIndex++
-        if(this._curIndex == 7)
-        {
-            if(this.bg1Channel)
-            {
-                this.bg1Channel.stop();
-            }
-            
-            this.bg2Channel = this.bg2Sound.play(0,1);
-        }
         if(this._curIndex >= this.imageNames.length)
         {
             this.over();
@@ -86,9 +61,10 @@ class LevelInfo extends State
     private over():void
     {
         this.dispose();
-        this.next("levelTitle");
+        this.next("level1");
         //this.next("levelOver4");
     }
+    
     private createBitmapByName(name:string):egret.Bitmap {
         var result:egret.Bitmap = new egret.Bitmap();
         var texture:egret.Texture = RES.getRes(name);

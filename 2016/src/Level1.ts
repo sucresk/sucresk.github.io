@@ -80,6 +80,7 @@ class Level1 extends State
     public getCardSound:egret.Sound;
     public drawSound:egret.Sound;
     public hitSound:egret.Sound;
+    public toiletSound:egret.Sound;
     
     public constructor()
     {
@@ -124,6 +125,7 @@ class Level1 extends State
         this.getCardSound = RES.getRes("get_card_mp3");
         this.drawSound = RES.getRes("write_mp3");
         this.hitSound = RES.getRes("good_hit_mp3");
+        this.toiletSound = RES.getRes("tolet_mp3");
         
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
@@ -339,6 +341,7 @@ class Level1 extends State
             GameData.globalMaxScore = GameData.score;
         }
         var end:Function = function () {
+            this.toiletSound.play(0,1);
             this.dispose();
             console.log("end end end ")
             this.next("levelScore");

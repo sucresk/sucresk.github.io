@@ -91,7 +91,7 @@ class LevelTitle extends State
     private over():void
     {
         this.dispose();
-        this.next("level1");
+        this.next("story");
     }
     private createBitmapByName(name:string):egret.Bitmap {
         var result:egret.Bitmap = new egret.Bitmap();

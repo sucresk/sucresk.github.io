@@ -60,7 +60,7 @@ var LevelTitle = (function (_super) {
     };
     p.over = function () {
         this.dispose();
-        this.next("level1");
+        this.next("story");
     };
     p.createBitmapByName = function (name) {
         var result = new egret.Bitmap();
