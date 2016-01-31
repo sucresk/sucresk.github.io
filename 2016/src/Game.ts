@@ -19,8 +19,12 @@ class Game extends egret.DisplayObjectContainer
         
         stateManager.registerState("levelInfo", new LevelInfo());
         stateManager.registerState("level1", new Level1());
-        stateManager.registerState("over0", new LevelOver("kui"));
-        stateManager.setCurStateName("level1");
+        stateManager.registerState("levelOver0", new LevelOver0());
+        stateManager.registerState("levelOver1", new LevelOver1());
+        stateManager.registerState("levelOver2", new LevelOver2());
+        stateManager.registerState("levelOver3", new LevelOver3());
+        stateManager.registerState("levelOver4", new LevelOver4());
+        stateManager.setCurStateName("levelInfo");
         stateManager.startTick();
         /*
         stateManager.registerState("first",new TestState());

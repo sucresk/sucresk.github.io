@@ -10,6 +10,9 @@ var LevelInfo = (function (_super) {
     var d = __define,c=LevelInfo,p=c.prototype;
     p.init = function () {
         _super.prototype.init.call(this);
+        this.bgSound = RES.getRes("sound_test");
+        //this.bgSound = RES.getRes("level_mp3");
+        this.bgChannel = this.bgSound.play(0, 1);
         var i;
         var len;
         for (i = 0, len = this.imageNames.length; i < len; i++) {
@@ -25,6 +28,10 @@ var LevelInfo = (function (_super) {
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
     };
     p.dispose = function () {
+        this.removeChildren();
+        if (this.bgChannel) {
+            this.bgChannel.stop();
+        }
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
     };
     p.onTouchBegin = function (e) {

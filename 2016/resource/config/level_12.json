@@ -1,0 +1,134 @@
+[
+  {
+    "beat": 1.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 2.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 3.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 4.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 5.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 6.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 7.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 8.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 9.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 10.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 11.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 12.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 13.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 14.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 15.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 16.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 17.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 18.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 19.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 20.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 21.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 22.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 23.0, 
+    "action": 0.0
+  }, 
+  {
+    "beat": 24.5, 
+    "action": -1.0, 
+    "line": [
+      300.0, 
+      270.0, 
+      60.0, 
+      685.0
+    ]
+  }, 
+  {
+    "beat": 26.5, 
+    "action": -1.0, 
+    "line": [
+      60.0, 
+      685.0, 
+      540.0, 
+      685.0
+    ]
+  }, 
+  {
+    "beat": 27.0, 
+    "action": -1.0, 
+    "line": [
+      540.0, 
+      685.0, 
+      300.0, 
+      270.0
+    ]
+  }, 
+  {
+    "beat": 27.5, 
+    "action": -2.0
+  }, 
+  {
+    "beat": 28.5, 
+    "action": 3.0, 
+    "duration": 2.0, 
+    "gesture": "triangle"
+  }
+]

@@ -191,7 +191,6 @@ var Level1 = (function (_super) {
         if (this._curTouchType == Level1.TYPE_GESTURE) {
             var obj = this._rhythmObjs[this._curIndex];
             console.log("ddddddddd", obj.gesture, e.data);
-            this.curTokenName = obj.gesture;
             if (obj.gesture == e.data) {
                 this._touchType = Level1.TYPE_GESTURE;
             }
@@ -211,7 +210,7 @@ var Level1 = (function (_super) {
         var end = function () {
             this.dispose();
             console.log("end end end ");
-            //this.next("levelOver");
+            this.next("levelOver0");
         };
         this._startGame = false;
         var self = this;
@@ -236,6 +235,7 @@ var Level1 = (function (_super) {
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
         this.gesture.removeEventListener(GestureEvent.GESTURE, this.onGesture, this);
+        this.removeChildren();
     };
     p.goodTouch = function () {
         this._touched = true;
@@ -289,6 +289,7 @@ var Level1 = (function (_super) {
         if (this._curTouchType == Level1.TYPE_GESTURE) {
             var obj = this._rhythmObjs[this._curIndex];
             this.goodTime = obj.duration * this.hitStepTime;
+            this.curTokenName = obj.gesture;
             console.log("gesture begin");
             this.gesture.start();
         }
@@ -303,7 +304,7 @@ var Level1 = (function (_super) {
                 this.AllRight();
             }
         }
-        this.addOneToken();
+        //this.addOneToken();
     };
     p.tick = function (advancedTime) {
         if (!this._startGame) {

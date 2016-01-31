@@ -16,20 +16,22 @@ class Head extends egret.Sprite
         */
         this.bmp.anchorOffsetX = this.bmp.width / 2;
         this.bmp.anchorOffsetY = this.bmp.height / 2;
+        this.bmp.scaleX = 0.5;
+        this.bmp.scaleY = 0.5;
         this.addChild(this.bmp);
     }
     
     public play():void
     {
         var tw = egret.Tween.get(this.bmp);
-        tw.to({"scaleX": 0.8}, 200);
+        tw.to({"scaleX": 0.4}, 200);
         tw.wait(20);
-        tw.to({"scaleX": 1}, 1);
+        tw.to({"scaleX": 0.5}, 1);
         
         var twY = egret.Tween.get(this.bmp);
-        twY.to({"scaleY": 0.8}, 200);
+        twY.to({"scaleY": 0.4}, 200);
         twY.wait(20);
-        twY.to({"scaleY": 1}, 1);
+        twY.to({"scaleY": 0.5}, 1);
     }
     
     public left():void

@@ -9,6 +9,11 @@ class LevelInfo extends State
     public centerY:number = 480;
     
     private _curIndex:number;
+    
+    public bgSound:egret.Sound;
+    public bgChannel:egret.SoundChannel;
+    
+    
     public constructor()
     {
         super();
@@ -17,6 +22,12 @@ class LevelInfo extends State
     public init()
     {
         super.init();
+        
+        this.bgSound = RES.getRes("sound_test");
+        //this.bgSound = RES.getRes("level_mp3");
+        this.bgChannel = this.bgSound.play(0,1);
+        
+        
         var i:number;
         var len:number;
         for(i = 0,len = this.imageNames.length; i < len; i++)
@@ -35,6 +46,11 @@ class LevelInfo extends State
     
     private dispose():void
     {
+        this.removeChildren();
+        if(this.bgChannel)
+        {
+            this.bgChannel.stop();
+        }
          this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
     }
     private onTouchBegin(e:egret.TouchEvent):void

@@ -282,7 +282,7 @@ class Level1 extends State
         {
             var obj:any = this._rhythmObjs[this._curIndex];
             console.log("ddddddddd", obj.gesture, e.data)
-            this.curTokenName = obj.gesture;
+            
             if(obj.gesture == e.data)
             {
                 this._touchType = Level1.TYPE_GESTURE;
@@ -308,7 +308,7 @@ class Level1 extends State
         var end:Function = function () {
             this.dispose();
             console.log("end end end ")
-            //this.next("levelOver");
+            this.next("levelOver0");
         }
         
         
@@ -341,6 +341,7 @@ class Level1 extends State
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd,this);
         
         this.gesture.removeEventListener(GestureEvent.GESTURE, this.onGesture, this);
+        this.removeChildren();
     }
     
     private goodTouch():void
@@ -412,6 +413,7 @@ class Level1 extends State
        {
            var obj:any = this._rhythmObjs[this._curIndex];
            this.goodTime = obj.duration * this.hitStepTime;
+           this.curTokenName = obj.gesture;
            console.log("gesture begin");
            this.gesture.start();
        }
@@ -429,7 +431,7 @@ class Level1 extends State
                this.AllRight();
            }
        }
-       this.addOneToken();
+       //this.addOneToken();
     }
     public tick(advancedTime:number):void
     {
