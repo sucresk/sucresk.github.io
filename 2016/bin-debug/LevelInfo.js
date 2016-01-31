@@ -2,7 +2,7 @@ var LevelInfo = (function (_super) {
     __extends(LevelInfo, _super);
     function LevelInfo() {
         _super.call(this);
-        this.imageNames = ["info0_jpg", "info1_jpg", "info2_jpg", "info3_jpg", "info4_jpg"];
+        this.imageNames = ["info0_jpg", "info1_jpg", "info2_jpg", "info3_jpg", "info4_jpg", "info5_jpg"];
         this.images = [];
         this.centerX = 300;
         this.centerY = 480;
@@ -10,9 +10,6 @@ var LevelInfo = (function (_super) {
     var d = __define,c=LevelInfo,p=c.prototype;
     p.init = function () {
         _super.prototype.init.call(this);
-        this.bgSound = RES.getRes("sound_test");
-        //this.bgSound = RES.getRes("level_mp3");
-        this.bgChannel = this.bgSound.play(0, 1);
         var i;
         var len;
         for (i = 0, len = this.imageNames.length; i < len; i++) {
@@ -29,9 +26,7 @@ var LevelInfo = (function (_super) {
     };
     p.dispose = function () {
         this.removeChildren();
-        if (this.bgChannel) {
-            this.bgChannel.stop();
-        }
+        this.images.length = 0;
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
     };
     p.onTouchBegin = function (e) {
@@ -50,7 +45,8 @@ var LevelInfo = (function (_super) {
     };
     p.over = function () {
         this.dispose();
-        this.next("level1");
+        this.next("levelTitle");
+        //this.next("levelOver4");
     };
     p.createBitmapByName = function (name) {
         var result = new egret.Bitmap();

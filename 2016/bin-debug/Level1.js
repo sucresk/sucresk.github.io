@@ -10,6 +10,9 @@ var Level1 = (function (_super) {
         this._rhythmArr = [];
         this._rhythmTypeArr = [];
         this._touchType = -1;
+        this._score = 0;
+        this._comboo = 0;
+        this._maxComboo = 0;
         this._pillarArr = [];
         this.heads = [];
         this.tokens = [];
@@ -20,13 +23,17 @@ var Level1 = (function (_super) {
         this.decorationPos = [150, 200, 480, 200, 150, 700, 480, 700];
         this.decorations = [];
         this.playDecorationNum = 4;
-        this.tokenNames = ["v_png", "caret_png", "x_png", "delete_png", "triangle_png", "left_square_bracket_png",
+        this.tokenNames = ["blank_png", "v_png", "caret_png", "x_png", "delete_png", "triangle_png", "left_square_bracket_png",
             "right_square_bracket_png", "rectangle_png", "star_png", "arrow_png"];
         this.headLayer = new egret.DisplayObjectContainer();
         this.userGestureLayer = new egret.DisplayObjectContainer();
     }
     var d = __define,c=Level1,p=c.prototype;
     p.init = function () {
+        this.heads.length = 0;
+        this.tokens.length = 0;
+        this.roles.length = 0;
+        this.decorations.length = 0;
         var image = this.createBitmapByName("bgImage");
         console.log("image_test", image);
         image.x = 0;
@@ -47,12 +54,15 @@ var Level1 = (function (_super) {
         // this.bgSound = RES.getRes("sound_test");
         this.bgSound = RES.getRes("level_mp3");
         this.bgChannel = this.bgSound.play(0, 1);
+        this.failSound = RES.getRes("fail_hit_mp3");
+        this.getCardSound = RES.getRes("get_card_mp3");
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
         this.initAltar();
         this.initPillar();
         this.initDecoration();
+        this.headLayer.removeChildren();
         this.addChild(this.headLayer);
         this.addChild(this.userGestureLayer);
         /*
@@ -108,6 +118,8 @@ var Level1 = (function (_super) {
         var levelConfig = RES.getRes("level_1_json");
         console.log(levelConfig);
         this._rhythmObjs = levelConfig;
+        this._rhythmArr.length = 0;
+        this._rhythmTypeArr.length = 0;
         for (var i = 0, len = levelConfig.length; i < len; i++) {
             this._rhythmArr.push(levelConfig[i].beat * 500);
             this._rhythmTypeArr.push(levelConfig[i].action);
@@ -130,6 +142,7 @@ var Level1 = (function (_super) {
         this.altar.normal();
     };
     p.initPillar = function () {
+        this._pillarArr.length = 0;
         var p0 = new egret.Point(299, 310);
         var p1 = new egret.Point(453, 424);
         var p2 = new egret.Point(389, 567);
@@ -188,6 +201,9 @@ var Level1 = (function (_super) {
     };
     p.onGesture = function (e) {
         console.log("ongesture", e.data);
+        if (this._touched) {
+            return;
+        }
         if (this._curTouchType == Level1.TYPE_GESTURE) {
             var obj = this._rhythmObjs[this._curIndex];
             console.log("ddddddddd", obj.gesture, e.data);
@@ -207,10 +223,19 @@ var Level1 = (function (_super) {
         this._curTouchType = this._rhythmTypeArr[this._curTouchType];
     };
     p.levelEnd = function () {
+        GameData.score = this._score;
+        GameData.comboo = this._comboo;
+        GameData.maxComboo = this._maxComboo;
+        if (GameData.maxComboo > GameData.globalMaxComboo) {
+            GameData.globalMaxComboo = GameData.maxComboo;
+        }
+        if (GameData.score > GameData.globalMaxScore) {
+            GameData.globalMaxScore = GameData.score;
+        }
         var end = function () {
             this.dispose();
             console.log("end end end ");
-            this.next("levelOver0");
+            this.next("levelScore");
         };
         this._startGame = false;
         var self = this;
@@ -242,7 +267,8 @@ var Level1 = (function (_super) {
         this._touchedOver = false;
         console.log("good touch");
         this._comboo++;
-        this._score += this._comboo * 10 + 10;
+        //this._score += this._comboo * 10 + 10;
+        this._score += 10;
         this.altar.correct();
     };
     p.goodGesture = function () {
@@ -250,7 +276,8 @@ var Level1 = (function (_super) {
         this._touchedOver = false;
         console.log("good gesture");
         this._comboo++;
-        this._score += this._comboo * 10 + 10;
+        //this._score += this._comboo * 10 + 10;
+        this._score += 50;
         this.addOneToken(this.curTokenName);
         this.altar.correct();
     };
@@ -260,6 +287,9 @@ var Level1 = (function (_super) {
         console.log("perfect touch");
     };
     p.missTouch = function () {
+        if (this._comboo > this._maxComboo) {
+            this._maxComboo = this._comboo;
+        }
         this._touched = true;
         this._touchedOver = false;
         console.log("missing");
@@ -270,6 +300,7 @@ var Level1 = (function (_super) {
         this.missTouch();
         console.log("miss gesture");
         this.addOneToken();
+        this.failSound.play(0, 1);
     };
     p.nextRhythm = function () {
         this._curIndex++;
@@ -491,15 +522,16 @@ var Level1 = (function (_super) {
     };
     p.addOneToken = function (name) {
         if (name === void 0) { name = null; }
+        this.getCardSound.play(0, 1);
         if (this.tokens.length >= this.maxToken) {
             this.clearToken();
         }
         var i;
         if (name == null) {
-            i = Math.floor(Math.random() * this.tokenNames.length);
+            i = 0;
         }
         else {
-            i = this.getTokenIndex(name);
+            i = this.getTokenIndex(name) + 1;
         }
         var t = this.createToken(i);
         this.addToken(t);

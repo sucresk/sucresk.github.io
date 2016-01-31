@@ -83,6 +83,7 @@ var GestureController = (function (_super) {
             this._recordedPoints.length = 0;
         }
         if (this._canvas.parent != null) {
+            this._canvas.graphics.clear();
             this._canvas.parent.removeChild(this._canvas);
         }
     };

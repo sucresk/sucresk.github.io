@@ -9,7 +9,7 @@ class State extends egret.DisplayObjectContainer implements IState
     
     private onAdded(e:egret.Event):void
     {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
+        //this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
         this.init();
     }
     

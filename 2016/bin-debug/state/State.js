@@ -6,7 +6,7 @@ var State = (function (_super) {
     }
     var d = __define,c=State,p=c.prototype;
     p.onAdded = function (e) {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
+        //this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
         this.init();
     };
     p.init = function () {

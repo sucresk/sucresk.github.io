@@ -15,6 +15,7 @@ class LevelOver extends State
     private _name:string;
     private _curTime:number = 0;
     private _curIndex:number = 0;
+    private bg:egret.Bitmap;
     
     public constructor(name:string)
     {
@@ -27,6 +28,10 @@ class LevelOver extends State
     public init()
     {
         super.init();
+        this.bg = this.createBitmapByName(this.name + "_bg_png")
+        this.bg.x = 300;
+        this.bg.y = 480;
+        this.addChild(this.bg);
         console.log("aaaaaaa",this.name);
         this.role = new Role(this.name, 0.8);
         
@@ -34,13 +39,13 @@ class LevelOver extends State
         //this.role.scaleY = 3;
         
         this.role.x = 300;
-        this.role.y = 500;
+        this.role.y = 700;
         
         this.addChild(this.role);
         this.txtInfo = new egret.TextField();
         this.txtInfo.x = 10;
         this.txtInfo.y = 520;
-        this.addChild(this.txtInfo);
+        //this.addChild(this.txtInfo);
         
         switch(this.name)
         {
@@ -93,14 +98,16 @@ class LevelOver extends State
         this._curTime += advancedTime;
         if(this._curTime > 500)
         {
-            this._curTime = 0;
-            this._curIndex += 1
-            if(this._curIndex >= 3)
+            while(this._curTime > 500)
             {
-                this._curIndex = 0;
+                this._curTime -= 500;
+                this._curIndex += 1;
+                if(this._curIndex >= 3)
+                {
+                    this._curIndex = 0;
+                }
             }
             this.play();
-            
         }
         dragonBones.WorldClock.clock.advanceTime(advancedTime / 1000);
     }
@@ -119,6 +126,22 @@ class LevelOver extends State
         {
             this.role.play("right");
         }
+    }
+    
+    private creatBg(name:string):void
+    {
+        
+    }
+    
+    private createBitmapByName(name:string):egret.Bitmap {
+        var result:egret.Bitmap = new egret.Bitmap();
+        var texture:egret.Texture = RES.getRes(name);
+        result.texture = texture;
+        
+        result.anchorOffsetX = result.width / 2;
+        result.anchorOffsetY = result.height / 2;
+        
+        return result;
     }
     
 }

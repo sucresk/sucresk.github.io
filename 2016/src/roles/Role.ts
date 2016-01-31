@@ -35,13 +35,31 @@ class Role extends egret.Sprite
     {
         if(name == "right")
         {
-            this.armature.animation.gotoAndPlay("left",0,-1,1);
-            this.scaleX = -1;
+            if(this.name == "meng")
+            {
+                this.armature.animation.gotoAndPlay("right",0,-1,1);
+                this.scaleX = 1; 
+            }
+            else
+            {
+               this.armature.animation.gotoAndPlay("left",0,-1,1);
+               this.scaleX = -1; 
+            }
+            
         }
         else if(name == "left")
         {
-            this.armature.animation.gotoAndPlay("left",0,-1,1);
-            this.scaleX = 1;
+            if(this.name == "meng")
+            {
+                this.armature.animation.gotoAndPlay("right",0,-1,1);
+                this.scaleX = -1; 
+            }
+            else
+            {
+               this.armature.animation.gotoAndPlay("left",0,-1,1);
+                this.scaleX = 1;
+            }
+            
         }
         else
         {

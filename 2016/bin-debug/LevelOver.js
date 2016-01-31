@@ -16,17 +16,21 @@ var LevelOver = (function (_super) {
     var d = __define,c=LevelOver,p=c.prototype;
     p.init = function () {
         _super.prototype.init.call(this);
+        this.bg = this.createBitmapByName(this.name + "_bg_png");
+        this.bg.x = 300;
+        this.bg.y = 480;
+        this.addChild(this.bg);
         console.log("aaaaaaa", this.name);
         this.role = new Role(this.name, 0.8);
         //this.role.scaleX = 3;
         //this.role.scaleY = 3;
         this.role.x = 300;
-        this.role.y = 500;
+        this.role.y = 700;
         this.addChild(this.role);
         this.txtInfo = new egret.TextField();
         this.txtInfo.x = 10;
         this.txtInfo.y = 520;
-        this.addChild(this.txtInfo);
+        //this.addChild(this.txtInfo);
         switch (this.name) {
             case "kui":
                 this.txtInfo.text = this.infoArr[0];
@@ -67,10 +71,12 @@ var LevelOver = (function (_super) {
     p.tick = function (advancedTime) {
         this._curTime += advancedTime;
         if (this._curTime > 500) {
-            this._curTime = 0;
-            this._curIndex += 1;
-            if (this._curIndex >= 3) {
-                this._curIndex = 0;
+            while (this._curTime > 500) {
+                this._curTime -= 500;
+                this._curIndex += 1;
+                if (this._curIndex >= 3) {
+                    this._curIndex = 0;
+                }
             }
             this.play();
         }
@@ -86,6 +92,16 @@ var LevelOver = (function (_super) {
         else {
             this.role.play("right");
         }
+    };
+    p.creatBg = function (name) {
+    };
+    p.createBitmapByName = function (name) {
+        var result = new egret.Bitmap();
+        var texture = RES.getRes(name);
+        result.texture = texture;
+        result.anchorOffsetX = result.width / 2;
+        result.anchorOffsetY = result.height / 2;
+        return result;
     };
     return LevelOver;
 })(State);

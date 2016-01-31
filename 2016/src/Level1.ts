@@ -43,8 +43,9 @@ class Level1 extends State
     private _txtComboo:egret.TextField;
     
     private _drawed:boolean;
-    private _score:number;
-    private _comboo:number;
+    private _score:number = 0;
+    private _comboo:number = 0;
+    private _maxComboo:number = 0;
     
     private _pillarArr:egret.Point[] = [];
     public heads:Head[] = [];
@@ -61,7 +62,7 @@ class Level1 extends State
     public decorations:Decoration[] = [];
     public playDecorationNum:number = 4;
     
-    public tokenNames:string[] = ["v_png","caret_png","x_png","delete_png","triangle_png","left_square_bracket_png",
+    public tokenNames:string[] = ["blank_png","v_png","caret_png","x_png","delete_png","triangle_png","left_square_bracket_png",
                                   "right_square_bracket_png","rectangle_png","star_png","arrow_png"];
     
     public curTokenName:string;
@@ -73,6 +74,10 @@ class Level1 extends State
     
     public bgSound:egret.Sound;
     public bgChannel:egret.SoundChannel;
+    public rotationIndex:number;
+    
+    public failSound:egret.Sound;
+    public getCardSound:egret.Sound;
     
     public constructor()
     {
@@ -83,7 +88,10 @@ class Level1 extends State
     
     public init():void
     {
-        
+        this.heads.length = 0;
+        this.tokens.length = 0;
+        this.roles.length = 0;
+        this.decorations.length = 0;
         var image:egret.Bitmap = this.createBitmapByName("bgImage");
        console.log("image_test",image)
        image.x = 0;
@@ -110,12 +118,16 @@ class Level1 extends State
         this.bgSound = RES.getRes("level_mp3");
         this.bgChannel = this.bgSound.play(0,1);
         
+        this.failSound = RES.getRes("fail_hit_mp3");
+        this.getCardSound = RES.getRes("get_card_mp3");
+        
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
         this.initAltar();
         this.initPillar();
         this.initDecoration();
+        this.headLayer.removeChildren();
         this.addChild(this.headLayer);
         this.addChild(this.userGestureLayer);
         /*
@@ -178,6 +190,8 @@ class Level1 extends State
         var levelConfig:any = RES.getRes("level_1_json");
         console.log(levelConfig)
         this._rhythmObjs = levelConfig;
+        this._rhythmArr.length = 0;
+        this._rhythmTypeArr.length = 0;
         for(var i:number = 0, len:number = levelConfig.length; i < len; i++)
         {
             this._rhythmArr.push(levelConfig[i].beat * 500);
@@ -207,6 +221,7 @@ class Level1 extends State
     }
     private initPillar():void
     {
+        this._pillarArr.length = 0;
         var p0:egret.Point = new egret.Point(299,310);
         var p1:egret.Point = new egret.Point(453,424);
         var p2:egret.Point = new egret.Point(389,567);
@@ -278,6 +293,10 @@ class Level1 extends State
     private onGesture(e:GestureEvent):void
     {
         console.log("ongesture",e.data);
+        if(this._touched)
+        {
+            return;
+        }
         if(this._curTouchType == Level1.TYPE_GESTURE)
         {
             var obj:any = this._rhythmObjs[this._curIndex];
@@ -304,11 +323,21 @@ class Level1 extends State
     }
     public levelEnd():void
     {
-        
+        GameData.score = this._score;
+        GameData.comboo = this._comboo;
+        GameData.maxComboo = this._maxComboo;
+        if(GameData.maxComboo > GameData.globalMaxComboo)
+        {
+            GameData.globalMaxComboo = GameData.maxComboo;
+        }
+        if(GameData.score > GameData.globalMaxScore)
+        {
+            GameData.globalMaxScore = GameData.score;
+        }
         var end:Function = function () {
             this.dispose();
             console.log("end end end ")
-            this.next("levelOver0");
+            this.next("levelScore");
         }
         
         
@@ -350,7 +379,8 @@ class Level1 extends State
         this._touchedOver = false;
         console.log("good touch");
         this._comboo++;
-        this._score += this._comboo * 10 + 10;
+        //this._score += this._comboo * 10 + 10;
+        this._score += 10;
         this.altar.correct();
     }
     private goodGesture():void
@@ -359,7 +389,8 @@ class Level1 extends State
         this._touchedOver = false;
         console.log("good gesture");
         this._comboo++;
-        this._score += this._comboo * 10 + 10;
+        //this._score += this._comboo * 10 + 10;
+        this._score += 50;
         this.addOneToken(this.curTokenName);
         this.altar.correct();
     }
@@ -373,6 +404,10 @@ class Level1 extends State
     
     private missTouch():void
     {
+        if(this._comboo > this._maxComboo)
+        {
+            this._maxComboo = this._comboo;
+        }
         this._touched = true;
         this._touchedOver = false;
         console.log("missing");
@@ -384,7 +419,8 @@ class Level1 extends State
     {
         this.missTouch();
         console.log("miss gesture");
-        this.addOneToken();
+        this.addOneToken()
+        this.failSound.play(0,1);
     }
     
     private nextRhythm():void
@@ -679,6 +715,7 @@ class Level1 extends State
     
     private addOneToken(name:string = null):void
     {
+        this.getCardSound.play(0,1);
         if(this.tokens.length >= this.maxToken)
         {
             this.clearToken();
@@ -686,11 +723,12 @@ class Level1 extends State
         var i:number;
         if(name == null)
         {
-            i = Math.floor(Math.random() * this.tokenNames.length);
+            i = 0;
+            //i = Math.floor(Math.random() * this.tokenNames.length);
         }
         else
         {
-            i = this.getTokenIndex(name);
+            i = this.getTokenIndex(name) + 1;
         }
         
         var t:egret.Bitmap = this.createToken(i);
