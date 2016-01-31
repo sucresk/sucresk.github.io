@@ -56,6 +56,8 @@ var Level1 = (function (_super) {
         this.bgChannel = this.bgSound.play(0, 1);
         this.failSound = RES.getRes("fail_hit_mp3");
         this.getCardSound = RES.getRes("get_card_mp3");
+        this.drawSound = RES.getRes("write_mp3");
+        this.hitSound = RES.getRes("good_hit_mp3");
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
         //this.gesture.start();
@@ -270,6 +272,7 @@ var Level1 = (function (_super) {
         //this._score += this._comboo * 10 + 10;
         this._score += 10;
         this.altar.correct();
+        this.hitSound.play(0, 1);
     };
     p.goodGesture = function () {
         this._touched = true;
@@ -515,6 +518,7 @@ var Level1 = (function (_super) {
             this.helpSprite.graphics.lineStyle(20, 0xff0000, 1);
             this.helpSprite.graphics.moveTo(obj.line[0], obj.line[1]);
             this.helpSprite.graphics.lineTo(obj.line[2], obj.line[3]);
+            this.drawSound.play(0, 1);
         }
     };
     p.clearHelp = function () {

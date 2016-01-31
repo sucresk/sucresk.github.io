@@ -43,9 +43,18 @@ class LoadingUI extends egret.Sprite {
         this.textField.width = 480;
         this.textField.height = 100;
         this.textField.textAlign = "center";
+        
+        /*
+        var that = new egret.TextField();
+        this.addChild(this.textField);
+        this.textField.y = 300;
+        this.textField.width = 480;
+        this.textField.height = 100;
+        this.textField.textAlign = "center";
+        */
     }
 
     public setProgress(current, total):void {
-        this.textField.text = "Loading..." + current + "/" + total;
+        this.textField.text = "仪式筹备中" + current + "/" + total;
     }
 }

@@ -11,19 +11,24 @@ class LevelInfo extends State
     private _curIndex:number;
     
     
-    
+    public bg1Sound:egret.Sound;
+    public bg1Channel:egret.SoundChannel;
+    public bg2Sound:egret.Sound;
+    public bg2Channel:egret.SoundChannel;
     
     public constructor()
     {
         super();
         
+        this.bg1Sound = RES.getRes("title_bg_1_mp3");
+        this.bg2Sound = RES.getRes("title_bg_2_mp3");
     }
     
     public init()
     {
         super.init();
         
-        
+        this.bg1Channel = this.bg1Sound.play(0,1);
         
         var i:number;
         var len:number;
@@ -34,7 +39,8 @@ class LevelInfo extends State
             image.x = this.centerX;
             image.y = this.centerY;
             this.addChild(image);
-            image.visible = false;
+            image.visible = false
+            
         }
         this._curIndex = 0;
         this.images[this._curIndex].visible = true;
@@ -50,7 +56,16 @@ class LevelInfo extends State
     }
     private onTouchBegin(e:egret.TouchEvent):void
     {
-        this._curIndex++;
+        this._curIndex++
+        if(this._curIndex == 4)
+        {
+            if(this.bg1Channel)
+            {
+                this.bg1Channel.stop();
+            }
+            
+            this.bg2Channel = this.bg2Sound.play(0,1);
+        }
         if(this._curIndex >= this.imageNames.length)
         {
             this.over();

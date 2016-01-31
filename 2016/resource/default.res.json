@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png,arrow_png,caret_png,delete_png,left_square_bracket_png,rectangle_png,right_square_bracket_png,star_png,triangle_png,v_png,x_png,kui_json,kui_texture_json,kui_texture_png,lei_json,lei_texture_json,lei_texture_png,meng_json,meng_texture_json,meng_texture_png,zhi_texture_json,zhi_texture_png,zhi_json,kui_png,lei_png,meng_png,wei_png,zhi_png,info0_jpg,info1_jpg,info2_jpg,info3_jpg,info4_jpg,level_mp3,altar_json,altar_texture_json,altar_texture_png,blank_png,title_bg_jpg,title_1_png,title_2_png,title_3_png,title_4_png,info5_jpg,fail_hit_mp3,get_card_mp3,A_png,B_png,C_png,D_png,S_png,kui_bg_png,lei_bg_png,meng_bg_png,wei_bg_png,zhi_bg_png,ending_png",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg,man0_json,man0_texture_json,man0_texture_png,head0_png,token_1_png,token_2_png,token_3_png,token_0_png,level_1_json,wei_texture_json,wei_texture_png,wei_json,barrel_png,chair_png,flower_png,mouse_png,toilet_png,arrow_png,caret_png,delete_png,left_square_bracket_png,rectangle_png,right_square_bracket_png,star_png,triangle_png,v_png,x_png,kui_json,kui_texture_json,kui_texture_png,lei_json,lei_texture_json,lei_texture_png,meng_json,meng_texture_json,meng_texture_png,zhi_texture_json,zhi_texture_png,zhi_json,kui_png,lei_png,meng_png,wei_png,zhi_png,info0_jpg,info1_jpg,info2_jpg,info3_jpg,info4_jpg,level_mp3,altar_json,altar_texture_json,altar_texture_png,blank_png,title_bg_jpg,title_1_png,title_2_png,title_3_png,title_4_png,info5_jpg,fail_hit_mp3,get_card_mp3,A_png,B_png,C_png,D_png,S_png,kui_bg_png,lei_bg_png,meng_bg_png,wei_bg_png,zhi_bg_png,ending_png,good_hit_mp3,write_mp3,title_bg_1_mp3,title_bg_2_mp3,thanks_png",
 		"name":"preload"
 	},
 	{
@@ -425,5 +425,30 @@
 		"name":"ending_png",
 		"type":"image",
 		"url":"assets/ending.png"
+	},
+	{
+		"name":"good_hit_mp3",
+		"type":"sound",
+		"url":"assets/sounds/good_hit.mp3"
+	},
+	{
+		"name":"write_mp3",
+		"type":"sound",
+		"url":"assets/sounds/write.mp3"
+	},
+	{
+		"name":"title_bg_1_mp3",
+		"type":"sound",
+		"url":"assets/sounds/title_bg_1.mp3"
+	},
+	{
+		"name":"title_bg_2_mp3",
+		"type":"sound",
+		"url":"assets/sounds/title_bg_2.mp3"
+	},
+	{
+		"name":"thanks_png",
+		"type":"image",
+		"url":"assets/team/thanks.png"
 	}]
 }

@@ -78,6 +78,8 @@ class Level1 extends State
     
     public failSound:egret.Sound;
     public getCardSound:egret.Sound;
+    public drawSound:egret.Sound;
+    public hitSound:egret.Sound;
     
     public constructor()
     {
@@ -120,6 +122,8 @@ class Level1 extends State
         
         this.failSound = RES.getRes("fail_hit_mp3");
         this.getCardSound = RES.getRes("get_card_mp3");
+        this.drawSound = RES.getRes("write_mp3");
+        this.hitSound = RES.getRes("good_hit_mp3");
         
         this.gesture = new GestureController(this.stage, this.userGestureLayer);
         this.gesture.addEventListener(GestureEvent.GESTURE, this.onGesture, this);
@@ -381,7 +385,8 @@ class Level1 extends State
         this._comboo++;
         //this._score += this._comboo * 10 + 10;
         this._score += 10;
-        this.altar.correct();
+        this.altar.correct()
+        this.hitSound.play(0,1);
     }
     private goodGesture():void
     {
@@ -705,6 +710,8 @@ class Level1 extends State
             
             this.helpSprite.graphics.moveTo(<number>obj.line[0],<number>obj.line[1]);
             this.helpSprite.graphics.lineTo(<number>obj.line[2],<number>obj.line[3]);
+            
+            this.drawSound.play(0,1);
         }
         
     }

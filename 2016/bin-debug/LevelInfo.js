@@ -6,10 +6,13 @@ var LevelInfo = (function (_super) {
         this.images = [];
         this.centerX = 300;
         this.centerY = 480;
+        this.bg1Sound = RES.getRes("title_bg_1_mp3");
+        this.bg2Sound = RES.getRes("title_bg_2_mp3");
     }
     var d = __define,c=LevelInfo,p=c.prototype;
     p.init = function () {
         _super.prototype.init.call(this);
+        this.bg1Channel = this.bg1Sound.play(0, 1);
         var i;
         var len;
         for (i = 0, len = this.imageNames.length; i < len; i++) {
@@ -31,6 +34,12 @@ var LevelInfo = (function (_super) {
     };
     p.onTouchBegin = function (e) {
         this._curIndex++;
+        if (this._curIndex == 4) {
+            if (this.bg1Channel) {
+                this.bg1Channel.stop();
+            }
+            this.bg2Channel = this.bg2Sound.play(0, 1);
+        }
         if (this._curIndex >= this.imageNames.length) {
             this.over();
             return;

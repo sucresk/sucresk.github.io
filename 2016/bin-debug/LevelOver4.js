@@ -6,7 +6,7 @@ var LevelOver4 = (function (_super) {
     var d = __define,c=LevelOver4,p=c.prototype;
     p.over = function () {
         this.stopSound();
-        this.next("levelEnd");
+        this.next("levelThanks");
     };
     p.stopSound = function () {
         if (LevelOver.bgChannel) {

@@ -40,9 +40,17 @@ var LoadingUI = (function (_super) {
         this.textField.width = 480;
         this.textField.height = 100;
         this.textField.textAlign = "center";
+        /*
+        var that = new egret.TextField();
+        this.addChild(this.textField);
+        this.textField.y = 300;
+        this.textField.width = 480;
+        this.textField.height = 100;
+        this.textField.textAlign = "center";
+        */
     };
     p.setProgress = function (current, total) {
-        this.textField.text = "Loading..." + current + "/" + total;
+        this.textField.text = "仪式筹备中" + current + "/" + total;
     };
     return LoadingUI;
 })(egret.Sprite);

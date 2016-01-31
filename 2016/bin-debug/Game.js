@@ -22,6 +22,7 @@ var Game = (function (_super) {
         stateManager.registerState("levelScore", new LevelScore());
         stateManager.registerState("levelTitle", new LevelTitle());
         stateManager.registerState("levelEnd", new LevelEnd());
+        stateManager.registerState("levelThanks", new LevelThanks());
         stateManager.setCurStateName("levelInfo");
         stateManager.startTick();
         /*

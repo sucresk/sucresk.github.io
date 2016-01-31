@@ -8,7 +8,7 @@ class LevelOver4 extends LevelOver
     public over():void
     {
         this.stopSound();
-        this.next("levelEnd");
+        this.next("levelThanks");
     }
     
     private stopSound():void
