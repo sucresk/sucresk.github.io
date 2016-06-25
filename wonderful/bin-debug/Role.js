@@ -1,8 +1,8 @@
 var Role = (function (_super) {
     __extends(Role, _super);
     function Role(name, scale) {
-        if (name === void 0) { name = "man0"; }
-        if (scale === void 0) { scale = 0.35; }
+        if (name === void 0) { name = "man1"; }
+        if (scale === void 0) { scale = 1; }
         _super.call(this);
         this.name = name;
         this._scale = scale;
@@ -25,12 +25,16 @@ var Role = (function (_super) {
     }
     var d = __define,c=Role,p=c.prototype;
     p.play = function (name) {
-        console.log("play : " + name);
         this.armature.animation.gotoAndPlay(name, 0, -1, 1);
     };
     p.gotoAndStop = function (name, pos) {
         this.armature.animation.gotoAndStop(name, pos);
     };
+    d(p, "totleTime"
+        ,function () {
+            return this.armature.animation.lastAnimationState.totalTime;
+        }
+    );
     p.remove = function () {
         dragonBones.WorldClock.clock.remove(this.armature);
     };

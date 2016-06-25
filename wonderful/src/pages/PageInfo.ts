@@ -1,10 +1,8 @@
-class Scene0 extends State
+class PageInfo extends State
 {
     
-    private _role:Role;
-    private _pos:number = 0;
-    private _speed:number = -0.003;
-    private _comeSpeed:number = 0.05;
+    private _bg:egret.Bitmap;
+
     public constructor()
     {
         super();
@@ -14,23 +12,14 @@ class Scene0 extends State
     {
         super.init();
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
-
-        this._role = new Role("wonderful",1);
-        this.addChild(this._role);
-        this._role.play("wan");
-        this._role.x = 100;
-        this._role.y = 300;
+        this._bg = this.createBitmapByName("bg_jpg");
+        this.addChild(this._bg);
+        this.x = this.stage.stageWidth / 2;
+        this.y = this.stage.stageHeight / 2;
     }
     
     public tick(advancedTime:number):void
     {
-        if(this._pos > 1)
-        {
-            this._pos += this._speed;
-        }
-        this._role.gotoAndStop("wan",this._pos);
-        
-        dragonBones.WorldClock.clock.advanceTime(advancedTime/1000);
     }
 
     private dispose():void
@@ -40,14 +29,13 @@ class Scene0 extends State
     }
     private onTouchBegin(e:egret.TouchEvent):void
     {
-        this._pos += this._comeSpeed;
-        console.log(this._pos);
+       this.over();
     }
     
     private over():void
     {
         this.dispose();
-        this.next("levelTitle");
+        this.next("pageGame");
     }
     private createBitmapByName(name:string):egret.Bitmap {
         var result:egret.Bitmap = new egret.Bitmap();

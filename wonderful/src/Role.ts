@@ -5,7 +5,7 @@ class Role extends egret.Sprite
     public name:string;
     private _scale:number;
     
-    public constructor(name:string = "man0", scale:number = 0.35)
+    public constructor(name:string = "man1", scale:number = 1)
     {
         super();
         this.name = name;
@@ -33,7 +33,6 @@ class Role extends egret.Sprite
     
     public play(name:string):void
     {
-        console.log("play : " + name);
          this.armature.animation.gotoAndPlay(name,0,-1,1);
     }
     public gotoAndStop(name:string, pos:number):void
@@ -41,6 +40,10 @@ class Role extends egret.Sprite
          this.armature.animation.gotoAndStop(name,pos);
     }
     
+    public get totleTime():number
+    {
+        return this.armature.animation.lastAnimationState.totalTime;
+    }
     public remove():void
     {
         dragonBones.WorldClock.clock.remove(this.armature);
