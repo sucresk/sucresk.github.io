@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bg_jpg,egret_icon_png,description_json,title_png,titleCover_png,woman1_png,woman2_png,woman3_png,man1_json,man1_texture_json,man1_texture_png,man2_json,man2_texture_json,man2_texture_png,man3_json,man3_texture_json,man3_texture_png,woman1_json,woman1_texture_json,woman1_texture_png,woman2_json,woman2_texture_json,woman2_texture_png,woman3_json,woman3_texture_json,woman3_texture_png,bg3_jpg,bgGame_jpg,btn_nan_png,btn_nan1_png,btn_nv_png,btn_nv1_png,btn_start_png,btn_start1_png,cutdown_png,line_png,line_bg_png,man1_png,man2_png,man3_png,score_png,shadow_png,logo_png,over_png,yinxiao_wav,yinyue_mp3",
+		"keys":"bg_jpg,egret_icon_png,description_json,title_png,titleCover_png,woman1_png,woman2_png,woman3_png,man1_json,man1_texture_json,man1_texture_png,man2_json,man2_texture_json,man2_texture_png,man3_json,man3_texture_json,man3_texture_png,woman1_json,woman1_texture_json,woman1_texture_png,woman2_json,woman2_texture_json,woman2_texture_png,woman3_json,woman3_texture_json,woman3_texture_png,bg3_jpg,bgGame_jpg,btn_nan_png,btn_nan1_png,btn_nv_png,btn_nv1_png,btn_start_png,btn_start1_png,cutdown_png,line_png,line_bg_png,man1_png,man2_png,man3_png,score_png,shadow_png,logo_png,over_png,yinxiao_wav,yinyue_mp3,shou2_png,shou1_png",
 		"name":"preload"
 	}],
 	"resources":[
