@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="DrawToolBarSkin" width="66" height="470" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1566ac9a1cc" ></w:Config>
+	<e:Group width="64" height="163" x="0" y="0">
+		<e:Button id="btnNormal" label="选择" x="222" y="378" width="63"/>
+		<e:Button id="btnDrawRoom" label="房间" x="27" y="14" width="63"/>
+		<e:Button id="btnDrawWall" label="墙线" x="12" y="67" width="63"/>
+		<e:Button id="btnDrawText" label="文字" x="26" y="131" width="63"/>
+		<e:Component x="34" y="144" height="20"/>
+		<e:Button id="btnDoor" label="门窗" x="0" y="231" width="63"/>
+		<e:Button id="btnFurniture" label="家具" x="238" y="194" width="63"/>
+		<e:Button id="btnDevice" label="电器" x="117" y="233" width="63"/>
+		<e:Button id="btnMaterial" label="材料" x="14" y="231" width="63"/>
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

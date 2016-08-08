@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainToolBarSkin" width="666" height="55" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1566ab3782f" ></w:Config>
+	<e:Group width="660" height="51" x="2" y="0">
+		<e:Button id="btnNew" label="新建" x="64" y="100"/>
+		<e:Button id="btnSave" label="保存" x="125" y="17"/>
+		<e:Button id="btnUndo" label="撤销" x="93" y="105"/>
+		<e:Button id="btnRedo" label="重做" x="188" y="122"/>
+		<e:Button id="btnDel" label="删除" x="149" y="115"/>
+		<e:Rect width="20" height="20" x="154" y="141" fillAlpha="0" strokeAlpha="0"/>
+		<e:Button id="btnPublish" label="发布" x="119" y="112"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>
