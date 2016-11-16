@@ -1,0 +1,140 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,egret_icon_png,description_json,skeleton_man1_json,texture_man1_json,texture_man1_png,skeleton_man11_json,quest_nose_png,quest_leftEar_png,quest_rightEar_png,quest_mouth_png,quest_leftEye_png,quest_rightEye_png,quest_hair_png,MomoUI_json,texture_json,texture_png,bubbles_json,texture2_json,texture2_png,questAnim_json,texture3_json,texture3_png,ui3_png,ui0_jpg,ui1_jpg",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/man1/texture_man1.png",
+			"type": "image",
+			"name": "texture_man1_png"
+		},
+		{
+			"url": "assets/man1/skeleton_man1.json",
+			"type": "json",
+			"name": "skeleton_man1_json"
+		},
+		{
+			"url": "assets/man1/texture_man1.json",
+			"type": "json",
+			"name": "texture_man1_json"
+		},
+		{
+			"url": "assets/man1/skeleton_man11.json",
+			"type": "json",
+			"name": "skeleton_man11_json"
+		},
+		{
+			"url": "assets/quest/quest_nose.png",
+			"type": "image",
+			"name": "quest_nose_png"
+		},
+		{
+			"url": "assets/quest/quest_leftEar.png",
+			"type": "image",
+			"name": "quest_leftEar_png"
+		},
+		{
+			"url": "assets/quest/quest_rightEar.png",
+			"type": "image",
+			"name": "quest_rightEar_png"
+		},
+		{
+			"url": "assets/quest/quest_mouth.png",
+			"type": "image",
+			"name": "quest_mouth_png"
+		},
+		{
+			"url": "assets/quest/quest_leftEye.png",
+			"type": "image",
+			"name": "quest_leftEye_png"
+		},
+		{
+			"url": "assets/quest/quest_rightEye.png",
+			"type": "image",
+			"name": "quest_rightEye_png"
+		},
+		{
+			"url": "assets/quest/quest_hair.png",
+			"type": "image",
+			"name": "quest_hair_png"
+		},
+		{
+			"name": "MomoUI_json",
+			"type": "json",
+			"url": "assets/MomoUI/MomoUI.json"
+		},
+		{
+			"name": "texture_json",
+			"type": "json",
+			"url": "assets/MomoUI/texture.json"
+		},
+		{
+			"name": "texture_png",
+			"type": "image",
+			"url": "assets/MomoUI/texture.png"
+		},
+		{
+			"name": "bubbles_json",
+			"type": "json",
+			"url": "assets/bubbles/bubbles.json"
+		},
+		{
+			"name": "texture2_json",
+			"type": "json",
+			"url": "assets/bubbles/texture.json"
+		},
+		{
+			"name": "texture2_png",
+			"type": "image",
+			"url": "assets/bubbles/texture.png"
+		},
+		{
+			"name": "questAnim_json",
+			"type": "json",
+			"url": "assets/questAnim/questAnim.json"
+		},
+		{
+			"name": "texture3_json",
+			"type": "json",
+			"url": "assets/questAnim/texture.json"
+		},
+		{
+			"name": "texture3_png",
+			"type": "image",
+			"url": "assets/questAnim/texture.png"
+		},
+		{
+			"name": "ui3_png",
+			"type": "image",
+			"url": "assets/ui3.png"
+		},
+		{
+			"name": "ui0_jpg",
+			"type": "image",
+			"url": "assets/ui0.jpg"
+		},
+		{
+			"name": "ui1_jpg",
+			"type": "image",
+			"url": "assets/ui1.jpg"
+		}
+	]
+}
