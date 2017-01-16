@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="CardSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="txtName" text="标签" y="323" anchorOffsetX="0" size="60" left="0" right="0" verticalAlign="middle" textAlign="center" bold="true" anchorOffsetY="0" height="170"/>
+	<e:Button id="btnPlay" label="play" y="824" left="0" right="0" anchorOffsetY="0" height="78"/>
+	<e:Button id="btnNext" label="下一个" left="0" right="0" bottom="0" anchorOffsetY="0" height="118"/>
+	<e:Label id="txtTip" text="标签" left="0" right="0" top="0"/>
+</e:Skin>

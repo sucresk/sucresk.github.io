@@ -1,0 +1,579 @@
+{
+	"groups": [
+		{
+			"keys": "button_down_png,button_up_png,jp_json",
+			"name": "preload"
+		},
+		{
+			"keys": "あい_mp3,あお_mp3,あおい_mp3,あかい_mp3,あさ_mp3,あした_mp3,いいあう_mp3,いえ_mp3,いちにち_mp3,いぬ_mp3,いろいろ_mp3,おかゆ_mp3,おすし_mp3,おたま_mp3,おとこ_mp3,かお_mp3,からい_mp3,かわ_mp3,きおく_mp3,こくえき_mp3,このまま_mp3,これを_mp3,さけ_mp3,すいか_mp3,ちしき_mp3,つかう_mp3,なつ_mp3,なまえ_mp3,のむ_mp3,はやい_mp3,ひかく_mp3,ひとつ_mp3,ひよこ_mp3,ふく_mp3,ふゆ_mp3,へた_mp3,ほし_mp3,むかし_mp3,やね_mp3,りえき_mp3,れきし_mp3,ろく_mp3,わあ_mp3,わかもの_mp3,わたし_mp3,あいうえお5_mp3,あいうえお4_mp3,あいうえお3_mp3,あいうえお2_mp3,あいうえお1_mp3,あいうえお0_mp3,あそぶ_mp3,けいかく_mp3,ケーキ_mp3,ことば_mp3,サッカー_mp3,ざんぎょう_mp3,しゃしん_mp3,スケート_mp3,せんせい_mp3,そぼ_mp3,ちゅうごく_mp3,ていねい_mp3,とうきょう_mp3,としょかん_mp3,にょじつ_mp3,バス_mp3,バナナ_mp3,ピザ_mp3,ビデオ_mp3,プラス_mp3,ペア_mp3,ベスト_mp3,ぼく_mp3,めいれい_mp3,りゃくご_mp3,わかった_mp3,わさび_mp3,おっと_mp3,かぶき_mp3,かべ_mp3,いった_mp3,きって_mp3,キャベツ_mp3,ぎゅうにゅう_mp3,きっと_mp3",
+			"name": "audio"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/CheckBox/checkbox_select_disabled.png",
+			"type": "image",
+			"name": "checkbox_select_disabled_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_down.png",
+			"type": "image",
+			"name": "checkbox_select_down_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_up.png",
+			"type": "image",
+			"name": "checkbox_select_up_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_unselect.png",
+			"type": "image",
+			"name": "checkbox_unselect_png"
+		},
+		{
+			"url": "assets/ItemRenderer/selected.png",
+			"type": "image",
+			"name": "selected_png"
+		},
+		{
+			"url": "assets/Panel/border.png",
+			"type": "image",
+			"name": "border_png"
+		},
+		{
+			"url": "assets/Panel/header.png",
+			"type": "image",
+			"name": "header_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_disabled.png",
+			"type": "image",
+			"name": "radiobutton_select_disabled_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_down.png",
+			"type": "image",
+			"name": "radiobutton_select_down_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_up.png",
+			"type": "image",
+			"name": "radiobutton_select_up_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_unselect.png",
+			"type": "image",
+			"name": "radiobutton_unselect_png"
+		},
+		{
+			"url": "assets/ScrollBar/roundthumb.png",
+			"type": "image",
+			"name": "roundthumb_png"
+		},
+		{
+			"url": "assets/Slider/thumb.png",
+			"type": "image",
+			"name": "thumb_png"
+		},
+		{
+			"url": "assets/Slider/track.png",
+			"type": "image",
+			"name": "track_png"
+		},
+		{
+			"url": "assets/Slider/tracklight.png",
+			"type": "image",
+			"name": "tracklight_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/handle.png",
+			"type": "image",
+			"name": "handle_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/off.png",
+			"type": "image",
+			"name": "off_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/on.png",
+			"type": "image",
+			"name": "on_png"
+		},
+		{
+			"url": "assets/Button/button_down.png",
+			"type": "image",
+			"name": "button_down_png"
+		},
+		{
+			"url": "assets/Button/button_up.png",
+			"type": "image",
+			"name": "button_up_png"
+		},
+		{
+			"url": "assets/ProgressBar/thumb_pb.png",
+			"type": "image",
+			"name": "thumb_pb_png"
+		},
+		{
+			"url": "assets/ProgressBar/track_pb.png",
+			"type": "image",
+			"name": "track_pb_png"
+		},
+		{
+			"url": "assets/ScrollBar/track_sb.png",
+			"type": "image",
+			"name": "track_sb_png"
+		},
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "config/jp.json",
+			"type": "json",
+			"name": "jp_json"
+		},
+		{
+			"url": "audio/あい.mp3",
+			"type": "sound",
+			"name": "あい_mp3"
+		},
+		{
+			"url": "audio/あお.mp3",
+			"type": "sound",
+			"name": "あお_mp3"
+		},
+		{
+			"url": "audio/あおい.mp3",
+			"type": "sound",
+			"name": "あおい_mp3"
+		},
+		{
+			"url": "audio/あかい.mp3",
+			"type": "sound",
+			"name": "あかい_mp3"
+		},
+		{
+			"url": "audio/あさ.mp3",
+			"type": "sound",
+			"name": "あさ_mp3"
+		},
+		{
+			"url": "audio/あした.mp3",
+			"type": "sound",
+			"name": "あした_mp3"
+		},
+		{
+			"url": "audio/いいあう.mp3",
+			"type": "sound",
+			"name": "いいあう_mp3"
+		},
+		{
+			"url": "audio/いえ.mp3",
+			"type": "sound",
+			"name": "いえ_mp3"
+		},
+		{
+			"url": "audio/いちにち.mp3",
+			"type": "sound",
+			"name": "いちにち_mp3"
+		},
+		{
+			"url": "audio/いぬ.mp3",
+			"type": "sound",
+			"name": "いぬ_mp3"
+		},
+		{
+			"url": "audio/いろいろ.mp3",
+			"type": "sound",
+			"name": "いろいろ_mp3"
+		},
+		{
+			"url": "audio/おかゆ.mp3",
+			"type": "sound",
+			"name": "おかゆ_mp3"
+		},
+		{
+			"url": "audio/おすし.mp3",
+			"type": "sound",
+			"name": "おすし_mp3"
+		},
+		{
+			"url": "audio/おたま.mp3",
+			"type": "sound",
+			"name": "おたま_mp3"
+		},
+		{
+			"url": "audio/おとこ.mp3",
+			"type": "sound",
+			"name": "おとこ_mp3"
+		},
+		{
+			"url": "audio/かお.mp3",
+			"type": "sound",
+			"name": "かお_mp3"
+		},
+		{
+			"url": "audio/からい.mp3",
+			"type": "sound",
+			"name": "からい_mp3"
+		},
+		{
+			"url": "audio/かわ.mp3",
+			"type": "sound",
+			"name": "かわ_mp3"
+		},
+		{
+			"url": "audio/きおく.mp3",
+			"type": "sound",
+			"name": "きおく_mp3"
+		},
+		{
+			"url": "audio/こくえき.mp3",
+			"type": "sound",
+			"name": "こくえき_mp3"
+		},
+		{
+			"url": "audio/このまま.mp3",
+			"type": "sound",
+			"name": "このまま_mp3"
+		},
+		{
+			"url": "audio/これを.mp3",
+			"type": "sound",
+			"name": "これを_mp3"
+		},
+		{
+			"url": "audio/さけ.mp3",
+			"type": "sound",
+			"name": "さけ_mp3"
+		},
+		{
+			"url": "audio/すいか.mp3",
+			"type": "sound",
+			"name": "すいか_mp3"
+		},
+		{
+			"url": "audio/ちしき.mp3",
+			"type": "sound",
+			"name": "ちしき_mp3"
+		},
+		{
+			"url": "audio/つかう.mp3",
+			"type": "sound",
+			"name": "つかう_mp3"
+		},
+		{
+			"url": "audio/なつ.mp3",
+			"type": "sound",
+			"name": "なつ_mp3"
+		},
+		{
+			"url": "audio/なまえ.mp3",
+			"type": "sound",
+			"name": "なまえ_mp3"
+		},
+		{
+			"url": "audio/のむ.mp3",
+			"type": "sound",
+			"name": "のむ_mp3"
+		},
+		{
+			"url": "audio/はやい.mp3",
+			"type": "sound",
+			"name": "はやい_mp3"
+		},
+		{
+			"url": "audio/ひかく.mp3",
+			"type": "sound",
+			"name": "ひかく_mp3"
+		},
+		{
+			"url": "audio/ひとつ.mp3",
+			"type": "sound",
+			"name": "ひとつ_mp3"
+		},
+		{
+			"url": "audio/ひよこ.mp3",
+			"type": "sound",
+			"name": "ひよこ_mp3"
+		},
+		{
+			"url": "audio/ふく.mp3",
+			"type": "sound",
+			"name": "ふく_mp3"
+		},
+		{
+			"url": "audio/ふゆ.mp3",
+			"type": "sound",
+			"name": "ふゆ_mp3"
+		},
+		{
+			"url": "audio/へた.mp3",
+			"type": "sound",
+			"name": "へた_mp3"
+		},
+		{
+			"url": "audio/ほし.mp3",
+			"type": "sound",
+			"name": "ほし_mp3"
+		},
+		{
+			"url": "audio/むかし.mp3",
+			"type": "sound",
+			"name": "むかし_mp3"
+		},
+		{
+			"url": "audio/やね.mp3",
+			"type": "sound",
+			"name": "やね_mp3"
+		},
+		{
+			"url": "audio/りえき.mp3",
+			"type": "sound",
+			"name": "りえき_mp3"
+		},
+		{
+			"url": "audio/れきし.mp3",
+			"type": "sound",
+			"name": "れきし_mp3"
+		},
+		{
+			"url": "audio/ろく.mp3",
+			"type": "sound",
+			"name": "ろく_mp3"
+		},
+		{
+			"url": "audio/わあ.mp3",
+			"type": "sound",
+			"name": "わあ_mp3"
+		},
+		{
+			"url": "audio/わかもの.mp3",
+			"type": "sound",
+			"name": "わかもの_mp3"
+		},
+		{
+			"url": "audio/わたし.mp3",
+			"type": "sound",
+			"name": "わたし_mp3"
+		},
+		{
+			"url": "audio/あいうえお5.mp3",
+			"type": "sound",
+			"name": "あいうえお5_mp3"
+		},
+		{
+			"url": "audio/あいうえお4.mp3",
+			"type": "sound",
+			"name": "あいうえお4_mp3"
+		},
+		{
+			"url": "audio/あいうえお3.mp3",
+			"type": "sound",
+			"name": "あいうえお3_mp3"
+		},
+		{
+			"url": "audio/あいうえお2.mp3",
+			"type": "sound",
+			"name": "あいうえお2_mp3"
+		},
+		{
+			"url": "audio/あいうえお1.mp3",
+			"type": "sound",
+			"name": "あいうえお1_mp3"
+		},
+		{
+			"url": "audio/あいうえお0.mp3",
+			"type": "sound",
+			"name": "あいうえお0_mp3"
+		},
+		{
+			"url": "audio/めいれい.mp3",
+			"type": "sound",
+			"name": "めいれい_mp3"
+		},
+		{
+			"url": "audio/りゃくご.mp3",
+			"type": "sound",
+			"name": "りゃくご_mp3"
+		},
+		{
+			"url": "audio/ぼく.mp3",
+			"type": "sound",
+			"name": "ぼく_mp3"
+		},
+		{
+			"url": "audio/わさび.mp3",
+			"type": "sound",
+			"name": "わさび_mp3"
+		},
+		{
+			"url": "audio/わかった.mp3",
+			"type": "sound",
+			"name": "わかった_mp3"
+		},
+		{
+			"url": "audio/いった.mp3",
+			"type": "sound",
+			"name": "いった_mp3"
+		},
+		{
+			"url": "audio/おっと.mp3",
+			"type": "sound",
+			"name": "おっと_mp3"
+		},
+		{
+			"url": "audio/かぶき.mp3",
+			"type": "sound",
+			"name": "かぶき_mp3"
+		},
+		{
+			"url": "audio/かべ.mp3",
+			"type": "sound",
+			"name": "かべ_mp3"
+		},
+		{
+			"url": "audio/きって.mp3",
+			"type": "sound",
+			"name": "きって_mp3"
+		},
+		{
+			"url": "audio/あそぶ.mp3",
+			"type": "sound",
+			"name": "あそぶ_mp3"
+		},
+		{
+			"url": "audio/キャベツ.mp3",
+			"type": "sound",
+			"name": "キャベツ_mp3"
+		},
+		{
+			"url": "audio/ぎゅうにゅう.mp3",
+			"type": "sound",
+			"name": "ぎゅうにゅう_mp3"
+		},
+		{
+			"url": "audio/ケーキ.mp3",
+			"type": "sound",
+			"name": "ケーキ_mp3"
+		},
+		{
+			"url": "audio/けいかく.mp3",
+			"type": "sound",
+			"name": "けいかく_mp3"
+		},
+		{
+			"url": "audio/ことば.mp3",
+			"type": "sound",
+			"name": "ことば_mp3"
+		},
+		{
+			"url": "audio/きっと.mp3",
+			"type": "sound",
+			"name": "きっと_mp3"
+		},
+		{
+			"url": "audio/ざんぎょう.mp3",
+			"type": "sound",
+			"name": "ざんぎょう_mp3"
+		},
+		{
+			"url": "audio/サッカー.mp3",
+			"type": "sound",
+			"name": "サッカー_mp3"
+		},
+		{
+			"url": "audio/スケート.mp3",
+			"type": "sound",
+			"name": "スケート_mp3"
+		},
+		{
+			"url": "audio/しゃしん.mp3",
+			"type": "sound",
+			"name": "しゃしん_mp3"
+		},
+		{
+			"url": "audio/せんせい.mp3",
+			"type": "sound",
+			"name": "せんせい_mp3"
+		},
+		{
+			"url": "audio/そぼ.mp3",
+			"type": "sound",
+			"name": "そぼ_mp3"
+		},
+		{
+			"url": "audio/とうきょう.mp3",
+			"type": "sound",
+			"name": "とうきょう_mp3"
+		},
+		{
+			"url": "audio/ていねい.mp3",
+			"type": "sound",
+			"name": "ていねい_mp3"
+		},
+		{
+			"url": "audio/としょかん.mp3",
+			"type": "sound",
+			"name": "としょかん_mp3"
+		},
+		{
+			"url": "audio/にょじつ.mp3",
+			"type": "sound",
+			"name": "にょじつ_mp3"
+		},
+		{
+			"url": "audio/バナナ.mp3",
+			"type": "sound",
+			"name": "バナナ_mp3"
+		},
+		{
+			"url": "audio/ピザ.mp3",
+			"type": "sound",
+			"name": "ピザ_mp3"
+		},
+		{
+			"url": "audio/ビデオ.mp3",
+			"type": "sound",
+			"name": "ビデオ_mp3"
+		},
+		{
+			"url": "audio/プラス.mp3",
+			"type": "sound",
+			"name": "プラス_mp3"
+		},
+		{
+			"url": "audio/ちゅうごく.mp3",
+			"type": "sound",
+			"name": "ちゅうごく_mp3"
+		},
+		{
+			"url": "audio/ペア.mp3",
+			"type": "sound",
+			"name": "ペア_mp3"
+		},
+		{
+			"url": "audio/ベスト.mp3",
+			"type": "sound",
+			"name": "ベスト_mp3"
+		},
+		{
+			"url": "audio/バス.mp3",
+			"type": "sound",
+			"name": "バス_mp3"
+		}
+	]
+}
