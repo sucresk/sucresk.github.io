@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ConfirmSkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect id="rect" fillAlpha="0.5" strokeAlpha="0.5" left="0" right="0" top="0" bottom="0"/>
+	<e:Image id="bg" source="dialog_bg_png" scale9Grid="12,52,38,1" anchorOffsetX="0" anchorOffsetY="0" height="300" width="400" y="0" x="0"/>
+	<e:Label id="text" text="Label" x="10.67" y="9.34" textColor="0xb26937" maxWidth="400"/>
+	<e:Button id="btnOk" label="是" x="91" y="331"/>
+	<e:Button id="btnCancel" label="否" x="220" y="335"/>
+</e:Skin>

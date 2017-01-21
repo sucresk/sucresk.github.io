@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PackageIconSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="128" height="128">
+	<w:Config id="159c0078b24" ></w:Config>
+	<e:Image source="itemIcon_png" y="0" scaleX="2" scaleY="2" horizontalCenter="0"/>
+	<e:Image source="{d.icon}" x="0" y="0" scaleX="2" scaleY="2"/>
+</e:Skin>

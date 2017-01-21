@@ -1,0 +1,95 @@
+{
+  "skins": {
+    "eui.Button": "resource/eui_skins/ButtonSkin.exml",
+    "eui.CheckBox": "resource/eui_skins/CheckBoxSkin.exml",
+    "eui.HScrollBar": "resource/eui_skins/HScrollBarSkin.exml",
+    "eui.HSlider": "resource/eui_skins/HSliderSkin.exml",
+    "eui.Panel": "resource/eui_skins/PanelSkin.exml",
+    "eui.TextInput": "resource/eui_skins/TextInputSkin.exml",
+    "eui.ProgressBar": "resource/eui_skins/ProgressBarSkin.exml",
+    "eui.RadioButton": "resource/eui_skins/RadioButtonSkin.exml",
+    "eui.Scroller": "resource/eui_skins/ScrollerSkin.exml",
+    "eui.ToggleSwitch": "resource/eui_skins/ToggleSwitchSkin.exml",
+    "eui.VScrollBar": "resource/eui_skins/VScrollBarSkin.exml",
+    "eui.VSlider": "resource/eui_skins/VSliderSkin.exml",
+    "eui.ItemRenderer": "resource/eui_skins/ItemRendererSkin.exml",
+    "PackageList": "resource/skins/PackageList.exml",
+    "PackageIcon": "resource/skins/PackageIcon.exml",
+    "Letter": "resource/skins/Letter.exml"
+  },
+  "autoGenerateExmlsList": true,
+  "exmls": [
+    {
+      "path": "resource/eui_skins/ButtonSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<e:Skin class=\"skins.ButtonSkin\" states=\"up,down,disabled\" minHeight=\"50\" minWidth=\"100\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image width=\"100%\" height=\"100%\" scale9Grid=\"1,3,8,8\" alpha.disabled=\"0.5\"\r\n             source=\"button_up_png\"\r\n             source.down=\"button_down_png\"/>\r\n    <e:Label id=\"labelDisplay\" top=\"8\" bottom=\"8\" left=\"8\" right=\"8\"\r\n             size=\"20\"\r\n             textColor=\"0xFFFFFF\" verticalAlign=\"middle\" textAlign=\"center\"/>\r\n    <e:Image id=\"iconDisplay\" horizontalCenter=\"0\" verticalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/CheckBoxSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.CheckBoxSkin\" states=\"up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Group width=\"100%\" height=\"100%\">\r\n        <e:layout>\r\n            <e:HorizontalLayout verticalAlign=\"middle\"/>\r\n        </e:layout>\r\n        <e:Image fillMode=\"scale\" alpha=\"1\" alpha.disabled=\"0.5\" alpha.down=\"0.7\"\r\n                 source=\"checkbox_unselect_png\"\r\n                 source.upAndSelected=\"checkbox_select_up_png\"\r\n                 source.downAndSelected=\"checkbox_select_down_png\"\r\n                 source.disabledAndSelected=\"checkbox_select_disabled_png\"/>\r\n        <e:Label id=\"labelDisplay\" size=\"20\" textColor=\"0x707070\"\r\n                 textAlign=\"center\" verticalAlign=\"middle\"\r\n                 fontFamily=\"Tahoma\"/>\r\n    </e:Group>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/HScrollBarSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.HScrollBarSkin\" minWidth=\"20\" minHeight=\"8\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image id=\"thumb\" source=\"roundthumb_png\" scale9Grid=\"3,3,2,2\" height=\"8\" width=\"30\" verticalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/HSliderSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.HSliderSkin\" minWidth=\"20\" minHeight=\"8\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image id=\"track\" source=\"track_sb_png\" scale9Grid=\"1,1,4,4\" width=\"100%\"\r\n             height=\"6\" verticalCenter=\"0\"/>\r\n    <e:Image id=\"thumb\" source=\"thumb_png\" verticalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/ItemRendererSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<e:Skin class=\"skins.ItemRendererSkin\" states=\"up,down,disabled\" minHeight=\"50\" minWidth=\"100\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image width=\"100%\" height=\"100%\" scale9Grid=\"1,3,8,8\" alpha.disabled=\"0.5\"\r\n             source=\"button_up_png\"\r\n             source.down=\"button_down_png\"/>\r\n    <e:Label id=\"labelDisplay\" top=\"8\" bottom=\"8\" left=\"8\" right=\"8\"\r\n             size=\"20\" fontFamily=\"Tahoma\"\r\n             textColor=\"0xFFFFFF\" text=\"{data}\" verticalAlign=\"middle\" textAlign=\"center\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/PanelSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.PanelSkin\" minHeight=\"230\" minWidth=\"450\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image left=\"0\" right=\"0\" bottom=\"0\"  top=\"0\" source=\"border_png\" scale9Grid=\"2,2,12,12\" />\r\n    <e:Group id=\"moveArea\" left=\"0\" right=\"0\" top=\"0\" height=\"45\">\r\n        <e:Image left=\"0\" right=\"0\" bottom=\"0\"  top=\"0\" source=\"header_png\"/>\r\n        <e:Label id=\"titleDisplay\" size=\"20\" fontFamily=\"Tahoma\" textColor=\"0xFFFFFF\"\r\n                 wordWrap=\"false\" left=\"15\" right=\"5\" verticalCenter=\"0\"/>\r\n    </e:Group>\r\n    <e:Button id=\"closeButton\" label=\"close\" bottom=\"5\" horizontalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/ProgressBarSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.ProgressBarSkin\" minWidth=\"30\" minHeight=\"18\" xmlns:e=\"http://ns.egret.com/eui\">\r\n\t<e:Image source=\"track_pb_png\" scale9Grid=\"1,1,4,4\" width=\"100%\"\r\n\t\t\t height=\"100%\" verticalCenter=\"0\"/>\r\n\t<e:Image id=\"thumb\" height=\"100%\" width=\"100%\" source=\"thumb_pb_png\"/>\r\n\t<e:Label id=\"labelDisplay\" textAlign=\"center\" verticalAlign=\"middle\"\r\n\t\t\t size=\"15\" fontFamily=\"Tahoma\" textColor=\"0x707070\"\r\n\t\t\t horizontalCenter=\"0\" verticalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/RadioButtonSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.RadioButtonSkin\" states=\"up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Group width=\"100%\" height=\"100%\">\r\n        <e:layout>\r\n            <e:HorizontalLayout verticalAlign=\"middle\"/>\r\n        </e:layout>\r\n        <e:Image fillMode=\"scale\" alpha=\"1\" alpha.disabled=\"0.5\" alpha.down=\"0.7\"\r\n                 source=\"radiobutton_unselect_png\"\r\n                 source.upAndSelected=\"radiobutton_select_up_png\"\r\n                 source.downAndSelected=\"radiobutton_select_down_png\"\r\n                 source.disabledAndSelected=\"radiobutton_select_disabled_png\"/>\r\n        <e:Label id=\"labelDisplay\" size=\"20\" textColor=\"0x707070\"\r\n                 textAlign=\"center\" verticalAlign=\"middle\"\r\n                 fontFamily=\"Tahoma\"/>\r\n    </e:Group>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/ScrollerSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.ScrollerSkin\" minWidth=\"20\" minHeight=\"20\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <!--<e:HScrollBar id=\"horizontalScrollBar\" width=\"100%\" bottom=\"0\"/>-->\r\n    <!--<e:VScrollBar id=\"verticalScrollBar\" height=\"100%\" right=\"0\"/>-->\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/eui_skins/TextInputSkin.exml",
+      "content": "<?xml version='1.0' encoding='utf-8'?>\r\n<e:Skin class=\"skins.TextInputSkin\" minHeight=\"40\" minWidth=\"300\" states=\"normal,disabled,normalWithPrompt,disabledWithPrompt\" xmlns:e=\"http://ns.egret.com/eui\">\r\n\t<e:Image width=\"100%\" height=\"100%\" scale9Grid=\"1,3,8,8\" source=\"button_up_png\"/>\r\n\t<e:Rect height=\"100%\" width=\"100%\" fillColor=\"0xffffff\"/>\r\n \t<e:EditableText id=\"textDisplay\" verticalCenter=\"0\" left=\"10\" right=\"10\"\r\n\t                textColor=\"0x000000\" textColor.disabled=\"0xff0000\" width=\"100%\" height=\"24\" size=\"20\" />\r\n\t<e:Label id=\"promptDisplay\" verticalCenter=\"0\" left=\"10\" right=\"10\"\r\n\t                textColor=\"0xa9a9a9\" width=\"100%\" height=\"24\" size=\"20\" touchEnabled=\"false\" includeIn=\"normalWithPrompt,disabledWithPrompt\"/>\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/eui_skins/ToggleSwitchSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.ToggleSwitchSkin\" states=\"up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image source=\"on_png\"\r\n             source.up=\"off_png\"\r\n             source.down=\"off_png\"\r\n             source.disabled=\"off_png\"/>\r\n    <e:Image source=\"handle_png\"\r\n             horizontalCenter=\"-18\"\r\n             horizontalCenter.upAndSelected=\"18\"\r\n             horizontalCenter.downAndSelected=\"18\"\r\n             horizontalCenter.disabledAndSelected=\"18\"\r\n             verticalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/VScrollBarSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.VScrollBarSkin\" minWidth=\"8\" minHeight=\"20\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image id=\"thumb\" source=\"roundthumb_png\" scale9Grid=\"3,3,2,2\" height=\"30\" width=\"8\" horizontalCenter=\"0\"/>\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/eui_skins/VSliderSkin.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"skins.VSliderSkin\" minWidth=\"25\" minHeight=\"30\" xmlns:e=\"http://ns.egret.com/eui\">\r\n    <e:Image id=\"track\" source=\"track_png\" scale9Grid=\"1,1,4,4\" width=\"7\" height=\"100%\" horizontalCenter=\"0\"/>\r\n    <e:Image id=\"thumb\" source=\"thumb_png\" horizontalCenter=\"0\" />\r\n</e:Skin>\r\n"
+    },
+    {
+      "path": "resource/skins/Confirm.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"ConfirmSkin\" width=\"400\" height=\"300\" xmlns:e=\"http://ns.egret.com/eui\" xmlns:w=\"http://ns.egret.com/wing\">\r\n\t<e:Rect id=\"rect\" fillAlpha=\"0.5\" strokeAlpha=\"0.5\" left=\"0\" right=\"0\" top=\"0\" bottom=\"0\"/>\r\n\t<e:Image id=\"bg\" source=\"dialog_bg_png\" scale9Grid=\"12,52,38,1\" anchorOffsetX=\"0\" anchorOffsetY=\"0\" height=\"300\" width=\"400\" y=\"0\" x=\"0\"/>\r\n\t<e:Label id=\"text\" text=\"Label\" x=\"10.67\" y=\"9.34\" textColor=\"0xb26937\" maxWidth=\"400\"/>\r\n\t<e:Button id=\"btnOk\" label=\"是\" x=\"91\" y=\"331\"/>\r\n\t<e:Button id=\"btnCancel\" label=\"否\" x=\"220\" y=\"335\"/>\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/skins/Letter.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"LetterSkin\" xmlns:e=\"http://ns.egret.com/eui\" xmlns:w=\"http://ns.egret.com/wing\" >\r\n\t<w:Config id=\"159c095016e\" ></w:Config>\r\n\t<e:Rect id=\"rect\" fillAlpha=\"0.5\" strokeAlpha=\"0.5\" left=\"0\" right=\"0\" top=\"0\" bottom=\"0\"/>\r\n\t<e:Group id=\"group\" horizontalCenter=\"0\" verticalCenter=\"0\">\r\n\t\t<e:Image source=\"letter_bg_png\" scaleX=\"2\" scaleY=\"2\" x=\"0\" y=\"0\"/>\r\n\t\t<e:Label id=\"text\" text=\"{d.text}\" x=\"71.94\" y=\"36.09\" textColor=\"0xB26937\" maxWidth=\"400\" anchorOffsetX=\"0\" width=\"386.12\" anchorOffsetY=\"0\" height=\"320.91\" verticalAlign=\"middle\" textAlign=\"center\"/>\r\n\t</e:Group>\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/skins/PackageIcon.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"PackageIconSkin\" xmlns:e=\"http://ns.egret.com/eui\" xmlns:w=\"http://ns.egret.com/wing\"  width=\"128\" height=\"128\">\r\n\t<w:Config id=\"159c0078b24\" ></w:Config>\r\n\t<e:Image source=\"itemIcon_png\" y=\"0\" scaleX=\"2\" scaleY=\"2\" horizontalCenter=\"0\"/>\r\n\t<e:Image source=\"{d.icon}\" x=\"0\" y=\"0\" scaleX=\"2\" scaleY=\"2\"/>\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/skins/PackageList.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"PackageListSkin\" width=\"640\" height=\"355\" xmlns:e=\"http://ns.egret.com/eui\" xmlns:w=\"http://ns.egret.com/wing\" >\r\n\t<w:Config id=\"159bfff33fd\" ></w:Config>\r\n\t<e:Group id=\"group\" x=\"0\" y=\"0\" height=\"355\">\r\n\t\t<e:Scroller scrollPolicyH=\"on\" scrollPolicyV=\"off\" height=\"264\" x=\"0\" y=\"91\">\r\n\t\t\t<e:List anchorOffsetX=\"0\" left=\"0\" right=\"0\" bottom=\"42\" itemRenderer=\"PackageIcon\" top=\"0\" width=\"640\" anchorOffsetY=\"0\">\r\n\t\t\t<e:layout>\r\n\t\t\t\t<e:TileLayout orientation=\"columns\" requestedRowCount=\"2\" horizontalGap=\"0\" horizontalAlign=\"left\" requestedColumnCount=\"12\" columnAlign=\"left\" verticalGap=\"6\"/>\r\n\t\t\t</e:layout>\r\n\t\t\t<e:ArrayCollection id=\"ac\">\r\n\t\t\t\t<e:Array>\r\n\t\t\t\t<e:Object name=\"asdfad\"/>\r\n\t\t\t\t<e:Object name=\"adfadf\"/>\r\n\t\t\t\t<e:Object name=\"nullasdfadf\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t<e:Object name=\"null\"/>\r\n\t\t\t\t</e:Array>\r\n\t\t\t</e:ArrayCollection>\r\n\t\t\t</e:List>\r\n\t\t</e:Scroller>\r\n\t\t<e:Button id=\"packageBtn\" label=\"\" x=\"0\" y=\"0\">\r\n\t\t\t<e:skinName>\r\n\t\t\t<e:Skin states=\"up,down,disabled\">\r\n\t\t\t\t<e:Image width=\"100%\" height=\"100%\" source=\"package_icon_png\" source.down=\"package_icon_png\" source.disabled=\"package_icon_png\"/>\r\n\t\t\t\t<e:Label id=\"labelDisplay\" horizontalCenter=\"0\" verticalCenter=\"0\"/>\r\n\t\t\t</e:Skin>\r\n\t\t\t</e:skinName>\r\n\t\t</e:Button>\r\n\t</e:Group>\r\n\t\r\n</e:Skin>"
+    },
+    {
+      "path": "resource/skins/Talk.exml",
+      "content": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<e:Skin class=\"TalkSkin\" width=\"400\" height=\"300\" xmlns:e=\"http://ns.egret.com/eui\" xmlns:w=\"http://ns.egret.com/wing\">\r\n\t<e:Rect id=\"rect\" fillAlpha=\"0.5\" strokeAlpha=\"0.5\" left=\"0\" right=\"0\" top=\"0\" bottom=\"0\"/>\r\n\t<e:Image id=\"bg\" source=\"dialog_bg_png\" scale9Grid=\"12,52,38,1\" anchorOffsetX=\"0\" anchorOffsetY=\"0\" height=\"300\" width=\"400\" y=\"0\" x=\"0\"/>\r\n\t<e:Label id=\"text\" text=\"Label\" x=\"10.67\" y=\"9.34\" textColor=\"0xb26937\" maxWidth=\"400\"/>\r\n</e:Skin>"
+    }
+  ]
+}

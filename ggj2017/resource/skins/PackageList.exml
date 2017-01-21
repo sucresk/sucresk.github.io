@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PackageListSkin" width="640" height="355" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="159bfff33fd" ></w:Config>
+	<e:Group id="group" x="0" y="0" height="355">
+		<e:Scroller scrollPolicyH="on" scrollPolicyV="off" height="264" x="0" y="91">
+			<e:List anchorOffsetX="0" left="0" right="0" bottom="42" itemRenderer="PackageIcon" top="0" width="640" anchorOffsetY="0">
+			<e:layout>
+				<e:TileLayout orientation="columns" requestedRowCount="2" horizontalGap="0" horizontalAlign="left" requestedColumnCount="12" columnAlign="left" verticalGap="6"/>
+			</e:layout>
+			<e:ArrayCollection id="ac">
+				<e:Array>
+				<e:Object name="asdfad"/>
+				<e:Object name="adfadf"/>
+				<e:Object name="nullasdfadf"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				<e:Object name="null"/>
+				</e:Array>
+			</e:ArrayCollection>
+			</e:List>
+		</e:Scroller>
+		<e:Button id="packageBtn" label="" x="0" y="0">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="package_icon_png" source.down="package_icon_png" source.disabled="package_icon_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+	
+</e:Skin>

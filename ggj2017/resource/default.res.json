@@ -1,0 +1,395 @@
+{
+	"groups": [
+		{
+			"keys": "items_json,button_down_png,button_up_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,roundthumb_png,track_sb_png,thumb_png,track_png,tracklight_png,thumb_pb_png,track_pb_png,handle_png,off_png,on_png,aziraphale_tex_png,items_tex_png,roshan_tex_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,code_png,codeSegment_1_png,codeSegment_2_png,codeSegment_3_png,codeSegment_4_png,codeSegment_5_png,codeSegment_6_png,codeSegment_7_png,letter_1_png,letter_2_png,letter_3_png,letter_4_png,letter_5_png,letter_6_png,letter_7_png,dialog_bg_png,itemIcon_png,letter_bg_png,package_icon_png,suicide_png,aziraphale_ske_json,items_tex_json,items_ske_json,roshan_ske_json,aziraphale_tex_json,roshan_tex_json,sithjester_ske_json,sithjester_tex_json,sithjester_tex_png,redskull_ske_json,redskull_tex_json,redskull_tex_png,fey_ske_json,fey_tex_json,fey_tex_png,e10sprite_ske_json,e10sprite_tex_json,e10sprite_tex_png,devil_ske_json,devil_tex_json,devil_tex_png,scene1_png,scene2_png,scene3_png,scene4_png,scene5_png,scene6_png,scene7_png,scene8_png,random_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "config/items.json",
+			"type": "json",
+			"name": "items_json"
+		},
+		{
+			"url": "assets/Button/button_down.png",
+			"type": "image",
+			"name": "button_down_png"
+		},
+		{
+			"url": "assets/Button/button_up.png",
+			"type": "image",
+			"name": "button_up_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_disabled.png",
+			"type": "image",
+			"name": "checkbox_select_disabled_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_down.png",
+			"type": "image",
+			"name": "checkbox_select_down_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_up.png",
+			"type": "image",
+			"name": "checkbox_select_up_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_unselect.png",
+			"type": "image",
+			"name": "checkbox_unselect_png"
+		},
+		{
+			"url": "assets/ItemRenderer/selected.png",
+			"type": "image",
+			"name": "selected_png"
+		},
+		{
+			"url": "assets/Panel/border.png",
+			"type": "image",
+			"name": "border_png"
+		},
+		{
+			"url": "assets/Panel/header.png",
+			"type": "image",
+			"name": "header_png"
+		},
+		{
+			"url": "assets/ScrollBar/roundthumb.png",
+			"type": "image",
+			"name": "roundthumb_png"
+		},
+		{
+			"url": "assets/ScrollBar/track_sb.png",
+			"type": "image",
+			"name": "track_sb_png"
+		},
+		{
+			"url": "assets/Slider/thumb.png",
+			"type": "image",
+			"name": "thumb_png"
+		},
+		{
+			"url": "assets/Slider/track.png",
+			"type": "image",
+			"name": "track_png"
+		},
+		{
+			"url": "assets/Slider/tracklight.png",
+			"type": "image",
+			"name": "tracklight_png"
+		},
+		{
+			"url": "assets/ProgressBar/thumb_pb.png",
+			"type": "image",
+			"name": "thumb_pb_png"
+		},
+		{
+			"url": "assets/ProgressBar/track_pb.png",
+			"type": "image",
+			"name": "track_pb_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/handle.png",
+			"type": "image",
+			"name": "handle_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/off.png",
+			"type": "image",
+			"name": "off_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/on.png",
+			"type": "image",
+			"name": "on_png"
+		},
+		{
+			"url": "assets/dbAnim/aziraphale_tex.png",
+			"type": "image",
+			"name": "aziraphale_tex_png"
+		},
+		{
+			"url": "assets/dbAnim/items_tex.png",
+			"type": "image",
+			"name": "items_tex_png"
+		},
+		{
+			"url": "assets/dbAnim/roshan_tex.png",
+			"type": "image",
+			"name": "roshan_tex_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_disabled.png",
+			"type": "image",
+			"name": "radiobutton_select_disabled_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_down.png",
+			"type": "image",
+			"name": "radiobutton_select_down_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_up.png",
+			"type": "image",
+			"name": "radiobutton_select_up_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_unselect.png",
+			"type": "image",
+			"name": "radiobutton_unselect_png"
+		},
+		{
+			"url": "assets/icon/code.png",
+			"type": "image",
+			"name": "code_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_1.png",
+			"type": "image",
+			"name": "codeSegment_1_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_2.png",
+			"type": "image",
+			"name": "codeSegment_2_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_3.png",
+			"type": "image",
+			"name": "codeSegment_3_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_4.png",
+			"type": "image",
+			"name": "codeSegment_4_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_5.png",
+			"type": "image",
+			"name": "codeSegment_5_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_6.png",
+			"type": "image",
+			"name": "codeSegment_6_png"
+		},
+		{
+			"url": "assets/icon/codeSegment_7.png",
+			"type": "image",
+			"name": "codeSegment_7_png"
+		},
+		{
+			"url": "assets/icon/letter_1.png",
+			"type": "image",
+			"name": "letter_1_png"
+		},
+		{
+			"url": "assets/icon/letter_2.png",
+			"type": "image",
+			"name": "letter_2_png"
+		},
+		{
+			"url": "assets/icon/letter_3.png",
+			"type": "image",
+			"name": "letter_3_png"
+		},
+		{
+			"url": "assets/icon/letter_4.png",
+			"type": "image",
+			"name": "letter_4_png"
+		},
+		{
+			"url": "assets/icon/letter_5.png",
+			"type": "image",
+			"name": "letter_5_png"
+		},
+		{
+			"url": "assets/icon/letter_6.png",
+			"type": "image",
+			"name": "letter_6_png"
+		},
+		{
+			"url": "assets/icon/letter_7.png",
+			"type": "image",
+			"name": "letter_7_png"
+		},
+		{
+			"url": "assets/ui/dialog_bg.png",
+			"type": "image",
+			"name": "dialog_bg_png"
+		},
+		{
+			"url": "assets/ui/itemIcon.png",
+			"type": "image",
+			"name": "itemIcon_png"
+		},
+		{
+			"url": "assets/ui/letter_bg.png",
+			"type": "image",
+			"name": "letter_bg_png"
+		},
+		{
+			"url": "assets/ui/package_icon.png",
+			"type": "image",
+			"name": "package_icon_png"
+		},
+		{
+			"url": "assets/ui/suicide.png",
+			"type": "image",
+			"name": "suicide_png"
+		},
+		{
+			"url": "assets/dbAnim/aziraphale_ske.json",
+			"type": "json",
+			"name": "aziraphale_ske_json"
+		},
+		{
+			"url": "assets/dbAnim/items_tex.json",
+			"type": "json",
+			"name": "items_tex_json"
+		},
+		{
+			"url": "assets/dbAnim/items_ske.json",
+			"type": "json",
+			"name": "items_ske_json"
+		},
+		{
+			"url": "assets/dbAnim/roshan_ske.json",
+			"type": "json",
+			"name": "roshan_ske_json"
+		},
+		{
+			"url": "assets/dbAnim/aziraphale_tex.json",
+			"type": "json",
+			"name": "aziraphale_tex_json"
+		},
+		{
+			"url": "assets/dbAnim/roshan_tex.json",
+			"type": "json",
+			"name": "roshan_tex_json"
+		},
+		{
+			"name": "sithjester_ske_json",
+			"type": "json",
+			"url": "assets/dbAnim/sithjester_ske.json"
+		},
+		{
+			"name": "sithjester_tex_json",
+			"type": "json",
+			"url": "assets/dbAnim/sithjester_tex.json"
+		},
+		{
+			"name": "sithjester_tex_png",
+			"type": "image",
+			"url": "assets/dbAnim/sithjester_tex.png"
+		},
+		{
+			"name": "redskull_ske_json",
+			"type": "json",
+			"url": "assets/dbAnim/redskull_ske.json"
+		},
+		{
+			"name": "redskull_tex_json",
+			"type": "json",
+			"url": "assets/dbAnim/redskull_tex.json"
+		},
+		{
+			"name": "redskull_tex_png",
+			"type": "image",
+			"url": "assets/dbAnim/redskull_tex.png"
+		},
+		{
+			"name": "fey_ske_json",
+			"type": "json",
+			"url": "assets/dbAnim/fey_ske.json"
+		},
+		{
+			"name": "fey_tex_json",
+			"type": "json",
+			"url": "assets/dbAnim/fey_tex.json"
+		},
+		{
+			"name": "fey_tex_png",
+			"type": "image",
+			"url": "assets/dbAnim/fey_tex.png"
+		},
+		{
+			"name": "e10sprite_ske_json",
+			"type": "json",
+			"url": "assets/dbAnim/e10sprite_ske.json"
+		},
+		{
+			"name": "e10sprite_tex_json",
+			"type": "json",
+			"url": "assets/dbAnim/e10sprite_tex.json"
+		},
+		{
+			"name": "e10sprite_tex_png",
+			"type": "image",
+			"url": "assets/dbAnim/e10sprite_tex.png"
+		},
+		{
+			"name": "devil_ske_json",
+			"type": "json",
+			"url": "assets/dbAnim/devil_ske.json"
+		},
+		{
+			"name": "devil_tex_json",
+			"type": "json",
+			"url": "assets/dbAnim/devil_tex.json"
+		},
+		{
+			"name": "devil_tex_png",
+			"type": "image",
+			"url": "assets/dbAnim/devil_tex.png"
+		},
+		{
+			"name": "scene1_png",
+			"type": "image",
+			"url": "assets/scene/scene1.png"
+		},
+		{
+			"name": "scene2_png",
+			"type": "image",
+			"url": "assets/scene/scene2.png"
+		},
+		{
+			"name": "scene3_png",
+			"type": "image",
+			"url": "assets/scene/scene3.png"
+		},
+		{
+			"name": "scene4_png",
+			"type": "image",
+			"url": "assets/scene/scene4.png"
+		},
+		{
+			"name": "scene5_png",
+			"type": "image",
+			"url": "assets/scene/scene5.png"
+		},
+		{
+			"name": "scene6_png",
+			"type": "image",
+			"url": "assets/scene/scene6.png"
+		},
+		{
+			"name": "scene7_png",
+			"type": "image",
+			"url": "assets/scene/scene7.png"
+		},
+		{
+			"name": "scene8_png",
+			"type": "image",
+			"url": "assets/scene/scene8.png"
+		},
+		{
+			"name": "random_png",
+			"type": "image",
+			"url": "assets/random.png"
+		}
+	]
+}
