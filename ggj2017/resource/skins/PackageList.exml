@@ -2,6 +2,7 @@
 <e:Skin class="PackageListSkin" width="640" height="355" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="159bfff33fd" ></w:Config>
 	<e:Group id="group" x="0" y="0" height="355">
+		<e:Rect width="639" height="256" x="0" y="91" anchorOffsetX="0" anchorOffsetY="0" fillColor="0xd6d5af"/>
 		<e:Scroller scrollPolicyH="on" scrollPolicyV="off" height="264" x="0" y="91">
 			<e:List anchorOffsetX="0" left="0" right="0" bottom="42" itemRenderer="PackageIcon" top="0" width="640" anchorOffsetY="0">
 			<e:layout>
