@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "items_json,button_down_png,button_up_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,roundthumb_png,track_sb_png,thumb_png,track_png,tracklight_png,thumb_pb_png,track_pb_png,handle_png,off_png,on_png,aziraphale_tex_png,items_tex_png,roshan_tex_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,code_png,codeSegment_1_png,codeSegment_2_png,codeSegment_3_png,codeSegment_4_png,codeSegment_5_png,codeSegment_6_png,codeSegment_7_png,letter_1_png,letter_2_png,letter_3_png,letter_4_png,letter_5_png,letter_6_png,letter_7_png,dialog_bg_png,itemIcon_png,letter_bg_png,package_icon_png,suicide_png,aziraphale_ske_json,items_tex_json,items_ske_json,roshan_ske_json,aziraphale_tex_json,roshan_tex_json,sithjester_ske_json,sithjester_tex_json,sithjester_tex_png,redskull_ske_json,redskull_tex_json,redskull_tex_png,fey_ske_json,fey_tex_json,fey_tex_png,e10sprite_ske_json,e10sprite_tex_json,e10sprite_tex_png,devil_ske_json,devil_tex_json,devil_tex_png,scene1_png,scene2_png,scene3_png,scene4_png,scene5_png,scene6_png,scene7_png,scene8_png,random_png",
+			"keys": "items_json,button_down_png,button_up_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,roundthumb_png,track_sb_png,thumb_png,track_png,tracklight_png,thumb_pb_png,track_pb_png,handle_png,off_png,on_png,aziraphale_tex_png,items_tex_png,roshan_tex_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,code_png,codeSegment_1_png,codeSegment_2_png,codeSegment_3_png,codeSegment_4_png,codeSegment_5_png,codeSegment_6_png,codeSegment_7_png,letter_1_png,letter_2_png,letter_3_png,letter_4_png,letter_5_png,letter_6_png,letter_7_png,dialog_bg_png,itemIcon_png,letter_bg_png,package_icon_png,suicide_png,aziraphale_ske_json,items_tex_json,items_ske_json,roshan_ske_json,aziraphale_tex_json,roshan_tex_json,sithjester_ske_json,sithjester_tex_json,sithjester_tex_png,redskull_ske_json,redskull_tex_json,redskull_tex_png,fey_ske_json,fey_tex_json,fey_tex_png,e10sprite_ske_json,e10sprite_tex_json,e10sprite_tex_png,devil_ske_json,devil_tex_json,devil_tex_png,scene1_png,scene2_png,scene3_png,scene4_png,scene5_png,scene6_png,scene7_png,scene8_png,random_png,shield_png,btnInfo_png,btnLoad_png,btnStart_png,gameEnd_bad_png,gameEnd_happy_png,gameInfo_bg_png,gameStart_bg_png,gameScore_bg_png",
 			"name": "preload"
 		}
 	],
@@ -390,6 +390,51 @@
 			"name": "random_png",
 			"type": "image",
 			"url": "assets/random.png"
+		},
+		{
+			"name": "shield_png",
+			"type": "image",
+			"url": "assets/icon/shield.png"
+		},
+		{
+			"name": "btnInfo_png",
+			"type": "image",
+			"url": "assets/ui/btnInfo.png"
+		},
+		{
+			"name": "btnLoad_png",
+			"type": "image",
+			"url": "assets/ui/btnLoad.png"
+		},
+		{
+			"name": "btnStart_png",
+			"type": "image",
+			"url": "assets/ui/btnStart.png"
+		},
+		{
+			"name": "gameEnd_bad_png",
+			"type": "image",
+			"url": "assets/ui/gameEnd_bad.png"
+		},
+		{
+			"name": "gameEnd_happy_png",
+			"type": "image",
+			"url": "assets/ui/gameEnd_happy.png"
+		},
+		{
+			"name": "gameInfo_bg_png",
+			"type": "image",
+			"url": "assets/ui/gameInfo_bg.png"
+		},
+		{
+			"name": "gameStart_bg_png",
+			"type": "image",
+			"url": "assets/ui/gameStart_bg.png"
+		},
+		{
+			"name": "gameScore_bg_png",
+			"type": "image",
+			"url": "assets/ui/gameScore_bg.png"
 		}
 	]
 }

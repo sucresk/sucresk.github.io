@@ -112,6 +112,13 @@
             "icon":"codeSegment_7_png",
             "key":"！？",
             "content":"彝瓒"
+        },
+        {
+            "id":16,
+            "type":"special",
+            "name":"圣光盾",
+            "icon":"shield_png",
+            "content":"圣光盾，看上去没什么特别的"
         }
     ]
 }
