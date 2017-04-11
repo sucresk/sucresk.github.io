@@ -1,0 +1,16 @@
+{
+	"alias": {},
+	"groups": {},
+	"resources": {
+		"config.json": "config.json",
+		"3d": {
+			"comic1.jpg": "3d/comic1.jpg",
+			"comic2.jpg": "3d/comic2.jpg",
+			"comic3.jpg": "3d/comic3.jpg",
+			"comicL.jpg": "3d/comicL.jpg",
+			"comicS.jpg": "3d/comicS.jpg",
+			"comicL1.jpg": "3d/comicL1.jpg",
+			"comicS1.jpg": "3d/comicS1.jpg"
+		}
+	}
+}
