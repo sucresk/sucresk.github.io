@@ -1,0 +1,90 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,meow_tex_png,meow_ske_json,meow_tex_json,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,level_mp3",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/mb9.png",
+			"type": "image",
+			"name": "mb9_png"
+		},
+		{
+			"url": "assets/mb10.png",
+			"type": "image",
+			"name": "mb10_png"
+		},
+		{
+			"url": "assets/anim/meow_tex.png",
+			"type": "image",
+			"name": "meow_tex_png"
+		},
+		{
+			"url": "assets/anim/meow_ske.json",
+			"type": "json",
+			"name": "meow_ske_json"
+		},
+		{
+			"url": "assets/anim/meow_tex.json",
+			"type": "json",
+			"name": "meow_tex_json"
+		},
+		{
+			"url": "assets/bg3.png",
+			"type": "image",
+			"name": "bg3_png"
+		},
+		{
+			"url": "assets/bg1.png",
+			"type": "image",
+			"name": "bg1_png"
+		},
+		{
+			"url": "assets/bg2.png",
+			"type": "image",
+			"name": "bg2_png"
+		},
+		{
+			"url": "assets/bg4.jpg",
+			"type": "image",
+			"name": "bg4_jpg"
+		},
+		{
+			"url": "assets/mb8.png",
+			"type": "image",
+			"name": "mb8_png"
+		},
+		{
+			"url": "assets/mb6.png",
+			"type": "image",
+			"name": "mb6_png"
+		},
+		{
+			"url": "assets/mb7.png",
+			"type": "image",
+			"name": "mb7_png"
+		},
+		{
+			"url": "assets/sound/level.mp3",
+			"type": "sound",
+			"name": "level_mp3"
+		}
+	]
+}
