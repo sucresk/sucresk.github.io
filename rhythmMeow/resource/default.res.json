@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,meow_tex_png,meow_ske_json,meow_tex_json,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,level_mp3",
+			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,meow_tex_png,meow_ske_json,meow_tex_json,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,nianiania40m_mp3,d1_png,d2_png,d3_png",
 			"name": "preload"
 		}
 	],
@@ -82,9 +82,24 @@
 			"name": "mb7_png"
 		},
 		{
-			"url": "assets/sound/level.mp3",
+			"name": "nianiania40m_mp3",
 			"type": "sound",
-			"name": "level_mp3"
+			"url": "assets/sound/nianiania40m.mp3"
+		},
+		{
+			"name": "d1_png",
+			"type": "image",
+			"url": "assets/d1.png"
+		},
+		{
+			"name": "d2_png",
+			"type": "image",
+			"url": "assets/d2.png"
+		},
+		{
+			"name": "d3_png",
+			"type": "image",
+			"url": "assets/d3.png"
 		}
 	]
 }
