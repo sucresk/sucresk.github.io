@@ -1,0 +1,70 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,egret_icon_png,description_json,storyTreeUI_fui,basic@mejr82_mp3,basic@atlas0_png,basic@mejr81_mp3,basic_fui,storyTreeUI@atlas0_png,storyConfig_json,userData_json,TreeRoot_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/ui/storyTreeUI.fui",
+			"type": "bin",
+			"name": "storyTreeUI_fui"
+		},
+		{
+			"url": "assets/ui/basic@mejr82.mp3",
+			"type": "sound",
+			"name": "basic@mejr82_mp3"
+		},
+		{
+			"url": "assets/ui/basic@atlas0.png",
+			"type": "image",
+			"name": "basic@atlas0_png"
+		},
+		{
+			"url": "assets/ui/basic@mejr81.mp3",
+			"type": "sound",
+			"name": "basic@mejr81_mp3"
+		},
+		{
+			"url": "assets/ui/basic.fui",
+			"type": "bin",
+			"name": "basic_fui"
+		},
+		{
+			"name": "storyTreeUI@atlas0_png",
+			"type": "image",
+			"url": "assets/ui/storyTreeUI@atlas0.png"
+		},
+		{
+			"name": "storyConfig_json",
+			"type": "json",
+			"url": "config/storyConfig.json"
+		},
+		{
+			"name": "userData_json",
+			"type": "json",
+			"url": "config/userData.json"
+		},
+		{
+			"name": "TreeRoot_png",
+			"type": "image",
+			"url": "assets/TreeRoot.png"
+		}
+	]
+}
