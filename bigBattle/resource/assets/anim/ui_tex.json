@@ -1,0 +1,1 @@
+{"imagePath":"ui_tex.png","width":1024,"SubTexture":[{"width":363,"y":1,"height":364,"name":"circle","x":1},{"width":228,"y":1,"height":241,"name":"jump","x":366},{"width":228,"y":231,"height":228,"name":"jumpTouch","x":596},{"width":228,"y":1,"height":228,"name":"shootTouch","x":596},{"width":228,"y":244,"height":241,"name":"shoot","x":366}],"height":512,"name":"ui"}

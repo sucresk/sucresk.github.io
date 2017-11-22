@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,meow_tex_png,meow_ske_json,meow_tex_json,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,nianiania40m_mp3,d1_png,d2_png,d3_png,ground_ske_json,ground_tex_png,ground_tex_json,kingkong_ske_json,kingkong_tex_json,kingkong_tex_png,levelConfig_json,boom2_png,boom1_png,banana_png,key_png,bomb_ske_json,bomb_tex_json,bomb_tex_png,kingBomb_ske_json,kingBomb_tex_png,kingBomb_tex_json",
+			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,nianiania40m_mp3,d1_png,d2_png,d3_png,ground_ske_json,ground_tex_png,ground_tex_json,kingkong_ske_json,kingkong_tex_json,kingkong_tex_png,levelConfig_json,boom2_png,boom1_png,banana_png,key_png,kingkongItem_ske_json,kingkongItem_tex_png,kingkongItem_tex_json,ui_ske_json,ui_tex_png,ui_tex_json,avatar1_ske_json,avatar1_tex_json,avatar1_tex_png,userImg2_jpg,userimg1_jpg,ready_png,go_png,challenge_ske_json,challenge_tex_json,challenge_tex_png",
 			"name": "preload"
 		}
 	],
@@ -30,21 +30,6 @@
 			"url": "assets/mb10.png",
 			"type": "image",
 			"name": "mb10_png"
-		},
-		{
-			"url": "assets/anim/meow_tex.png",
-			"type": "image",
-			"name": "meow_tex_png"
-		},
-		{
-			"url": "assets/anim/meow_ske.json",
-			"type": "json",
-			"name": "meow_ske_json"
-		},
-		{
-			"url": "assets/anim/meow_tex.json",
-			"type": "json",
-			"name": "meow_tex_json"
 		},
 		{
 			"url": "assets/bg3.png",
@@ -157,34 +142,84 @@
 			"url": "assets/key.png"
 		},
 		{
-			"name": "bomb_ske_json",
+			"name": "kingkongItem_ske_json",
 			"type": "json",
-			"url": "assets/anim/bomb_ske.json"
+			"url": "assets/anim/kingkongItem_ske.json"
 		},
 		{
-			"name": "bomb_tex_json",
-			"type": "json",
-			"url": "assets/anim/bomb_tex.json"
-		},
-		{
-			"name": "bomb_tex_png",
+			"name": "kingkongItem_tex_png",
 			"type": "image",
-			"url": "assets/anim/bomb_tex.png"
+			"url": "assets/anim/kingkongItem_tex.png"
 		},
 		{
-			"name": "kingBomb_ske_json",
+			"name": "kingkongItem_tex_json",
 			"type": "json",
-			"url": "assets/anim/kingBomb_ske.json"
+			"url": "assets/anim/kingkongItem_tex.json"
 		},
 		{
-			"name": "kingBomb_tex_png",
+			"name": "ui_ske_json",
+			"type": "json",
+			"url": "assets/anim/ui_ske.json"
+		},
+		{
+			"name": "ui_tex_png",
 			"type": "image",
-			"url": "assets/anim/kingBomb_tex.png"
+			"url": "assets/anim/ui_tex.png"
 		},
 		{
-			"name": "kingBomb_tex_json",
+			"name": "ui_tex_json",
 			"type": "json",
-			"url": "assets/anim/kingBomb_tex.json"
+			"url": "assets/anim/ui_tex.json"
+		},
+		{
+			"name": "avatar1_ske_json",
+			"type": "json",
+			"url": "assets/anim/avatar1_ske.json"
+		},
+		{
+			"name": "avatar1_tex_json",
+			"type": "json",
+			"url": "assets/anim/avatar1_tex.json"
+		},
+		{
+			"name": "avatar1_tex_png",
+			"type": "image",
+			"url": "assets/anim/avatar1_tex.png"
+		},
+		{
+			"name": "userImg2_jpg",
+			"type": "image",
+			"url": "assets/userImg2.jpg"
+		},
+		{
+			"name": "userimg1_jpg",
+			"type": "image",
+			"url": "assets/userimg1.jpg"
+		},
+		{
+			"name": "ready_png",
+			"type": "image",
+			"url": "assets/ready.png"
+		},
+		{
+			"name": "go_png",
+			"type": "image",
+			"url": "assets/go.png"
+		},
+		{
+			"name": "challenge_ske_json",
+			"type": "json",
+			"url": "assets/anim/challenge_ske.json"
+		},
+		{
+			"name": "challenge_tex_json",
+			"type": "json",
+			"url": "assets/anim/challenge_tex.json"
+		},
+		{
+			"name": "challenge_tex_png",
+			"type": "image",
+			"url": "assets/anim/challenge_tex.png"
 		}
 	]
 }
