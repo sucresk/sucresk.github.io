@@ -1,0 +1,16 @@
+{
+    "db": [
+        "avatar1",
+        "avatar2",
+        "challenge",
+        "ground",
+        "kingkong",
+        "kingkongItem",
+        "ui",
+        "chooseGame",
+        "kingkongIndex",
+        "kingkongShop",
+        "buttonUI",
+        "light"
+    ]
+}

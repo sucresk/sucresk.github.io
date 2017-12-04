@@ -1,40 +1,145 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,mb9_png,mb10_png,bg3_png,bg1_png,bg2_png,bg4_jpg,mb8_png,mb6_png,mb7_png,nianiania40m_mp3,d1_png,d2_png,d3_png,ground_ske_json,ground_tex_png,ground_tex_json,kingkong_ske_json,kingkong_tex_json,kingkong_tex_png,levelConfig_json,boom2_png,boom1_png,banana_png,key_png,kingkongItem_ske_json,kingkongItem_tex_png,kingkongItem_tex_json,ui_ske_json,ui_tex_png,ui_tex_json,avatar1_ske_json,avatar1_tex_json,avatar1_tex_png,userImg2_jpg,userimg1_jpg,ready_png,go_png,challenge_ske_json,challenge_tex_json,challenge_tex_png",
+			"keys": "bg_0_png,bg1_png,bg2_png,bg3_png,bg4_jpg,boom1_png,boom2_png,change_png,circle_png,currentGameBar_png,d1_png,d2_png,d3_png,egret_icon_png,equal1_png,equal1_s_png,equalAvatar_png,correct_png,flash_png,game1_png,game2_png,friendMatch_png,gameBar1_png,giveUp_down_png,giveUp_up_png,game3_png,go_png,gold_png,greenBar_bottom_png,greenBar_up_png,ground_png,incorrect_png,guessUwin_png,invite_down_png,invite_up_png,key_png,bg_Tile_png,match_down_png,match_up_png,mb6_png,mb7_png,mb8_png,mb9_png,mb10_png,meadow_png,myAvatar_png,panelbg_png,prompt_png,rank_png,rankMatch_png,ready_png,S_png,scrollBar_B_png,scrollBar_P_png,selected_png,shop_png,shopItem1_png,shopItem2_png,shopItem3_png,shopItem4_png,sit_png,stand_png,start_down_png,start_up_png,sugarBowl_png,TV_png,unselected_png,userimg1_jpg,userImg2_jpg,userInfo_png,V_png,whiteCircle_bottom_png,whiteCircle_up_png,首冲_png,again_png,arrow_png,arrow_left_png,arrow_right_png,back_png,background_png,banana_png,banner_png,bg_jpg,light_png,avatar1_ske_json,avatar1_tex_json,avatar1_tex_png,avatar2_ske_json,avatar2_tex_json,avatar2_tex_png,buttonUI_ske_json,buttonUI_tex_json,buttonUI_tex_png,challenge_ske_json,challenge_tex_json,challenge_tex_png,chooseGame_ske_json,chooseGame_tex_json,chooseGame_tex_png,ground_ske_json,ground_tex_json,ground_tex_png,kingkongIndex_ske_json,kingkongIndex_tex_json,kingkongIndex_tex_png,kingkongItem_ske_json,kingkongItem_tex_json,kingkongItem_tex_png,kingkongShop_ske_json,kingkongShop_tex_json,kingkong_ske_json,kingkong_tex_json,kingkong_tex_png,ui_ske_json,ui_tex_json,ui_tex_png,first_png,other_png,rankItemBorder_png,rankTitle_png,second_png,self_png,third_png,nianiania40m_mp3,Head_middle_png,black_png,border_png,borderButton_png,borderCircle_png,borderCircleMask_png,returnLast_png,shareicon_png,switchUserImage_png,userDetailBG_png,userHead_png,userImage_png,watch_png,white_png,gameBar2_png,kingkongShop_tex_png,choose_png,kingkong@atlas0_png,rankButton_png,rankButtonSelect_png,rankButtonTitle_png,friendTitle_png,playerTitle_png,goldTitle_png,kingkong,light_ske_json,light_tex_png,light_tex_json,light_ske3_json,light_tex3_json,light_tex3_png,dbAssetConfig_json,description_json,gameConfig_json,itemConfig_json,levelConfig_json,light_ske4_json,light_tex4_json,light_tex4_png,gameConfig2_json,itemConfig2_json,headMask_png,userbg_png,exeCenter_png,exeBorder_png",
 			"name": "preload"
 		}
 	],
 	"resources": [
+		{
+			"url": "assets/start_down.png",
+			"type": "image",
+			"name": "start_down_png"
+		},
+		{
+			"url": "assets/sit.png",
+			"type": "image",
+			"name": "sit_png"
+		},
+		{
+			"url": "assets/stand.png",
+			"type": "image",
+			"name": "stand_png"
+		},
+		{
+			"url": "assets/start_up.png",
+			"type": "image",
+			"name": "start_up_png"
+		},
+		{
+			"url": "assets/sugarBowl.png",
+			"type": "image",
+			"name": "sugarBowl_png"
+		},
+		{
+			"url": "assets/sugarButton.png",
+			"type": "image",
+			"name": "sugarButton_png"
+		},
+		{
+			"url": "assets/sugarTitle.png",
+			"type": "image",
+			"name": "sugarTitle_png"
+		},
+		{
+			"url": "assets/TV.png",
+			"type": "image",
+			"name": "TV_png"
+		},
+		{
+			"url": "assets/unselected.png",
+			"type": "image",
+			"name": "unselected_png"
+		},
+		{
+			"url": "assets/userimg1.jpg",
+			"type": "image",
+			"name": "userimg1_jpg"
+		},
+		{
+			"url": "assets/userImg2.jpg",
+			"type": "image",
+			"name": "userImg2_jpg"
+		},
+		{
+			"url": "assets/userInfo.png",
+			"type": "image",
+			"name": "userInfo_png"
+		},
+		{
+			"url": "assets/V.png",
+			"type": "image",
+			"name": "V_png"
+		},
+		{
+			"url": "assets/whiteCircle_bottom.png",
+			"type": "image",
+			"name": "whiteCircle_bottom_png"
+		},
+		{
+			"url": "assets/whiteCircle_up.png",
+			"type": "image",
+			"name": "whiteCircle_up_png"
+		},
+		{
+			"url": "assets/首冲.png",
+			"type": "image",
+			"name": "首冲_png"
+		},
+		{
+			"url": "assets/again.png",
+			"type": "image",
+			"name": "again_png"
+		},
+		{
+			"url": "assets/arrow.png",
+			"type": "image",
+			"name": "arrow_png"
+		},
+		{
+			"url": "assets/arrow_left.png",
+			"type": "image",
+			"name": "arrow_left_png"
+		},
+		{
+			"url": "assets/arrow_right.png",
+			"type": "image",
+			"name": "arrow_right_png"
+		},
+		{
+			"url": "assets/back.png",
+			"type": "image",
+			"name": "back_png"
+		},
+		{
+			"url": "assets/background.png",
+			"type": "image",
+			"name": "background_png"
+		},
+		{
+			"url": "assets/banana.png",
+			"type": "image",
+			"name": "banana_png"
+		},
+		{
+			"url": "assets/banner.png",
+			"type": "image",
+			"name": "banner_png"
+		},
 		{
 			"url": "assets/bg.jpg",
 			"type": "image",
 			"name": "bg_jpg"
 		},
 		{
-			"url": "assets/egret_icon.png",
+			"url": "assets/bg_0.png",
 			"type": "image",
-			"name": "egret_icon_png"
+			"name": "bg_0_png"
 		},
 		{
-			"url": "config/description.json",
-			"type": "json",
-			"name": "description_json"
-		},
-		{
-			"url": "assets/mb9.png",
+			"url": "assets/bg_Tile.png",
 			"type": "image",
-			"name": "mb9_png"
-		},
-		{
-			"url": "assets/mb10.png",
-			"type": "image",
-			"name": "mb10_png"
-		},
-		{
-			"url": "assets/bg3.png",
-			"type": "image",
-			"name": "bg3_png"
+			"name": "bg_Tile_png"
 		},
 		{
 			"url": "assets/bg1.png",
@@ -47,14 +152,189 @@
 			"name": "bg2_png"
 		},
 		{
+			"url": "assets/bg3.png",
+			"type": "image",
+			"name": "bg3_png"
+		},
+		{
 			"url": "assets/bg4.jpg",
 			"type": "image",
 			"name": "bg4_jpg"
 		},
 		{
-			"url": "assets/mb8.png",
+			"url": "assets/boom1.png",
 			"type": "image",
-			"name": "mb8_png"
+			"name": "boom1_png"
+		},
+		{
+			"url": "assets/boom2.png",
+			"type": "image",
+			"name": "boom2_png"
+		},
+		{
+			"url": "assets/change.png",
+			"type": "image",
+			"name": "change_png"
+		},
+		{
+			"url": "assets/choose.png",
+			"type": "image",
+			"name": "choose_png"
+		},
+		{
+			"url": "assets/circle.png",
+			"type": "image",
+			"name": "circle_png"
+		},
+		{
+			"url": "assets/correct.png",
+			"type": "image",
+			"name": "correct_png"
+		},
+		{
+			"url": "assets/currentGameBar.png",
+			"type": "image",
+			"name": "currentGameBar_png"
+		},
+		{
+			"url": "assets/d1.png",
+			"type": "image",
+			"name": "d1_png"
+		},
+		{
+			"url": "assets/d2.png",
+			"type": "image",
+			"name": "d2_png"
+		},
+		{
+			"url": "assets/d3.png",
+			"type": "image",
+			"name": "d3_png"
+		},
+		{
+			"url": "assets/equal1.png",
+			"type": "image",
+			"name": "equal1_png"
+		},
+		{
+			"url": "assets/equal1_s.png",
+			"type": "image",
+			"name": "equal1_s_png"
+		},
+		{
+			"url": "assets/equalAvatar.png",
+			"type": "image",
+			"name": "equalAvatar_png"
+		},
+		{
+			"url": "assets/flash.png",
+			"type": "image",
+			"name": "flash_png"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "assets/friendMatch.png",
+			"type": "image",
+			"name": "friendMatch_png"
+		},
+		{
+			"url": "assets/game1.png",
+			"type": "image",
+			"name": "game1_png"
+		},
+		{
+			"url": "assets/game2.png",
+			"type": "image",
+			"name": "game2_png"
+		},
+		{
+			"url": "assets/game3.png",
+			"type": "image",
+			"name": "game3_png"
+		},
+		{
+			"url": "assets/gameBar1.png",
+			"type": "image",
+			"name": "gameBar1_png"
+		},
+		{
+			"url": "assets/giveUp_down.png",
+			"type": "image",
+			"name": "giveUp_down_png"
+		},
+		{
+			"url": "assets/giveUp_up.png",
+			"type": "image",
+			"name": "giveUp_up_png"
+		},
+		{
+			"url": "assets/go.png",
+			"type": "image",
+			"name": "go_png"
+		},
+		{
+			"url": "assets/gold.png",
+			"type": "image",
+			"name": "gold_png"
+		},
+		{
+			"url": "assets/greenBar_bottom.png",
+			"type": "image",
+			"name": "greenBar_bottom_png"
+		},
+		{
+			"url": "assets/greenBar_up.png",
+			"type": "image",
+			"name": "greenBar_up_png"
+		},
+		{
+			"url": "assets/ground.png",
+			"type": "image",
+			"name": "ground_png"
+		},
+		{
+			"url": "assets/guessUwin.png",
+			"type": "image",
+			"name": "guessUwin_png"
+		},
+		{
+			"url": "assets/incorrect.png",
+			"type": "image",
+			"name": "incorrect_png"
+		},
+		{
+			"url": "assets/invite_down.png",
+			"type": "image",
+			"name": "invite_down_png"
+		},
+		{
+			"url": "assets/invite_up.png",
+			"type": "image",
+			"name": "invite_up_png"
+		},
+		{
+			"url": "assets/key.png",
+			"type": "image",
+			"name": "key_png"
+		},
+		{
+			"url": "assets/light.png",
+			"type": "image",
+			"name": "light_png"
+		},
+		{
+			"url": "assets/match_down.png",
+			"type": "image",
+			"name": "match_down_png"
+		},
+		{
+			"url": "assets/match_up.png",
+			"type": "image",
+			"name": "match_up_png"
 		},
 		{
 			"url": "assets/mb6.png",
@@ -67,54 +347,524 @@
 			"name": "mb7_png"
 		},
 		{
-			"name": "nianiania40m_mp3",
+			"url": "assets/mb8.png",
+			"type": "image",
+			"name": "mb8_png"
+		},
+		{
+			"url": "assets/mb9.png",
+			"type": "image",
+			"name": "mb9_png"
+		},
+		{
+			"url": "assets/mb10.png",
+			"type": "image",
+			"name": "mb10_png"
+		},
+		{
+			"url": "assets/meadow.png",
+			"type": "image",
+			"name": "meadow_png"
+		},
+		{
+			"url": "assets/myAvatar.png",
+			"type": "image",
+			"name": "myAvatar_png"
+		},
+		{
+			"url": "assets/panelbg.png",
+			"type": "image",
+			"name": "panelbg_png"
+		},
+		{
+			"url": "assets/prompt.png",
+			"type": "image",
+			"name": "prompt_png"
+		},
+		{
+			"url": "assets/rank.png",
+			"type": "image",
+			"name": "rank_png"
+		},
+		{
+			"url": "assets/ready.png",
+			"type": "image",
+			"name": "ready_png"
+		},
+		{
+			"url": "assets/rankMatch.png",
+			"type": "image",
+			"name": "rankMatch_png"
+		},
+		{
+			"url": "assets/returnButton1.png",
+			"type": "image",
+			"name": "returnButton1_png"
+		},
+		{
+			"url": "assets/returnButton2.png",
+			"type": "image",
+			"name": "returnButton2_png"
+		},
+		{
+			"url": "assets/S.png",
+			"type": "image",
+			"name": "S_png"
+		},
+		{
+			"url": "assets/scrollBar_B.png",
+			"type": "image",
+			"name": "scrollBar_B_png"
+		},
+		{
+			"url": "assets/scrollBar_P.png",
+			"type": "image",
+			"name": "scrollBar_P_png"
+		},
+		{
+			"url": "assets/selected.png",
+			"type": "image",
+			"name": "selected_png"
+		},
+		{
+			"url": "assets/shop.png",
+			"type": "image",
+			"name": "shop_png"
+		},
+		{
+			"url": "assets/shopItem1.png",
+			"type": "image",
+			"name": "shopItem1_png"
+		},
+		{
+			"url": "assets/shopItem2.png",
+			"type": "image",
+			"name": "shopItem2_png"
+		},
+		{
+			"url": "assets/shopItem3.png",
+			"type": "image",
+			"name": "shopItem3_png"
+		},
+		{
+			"url": "assets/shopItem4.png",
+			"type": "image",
+			"name": "shopItem4_png"
+		},
+		{
+			"url": "assets/anim/avatar1_tex.png",
+			"type": "image",
+			"name": "avatar1_tex_png"
+		},
+		{
+			"url": "assets/anim/avatar2_tex.png",
+			"type": "image",
+			"name": "avatar2_tex_png"
+		},
+		{
+			"url": "assets/anim/buttonUI_tex.png",
+			"type": "image",
+			"name": "buttonUI_tex_png"
+		},
+		{
+			"url": "assets/anim/challenge_tex.png",
+			"type": "image",
+			"name": "challenge_tex_png"
+		},
+		{
+			"url": "assets/anim/chooseGame_tex.png",
+			"type": "image",
+			"name": "chooseGame_tex_png"
+		},
+		{
+			"url": "assets/anim/ground_tex.png",
+			"type": "image",
+			"name": "ground_tex_png"
+		},
+		{
+			"url": "assets/anim/kingkongIndex_tex.png",
+			"type": "image",
+			"name": "kingkongIndex_tex_png"
+		},
+		{
+			"url": "assets/anim/kingkongItem_tex.png",
+			"type": "image",
+			"name": "kingkongItem_tex_png"
+		},
+		{
+			"url": "assets/anim/kingkong_tex.png",
+			"type": "image",
+			"name": "kingkong_tex_png"
+		},
+		{
+			"url": "assets/anim/ui_tex.png",
+			"type": "image",
+			"name": "ui_tex_png"
+		},
+		{
+			"url": "assets/rank/first.png",
+			"type": "image",
+			"name": "first_png"
+		},
+		{
+			"url": "assets/rank/other.png",
+			"type": "image",
+			"name": "other_png"
+		},
+		{
+			"url": "assets/rank/rankItemBorder.png",
+			"type": "image",
+			"name": "rankItemBorder_png"
+		},
+		{
+			"url": "assets/rank/rankTitle.png",
+			"type": "image",
+			"name": "rankTitle_png"
+		},
+		{
+			"url": "assets/rank/second.png",
+			"type": "image",
+			"name": "second_png"
+		},
+		{
+			"url": "assets/rank/self.png",
+			"type": "image",
+			"name": "self_png"
+		},
+		{
+			"url": "assets/rank/third.png",
+			"type": "image",
+			"name": "third_png"
+		},
+		{
+			"url": "assets/temp/Head_middle.png",
+			"type": "image",
+			"name": "Head_middle_png"
+		},
+		{
+			"url": "assets/temp/black.png",
+			"type": "image",
+			"name": "black_png"
+		},
+		{
+			"url": "assets/temp/border.png",
+			"type": "image",
+			"name": "border_png"
+		},
+		{
+			"url": "assets/temp/borderButton.png",
+			"type": "image",
+			"name": "borderButton_png"
+		},
+		{
+			"url": "assets/temp/borderCircle.png",
+			"type": "image",
+			"name": "borderCircle_png"
+		},
+		{
+			"url": "assets/temp/borderCircleMask.png",
+			"type": "image",
+			"name": "borderCircleMask_png"
+		},
+		{
+			"url": "assets/temp/returnLast.png",
+			"type": "image",
+			"name": "returnLast_png"
+		},
+		{
+			"url": "assets/temp/shareicon.png",
+			"type": "image",
+			"name": "shareicon_png"
+		},
+		{
+			"url": "assets/temp/switchUserImage.png",
+			"type": "image",
+			"name": "switchUserImage_png"
+		},
+		{
+			"url": "assets/temp/userDetailBG.png",
+			"type": "image",
+			"name": "userDetailBG_png"
+		},
+		{
+			"url": "assets/temp/userHead.png",
+			"type": "image",
+			"name": "userHead_png"
+		},
+		{
+			"url": "assets/temp/userImage.png",
+			"type": "image",
+			"name": "userImage_png"
+		},
+		{
+			"url": "assets/temp/watch.png",
+			"type": "image",
+			"name": "watch_png"
+		},
+		{
+			"url": "assets/temp/white.png",
+			"type": "image",
+			"name": "white_png"
+		},
+		{
+			"url": "assets/sound/nianiania40m.mp3",
 			"type": "sound",
-			"url": "assets/sound/nianiania40m.mp3"
+			"name": "nianiania40m_mp3"
 		},
 		{
-			"name": "d1_png",
-			"type": "image",
-			"url": "assets/d1.png"
-		},
-		{
-			"name": "d2_png",
-			"type": "image",
-			"url": "assets/d2.png"
-		},
-		{
-			"name": "d3_png",
-			"type": "image",
-			"url": "assets/d3.png"
-		},
-		{
-			"name": "ground_ske_json",
+			"url": "assets/anim/avatar1_tex.json",
 			"type": "json",
-			"url": "assets/anim/ground_ske.json"
+			"name": "avatar1_tex_json"
 		},
 		{
-			"name": "ground_tex_png",
+			"url": "assets/anim/avatar2_ske.json",
+			"type": "json",
+			"name": "avatar2_ske_json"
+		},
+		{
+			"url": "assets/anim/avatar2_tex.json",
+			"type": "json",
+			"name": "avatar2_tex_json"
+		},
+		{
+			"url": "assets/anim/avatar1_ske.json",
+			"type": "json",
+			"name": "avatar1_ske_json"
+		},
+		{
+			"url": "assets/anim/buttonUI_ske.json",
+			"type": "json",
+			"name": "buttonUI_ske_json"
+		},
+		{
+			"url": "assets/anim/buttonUI_tex.json",
+			"type": "json",
+			"name": "buttonUI_tex_json"
+		},
+		{
+			"url": "assets/anim/challenge_ske.json",
+			"type": "json",
+			"name": "challenge_ske_json"
+		},
+		{
+			"url": "assets/anim/challenge_tex.json",
+			"type": "json",
+			"name": "challenge_tex_json"
+		},
+		{
+			"url": "assets/anim/chooseGame_ske.json",
+			"type": "json",
+			"name": "chooseGame_ske_json"
+		},
+		{
+			"url": "assets/anim/chooseGame_tex.json",
+			"type": "json",
+			"name": "chooseGame_tex_json"
+		},
+		{
+			"url": "assets/anim/ground_tex.json",
+			"type": "json",
+			"name": "ground_tex_json"
+		},
+		{
+			"url": "assets/anim/chooseGame_ske.json",
+			"type": "json",
+			"name": "chooseGame_ske2_json"
+		},
+		{
+			"url": "assets/anim/chooseGame_tex.json",
+			"type": "json",
+			"name": "chooseGame_tex2_json"
+		},
+		{
+			"url": "assets/anim/chooseGame_tex.png",
 			"type": "image",
-			"url": "assets/anim/ground_tex.png"
+			"name": "chooseGame_tex2_png"
 		},
 		{
-			"name": "ground_tex_json",
+			"url": "assets/anim/ground_ske.json",
 			"type": "json",
-			"url": "assets/anim/ground_tex.json"
+			"name": "ground_ske_json"
 		},
 		{
-			"name": "kingkong_ske_json",
+			"url": "assets/anim/kingkongIndex_tex.json",
 			"type": "json",
-			"url": "assets/anim/kingkong_ske.json"
+			"name": "kingkongIndex_tex_json"
 		},
 		{
-			"name": "kingkong_tex_json",
+			"url": "assets/anim/kingkongIndex_ske.json",
 			"type": "json",
-			"url": "assets/anim/kingkong_tex.json"
+			"name": "kingkongIndex_ske_json"
 		},
 		{
-			"name": "kingkong_tex_png",
+			"url": "assets/arrow.png",
 			"type": "image",
-			"url": "assets/anim/kingkong_tex.png"
+			"name": "arrow2_png"
+		},
+		{
+			"url": "assets/gameBar2.png",
+			"type": "image",
+			"name": "gameBar2_png"
+		},
+		{
+			"url": "assets/anim/kingkongShop_ske.json",
+			"type": "json",
+			"name": "kingkongShop_ske_json"
+		},
+		{
+			"url": "assets/anim/kingkongShop_tex.png",
+			"type": "image",
+			"name": "kingkongShop_tex_png"
+		},
+		{
+			"url": "assets/anim/kingkongShop_tex.json",
+			"type": "json",
+			"name": "kingkongShop_tex_json"
+		},
+		{
+			"url": "assets/shopHead.png",
+			"type": "image",
+			"name": "shopHead_png"
+		},
+		{
+			"url": "assets/returnButton1.png",
+			"type": "image",
+			"name": "returnButton1_png"
+		},
+		{
+			"url": "assets/anim/kingkongItem_ske.json",
+			"type": "json",
+			"name": "kingkongItem_ske_json"
+		},
+		{
+			"url": "assets/anim/kingkongItem_tex.json",
+			"type": "json",
+			"name": "kingkongItem_tex_json"
+		},
+		{
+			"url": "assets/anim/kingkong_ske.json",
+			"type": "json",
+			"name": "kingkong_ske_json"
+		},
+		{
+			"url": "assets/anim/ui_ske.json",
+			"type": "json",
+			"name": "ui_ske_json"
+		},
+		{
+			"url": "assets/anim/kingkong_tex.json",
+			"type": "json",
+			"name": "kingkong_tex_json"
+		},
+		{
+			"url": "assets/anim/ui_tex.json",
+			"type": "json",
+			"name": "ui_tex_json"
+		},
+		{
+			"url": "assets/anim/light_ske.json",
+			"type": "json",
+			"name": "light_ske_json"
+		},
+		{
+			"url": "assets/anim/light_tex.png",
+			"type": "image",
+			"name": "light_tex_png"
+		},
+		{
+			"url": "assets/anim/light_tex.json",
+			"type": "json",
+			"name": "light_tex_json"
+		},
+		{
+			"url": "assets/anim/light_ske.json",
+			"type": "json",
+			"name": "light_ske2_json"
+		},
+		{
+			"url": "assets/anim/light_tex.json",
+			"type": "json",
+			"name": "light_tex2_json"
+		},
+		{
+			"url": "assets/anim/light_tex.png",
+			"type": "image",
+			"name": "light_tex2_png"
+		},
+		{
+			"url": "assets/fairygui/kingkong@atlas0.png",
+			"type": "image",
+			"name": "kingkong@atlas0_png"
+		},
+		{
+			"url": "assets/fairygui/kingkong.fui",
+			"type": "bin",
+			"name": "kingkong"
+		},
+		{
+			"url": "assets/rank/rankButton.png",
+			"type": "image",
+			"name": "rankButton_png"
+		},
+		{
+			"url": "assets/rank/rankButtonSelect.png",
+			"type": "image",
+			"name": "rankButtonSelect_png"
+		},
+		{
+			"url": "assets/rank/rankButtonTitle.png",
+			"type": "image",
+			"name": "rankButtonTitle_png"
+		},
+		{
+			"url": "assets/rank/friendTitle.png",
+			"type": "image",
+			"name": "friendTitle_png"
+		},
+		{
+			"url": "assets/rank/playerTitle.png",
+			"type": "image",
+			"name": "playerTitle_png"
+		},
+		{
+			"url": "assets/rank/goldTitle.png",
+			"type": "image",
+			"name": "goldTitle_png"
+		},
+		{
+			"name": "light_ske3_json",
+			"type": "json",
+			"url": "assets/anim/light_ske.json"
+		},
+		{
+			"name": "light_tex3_json",
+			"type": "json",
+			"url": "assets/anim/light_tex.json"
+		},
+		{
+			"name": "light_tex3_png",
+			"type": "image",
+			"url": "assets/anim/light_tex.png"
+		},
+		{
+			"name": "dbAssetConfig_json",
+			"type": "json",
+			"url": "config/dbAssetConfig.json"
+		},
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "gameConfig_json",
+			"type": "json",
+			"url": "config/gameConfig.json"
+		},
+		{
+			"name": "itemConfig_json",
+			"type": "json",
+			"url": "config/itemConfig.json"
 		},
 		{
 			"name": "levelConfig_json",
@@ -122,104 +872,49 @@
 			"url": "config/levelConfig.json"
 		},
 		{
-			"name": "boom2_png",
-			"type": "image",
-			"url": "assets/boom2.png"
-		},
-		{
-			"name": "boom1_png",
-			"type": "image",
-			"url": "assets/boom1.png"
-		},
-		{
-			"name": "banana_png",
-			"type": "image",
-			"url": "assets/banana.png"
-		},
-		{
-			"name": "key_png",
-			"type": "image",
-			"url": "assets/key.png"
-		},
-		{
-			"name": "kingkongItem_ske_json",
+			"name": "light_ske4_json",
 			"type": "json",
-			"url": "assets/anim/kingkongItem_ske.json"
+			"url": "assets/anim/light_ske.json"
 		},
 		{
-			"name": "kingkongItem_tex_png",
-			"type": "image",
-			"url": "assets/anim/kingkongItem_tex.png"
-		},
-		{
-			"name": "kingkongItem_tex_json",
+			"name": "light_tex4_json",
 			"type": "json",
-			"url": "assets/anim/kingkongItem_tex.json"
+			"url": "assets/anim/light_tex.json"
 		},
 		{
-			"name": "ui_ske_json",
+			"name": "light_tex4_png",
+			"type": "image",
+			"url": "assets/anim/light_tex.png"
+		},
+		{
+			"name": "gameConfig2_json",
 			"type": "json",
-			"url": "assets/anim/ui_ske.json"
+			"url": "config/gameConfig.json"
 		},
 		{
-			"name": "ui_tex_png",
-			"type": "image",
-			"url": "assets/anim/ui_tex.png"
-		},
-		{
-			"name": "ui_tex_json",
+			"name": "itemConfig2_json",
 			"type": "json",
-			"url": "assets/anim/ui_tex.json"
+			"url": "config/itemConfig.json"
 		},
 		{
-			"name": "avatar1_ske_json",
-			"type": "json",
-			"url": "assets/anim/avatar1_ske.json"
-		},
-		{
-			"name": "avatar1_tex_json",
-			"type": "json",
-			"url": "assets/anim/avatar1_tex.json"
-		},
-		{
-			"name": "avatar1_tex_png",
+			"name": "headMask_png",
 			"type": "image",
-			"url": "assets/anim/avatar1_tex.png"
+			"url": "assets/userInfo/headMask.png"
 		},
 		{
-			"name": "userImg2_jpg",
+			"name": "userbg_png",
 			"type": "image",
-			"url": "assets/userImg2.jpg"
+			"url": "assets/userInfo/userbg.png"
 		},
 		{
-			"name": "userimg1_jpg",
+			"name": "exeCenter_png",
 			"type": "image",
-			"url": "assets/userimg1.jpg"
+			"url": "assets/userInfo/exeCenter.png"
 		},
 		{
-			"name": "ready_png",
+			"name": "exeBorder_png",
 			"type": "image",
-			"url": "assets/ready.png"
-		},
-		{
-			"name": "go_png",
-			"type": "image",
-			"url": "assets/go.png"
-		},
-		{
-			"name": "challenge_ske_json",
-			"type": "json",
-			"url": "assets/anim/challenge_ske.json"
-		},
-		{
-			"name": "challenge_tex_json",
-			"type": "json",
-			"url": "assets/anim/challenge_tex.json"
-		},
-		{
-			"name": "challenge_tex_png",
-			"type": "image",
-			"url": "assets/anim/challenge_tex.png"
+			"url": "assets/userInfo/exeBorder.png"
 		}
 	]
 }

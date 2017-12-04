@@ -7,6 +7,8 @@
 		"libs/modules/tween/tween.min.js",
 		"libs/modules/socket/socket.min.js",
 		"libs/modules/dragonBones/dragonBones.min.js",
+		"libs/rawinflate/rawinflate.min.js",
+		"libs/fairygui/fairygui.min.js",
 		"promise/bin/promise.min.js"
 	],
 	"game": [

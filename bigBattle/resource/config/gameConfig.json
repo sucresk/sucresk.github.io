@@ -1,0 +1,12 @@
+{
+    "version":0.1,
+    "games":[
+        {
+            "id":1,
+            "name":"炸弹kingkong",
+            "texture":"gameBar1_png",
+            "players":2,
+            "desc":"奔跑，跳跃，投掷，获胜"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "version":0.1,
+    "items":[
+        {
+            "id":1,
+            "type":1,
+            "price":0,
+            "name":"电视机套装",
+            "desc":"电视机套装好好看",
+            "asset":"avatar1"
+        },
+        {
+            "id":2,
+            "type":1,
+            "price":100,
+            "name":"收音机套装",
+            "desc":"收音机套装好好看",
+            "asset":"avatar1"
+        }
+    ]
+}
