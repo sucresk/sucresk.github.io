@@ -1,0 +1,84 @@
+{
+    "clothes": [
+        {
+            "name": "c10001",
+            "types": [
+                "head"
+            ],
+            "data": "c1",
+            "armature": "head"
+        },
+        {
+            "name": "c10002",
+            "types": [
+                "arm"
+            ],
+            "data": "c1",
+            "armature": "arm"
+        },
+        {
+            "name": "c10003",
+            "types": [
+                "body"
+            ],
+            "data": "c1",
+            "armature": "body"
+        },
+        {
+            "name": "c10004",
+            "types": [
+                "leg"
+            ],
+            "data": "c1",
+            "armature": "leg"
+        },
+        {
+            "name": "c10005",
+            "types": [
+                "foot"
+            ],
+            "data": "c1",
+            "armature": "foot"
+        },
+        {
+            "name": "c10006",
+            "types": [
+                "head"
+            ],
+            "data": "c2",
+            "armature": "head"
+        },
+        {
+            "name": "c10007",
+            "types": [
+                "arm"
+            ],
+            "data": "c2",
+            "armature": "arm"
+        },
+        {
+            "name": "c10008",
+            "types": [
+                "body"
+            ],
+            "data": "c2",
+            "armature": "body"
+        },
+        {
+            "name": "c10009",
+            "types": [
+                "leg"
+            ],
+            "data": "c2",
+            "armature": "leg"
+        },
+        {
+            "name": "c10010",
+            "types": [
+                "foot"
+            ],
+            "data": "c2",
+            "armature": "foot"
+        }
+    ]
+}

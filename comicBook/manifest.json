@@ -1,0 +1,16 @@
+{
+	"initial": [
+		"libs/modules/egret/egret.min.js",
+		"libs/modules/egret/egret.web.min.js",
+		"libs/modules/game/game.min.js",
+		"libs/resourcemanager/resourcemanager.min.js",
+		"libs/modules/tween/tween.min.js",
+		"libs/modules/dragonBones/dragonBones.min.js",
+		"promise/bin/promise.min.js",
+		"libs/fairygui/fairygui.min.js",
+		"libs/rawinflate/rawinflate.min.js"
+	],
+	"game": [
+		"main.min.js"
+	]
+}

@@ -1,0 +1,161 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,egret_icon_png,description_json,basic@atlas0,basic@mejr81_mp3,basic@mejr82_mp3,basic,ui@atlas0_png,ui_fui",
+			"name": "preload"
+		},
+		{
+			"keys": "b1_ske_ske_json,b1_ske_tex_json,b1_ske_tex_png",
+			"name": "role"
+		},
+		{
+			"keys": "c1_ske_json,c1_tex_json,c1_tex_png,c2_ske_json,c2_tex_json,c2_tex_png",
+			"name": "cloth"
+		},
+		{
+			"keys": "cloth_json,description_json,resource_config_json,comicMovieConfig_json",
+			"name": "config"
+		},
+		{
+			"keys": "Scene1_ske_json,Scene1_tex_json,Scene1_tex_png",
+			"name": "shot"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/basic@atlas0.png",
+			"type": "image",
+			"name": "basic@atlas0"
+		},
+		{
+			"url": "assets/basic@mejr81.mp3",
+			"type": "sound",
+			"name": "basic@mejr81_mp3"
+		},
+		{
+			"url": "assets/basic@mejr82.mp3",
+			"type": "sound",
+			"name": "basic@mejr82_mp3"
+		},
+		{
+			"url": "assets/basic.fui",
+			"type": "bin",
+			"name": "basic"
+		},
+		{
+			"url": "assets/scene/scene1/Dragon_ske.json",
+			"type": "json",
+			"name": "Dragon_ske_json"
+		},
+		{
+			"url": "assets/scene/scene1/Dragon_tex.json",
+			"type": "json",
+			"name": "Dragon_tex_json"
+		},
+		{
+			"url": "assets/scene/scene1/Dragon_tex.png",
+			"type": "image",
+			"name": "Dragon_tex_png"
+		},
+		{
+			"url": "assets/scene/scene2/Scene1_tex.png",
+			"type": "image",
+			"name": "Scene1_tex_png"
+		},
+		{
+			"url": "assets/scene/scene2/Scene1_ske.json",
+			"type": "json",
+			"name": "Scene1_ske_json"
+		},
+		{
+			"url": "assets/scene/scene2/Scene1_tex.json",
+			"type": "json",
+			"name": "Scene1_tex_json"
+		},
+		{
+			"url": "config/cloth.json",
+			"type": "json",
+			"name": "cloth_json"
+		},
+		{
+			"url": "assets/cloth/c2_tex.png",
+			"type": "image",
+			"name": "c2_tex_png"
+		},
+		{
+			"url": "assets/cloth/c1_ske.json",
+			"type": "json",
+			"name": "c1_ske_json"
+		},
+		{
+			"url": "assets/cloth/c1_tex.json",
+			"type": "json",
+			"name": "c1_tex_json"
+		},
+		{
+			"url": "assets/cloth/c1_tex.png",
+			"type": "image",
+			"name": "c1_tex_png"
+		},
+		{
+			"url": "assets/cloth/c2_ske.json",
+			"type": "json",
+			"name": "c2_ske_json"
+		},
+		{
+			"url": "assets/cloth/c2_tex.json",
+			"type": "json",
+			"name": "c2_tex_json"
+		},
+		{
+			"url": "assets/roles/b1_ske_ske.json",
+			"type": "json",
+			"name": "b1_ske_ske_json"
+		},
+		{
+			"url": "assets/roles/b1_ske_tex.json",
+			"type": "json",
+			"name": "b1_ske_tex_json"
+		},
+		{
+			"url": "assets/roles/b1_ske_tex.png",
+			"type": "image",
+			"name": "b1_ske_tex_png"
+		},
+		{
+			"url": "config/resource_config.json",
+			"type": "json",
+			"name": "resource_config_json"
+		},
+		{
+			"url": "config/comicMovieConfig.json",
+			"type": "json",
+			"name": "comicMovieConfig_json"
+		},
+		{
+			"url": "assets/ui/ui@atlas0.png",
+			"type": "image",
+			"name": "ui@atlas0_png"
+		},
+		{
+			"url": "assets/ui/ui.fui",
+			"type": "bin",
+			"name": "ui_fui"
+		}
+	]
+}

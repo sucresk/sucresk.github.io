@@ -1,0 +1,164 @@
+{
+    "dbs":[
+        {
+            "name":"Scene1",
+            "asset":{
+                "name":"scene1",
+                "dbData":"Scene1_ske_json",
+                "textureData":"Scene1_tex_json",
+                "texturePng":"Scene1_tex_png"
+            },
+            "armatures":["Scene1"]
+        },
+        {
+            "name":"b1",
+            "asset":{
+                        "name":"b1",
+                        "dbData":"b1_ske_ske_json",
+                        "textureData":"b1_ske_tex_json",
+                        "texturePng":"b1_ske_tex_png"
+                    },
+            "armatures":["Actor1"]
+        },
+        {
+            "name":"c1",
+            "asset":{
+                        "name":"c1",
+                        "dbData":"c1_ske_json",
+                        "textureData":"c1_tex_json",
+                        "texturePng":"c1_tex_png"
+                    },
+            "armatures":["head","arm","body","leg","foot"]
+        },
+        {
+            "name":"c2",
+            "asset":{
+                        "name":"c2",
+                        "dbData":"c2_ske_json",
+                        "textureData":"c2_tex_json",
+                        "texturePng":"c2_tex_png"
+                    },
+            "armatures":["head","arm","body","leg","foot"]
+        }
+    ],
+    "roles": [
+        {
+            "name": "r1",
+            "data": "b1",
+            "armature": "armatureName",
+            "clothes": [
+                "c10001",
+                "c10003"
+            ],
+            "animations": [
+                {
+                    "animation": "stand"
+                }
+            ]
+        }
+    ],
+    "clothes": [
+        {
+            "name": "c10001",
+            "types": [
+                "head"
+            ],
+            "data": "c1",
+            "armature": "head"
+        },
+        {
+            "name": "c10002",
+            "types": [
+                "arm"
+            ],
+            "data": "c1",
+            "armature": "arm"
+        },
+        {
+            "name": "c10003",
+            "types": [
+                "body"
+            ],
+            "data": "c1",
+            "armature": "body"
+        },
+        {
+            "name": "c10004",
+            "types": [
+                "leg"
+            ],
+            "data": "c1",
+            "armature": "leg"
+        },
+        {
+            "name": "c10005",
+            "types": [
+                "foot"
+            ],
+            "data": "c1",
+            "armature": "foot"
+        },
+        {
+            "name": "c10006",
+            "types": [
+                "head"
+            ],
+            "data": "c2",
+            "armature": "head"
+        },
+        {
+            "name": "c10007",
+            "types": [
+                "arm"
+            ],
+            "data": "c2",
+            "armature": "arm"
+        },
+        {
+            "name": "c10008",
+            "types": [
+                "body"
+            ],
+            "data": "c2",
+            "armature": "body"
+        },
+        {
+            "name": "c10009",
+            "types": [
+                "leg"
+            ],
+            "data": "c2",
+            "armature": "leg"
+        },
+        {
+            "name": "c10010",
+            "types": [
+                "foot"
+            ],
+            "data": "c2",
+            "armature": "foot"
+        }
+    ],
+    "suits": [
+        {
+            "name": "c1",
+            "clothes": [
+                "c10001",
+                "c10002",
+                "c10003",
+                "c10004",
+                "c10005"
+            ]
+        },
+        {
+            "name": "c2",
+            "clothes": [
+                "c10006",
+                "c10007",
+                "c10008",
+                "c10009",
+                "c10010"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,234 @@
+{
+	"alias": {
+		"bg_jpg": "assets/bg.jpg",
+		"egret_icon_png": "assets/egret_icon.png",
+		"description_json": "config/description.json",
+		"basic@atlas0": "assets/basic@atlas0.png",
+		"basic@mejr81_mp3": "assets/basic@mejr81.mp3",
+		"basic@mejr82_mp3": "assets/basic@mejr82.mp3",
+		"Dragon_ske_json": "assets/scene/scene1/Dragon_ske.json",
+		"Dragon_tex_json": "assets/scene/scene1/Dragon_tex.json",
+		"Dragon_tex_png": "assets/scene/scene1/Dragon_tex.png",
+		"Scene1_tex_png": "assets/scene/scene2/Scene1_tex.png",
+		"Scene1_ske_json": "assets/scene/scene2/Scene1_ske.json",
+		"Scene1_tex_json": "assets/scene/scene2/Scene1_tex.json",
+		"cloth_json": "config/cloth.json",
+		"c2_tex_png": "assets/cloth/c2_tex.png",
+		"c1_ske_json": "assets/cloth/c1_ske.json",
+		"c1_tex_json": "assets/cloth/c1_tex.json",
+		"c1_tex_png": "assets/cloth/c1_tex.png",
+		"c2_ske_json": "assets/cloth/c2_ske.json",
+		"c2_tex_json": "assets/cloth/c2_tex.json",
+		"b1_ske_ske_json": "assets/roles/b1_ske_ske.json",
+		"b1_ske_tex_json": "assets/roles/b1_ske_tex.json",
+		"b1_ske_tex_png": "assets/roles/b1_ske_tex.png",
+		"resource_config_json": "config/resource_config.json",
+		"comicMovieConfig_json": "config/comicMovieConfig.json",
+		"ui@atlas0_png": "assets/ui/ui@atlas0.png"
+	},
+	"groups": {
+		"preload": [
+			"bg_jpg",
+			"egret_icon_png",
+			"description_json",
+			"basic@atlas0",
+			"basic@mejr81_mp3",
+			"basic@mejr82_mp3",
+			"basic",
+			"ui@atlas0_png",
+			"ui_fui"
+		],
+		"role": [
+			"b1_ske_ske_json",
+			"b1_ske_tex_json",
+			"b1_ske_tex_png"
+		],
+		"cloth": [
+			"c1_ske_json",
+			"c1_tex_json",
+			"c1_tex_png",
+			"c2_ske_json",
+			"c2_tex_json",
+			"c2_tex_png"
+		],
+		"config": [
+			"cloth_json",
+			"description_json",
+			"resource_config_json",
+			"comicMovieConfig_json"
+		],
+		"shot": [
+			"Scene1_ske_json",
+			"Scene1_tex_json",
+			"Scene1_tex_png"
+		]
+	},
+	"resources": {
+		"config.json": {
+			"url": "config.json",
+			"type": "json",
+			"name": "config.json"
+		},
+		"default.res.json": {
+			"url": "default.res.json",
+			"type": "json",
+			"name": "default.res.json"
+		},
+		"wing.res.json": {
+			"url": "wing.res.json",
+			"type": "json",
+			"name": "wing.res.json"
+		},
+		"assets": {
+			"basic@atlas0.png": {
+				"url": "assets/basic@atlas0.png",
+				"type": "image",
+				"name": "assets/basic@atlas0.png"
+			},
+			"basic@mejr81.mp3": {
+				"url": "assets/basic@mejr81.mp3",
+				"type": "sound",
+				"name": "assets/basic@mejr81.mp3"
+			},
+			"basic@mejr82.mp3": {
+				"url": "assets/basic@mejr82.mp3",
+				"type": "sound",
+				"name": "assets/basic@mejr82.mp3"
+			},
+			"bg.jpg": {
+				"url": "assets/bg.jpg",
+				"type": "image",
+				"name": "assets/bg.jpg"
+			},
+			"egret_icon.png": {
+				"url": "assets/egret_icon.png",
+				"type": "image",
+				"name": "assets/egret_icon.png"
+			},
+			"cloth": {
+				"c1_ske.json": {
+					"url": "assets/cloth/c1_ske.json",
+					"type": "json",
+					"name": "assets/cloth/c1_ske.json"
+				},
+				"c1_tex.json": {
+					"url": "assets/cloth/c1_tex.json",
+					"type": "json",
+					"name": "assets/cloth/c1_tex.json"
+				},
+				"c1_tex.png": {
+					"url": "assets/cloth/c1_tex.png",
+					"type": "image",
+					"name": "assets/cloth/c1_tex.png"
+				},
+				"c2_ske.json": {
+					"url": "assets/cloth/c2_ske.json",
+					"type": "json",
+					"name": "assets/cloth/c2_ske.json"
+				},
+				"c2_tex.json": {
+					"url": "assets/cloth/c2_tex.json",
+					"type": "json",
+					"name": "assets/cloth/c2_tex.json"
+				},
+				"c2_tex.png": {
+					"url": "assets/cloth/c2_tex.png",
+					"type": "image",
+					"name": "assets/cloth/c2_tex.png"
+				}
+			},
+			"ui": {
+				"ui@atlas0.png": {
+					"url": "assets/ui/ui@atlas0.png",
+					"type": "image",
+					"name": "assets/ui/ui@atlas0.png"
+				}
+			},
+			"roles": {
+				"b1_ske_ske.json": {
+					"url": "assets/roles/b1_ske_ske.json",
+					"type": "json",
+					"name": "assets/roles/b1_ske_ske.json"
+				},
+				"b1_ske_tex.json": {
+					"url": "assets/roles/b1_ske_tex.json",
+					"type": "json",
+					"name": "assets/roles/b1_ske_tex.json"
+				},
+				"b1_ske_tex.png": {
+					"url": "assets/roles/b1_ske_tex.png",
+					"type": "image",
+					"name": "assets/roles/b1_ske_tex.png"
+				}
+			},
+			"scene": {
+				"scene2": {
+					"Scene1_ske.json": {
+						"url": "assets/scene/scene2/Scene1_ske.json",
+						"type": "json",
+						"name": "assets/scene/scene2/Scene1_ske.json"
+					},
+					"Scene1_tex.json": {
+						"url": "assets/scene/scene2/Scene1_tex.json",
+						"type": "json",
+						"name": "assets/scene/scene2/Scene1_tex.json"
+					},
+					"Scene1_tex.png": {
+						"url": "assets/scene/scene2/Scene1_tex.png",
+						"type": "image",
+						"name": "assets/scene/scene2/Scene1_tex.png"
+					}
+				},
+				"scene1": {
+					"Dragon_ske.json": {
+						"url": "assets/scene/scene1/Dragon_ske.json",
+						"type": "json",
+						"name": "assets/scene/scene1/Dragon_ske.json"
+					},
+					"Dragon_tex.json": {
+						"url": "assets/scene/scene1/Dragon_tex.json",
+						"type": "json",
+						"name": "assets/scene/scene1/Dragon_tex.json"
+					},
+					"Dragon_tex.png": {
+						"url": "assets/scene/scene1/Dragon_tex.png",
+						"type": "image",
+						"name": "assets/scene/scene1/Dragon_tex.png"
+					}
+				}
+			}
+		},
+		"config": {
+			"cloth.json": {
+				"url": "config/cloth.json",
+				"type": "json",
+				"name": "config/cloth.json"
+			},
+			"comicMovieConfig.json": {
+				"url": "config/comicMovieConfig.json",
+				"type": "json",
+				"name": "config/comicMovieConfig.json"
+			},
+			"description.json": {
+				"url": "config/description.json",
+				"type": "json",
+				"name": "config/description.json"
+			},
+			"resource_config.json": {
+				"url": "config/resource_config.json",
+				"type": "json",
+				"name": "config/resource_config.json"
+			}
+		},
+		"basic": {
+			"url": "assets/basic.fui",
+			"type": "bin",
+			"name": "basic"
+		},
+		"ui_fui": {
+			"url": "assets/ui/ui.fui",
+			"type": "bin",
+			"name": "ui_fui"
+		}
+	}
+}
