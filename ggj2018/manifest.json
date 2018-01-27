@@ -1,0 +1,19 @@
+{
+	"initial": [
+		"js/egret.min_cbeb05c3.js",
+		"js/egret.web.min_af52805a.js",
+		"js/eui.min_407717cb.js",
+		"js/res.min_f2dfb165.js",
+		"js/tween.min_6c5a88f9.js",
+		"js/dragonBones.min_488c2517.js",
+		"js/game.min_5eb26499.js",
+		"js/socket.min_8e6dede.js",
+		"js/promise.min_83a6a5d.js",
+		"js/rawinflate.min_7860f84.js",
+		"js/fairygui.min_d7ff547a.js"
+	],
+	"game": [
+		"js/default.thm.min_a8b1a4f3.js",
+		"js/main.min_f6bf498b.js"
+	]
+}

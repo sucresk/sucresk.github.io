@@ -1,0 +1,14 @@
+{
+    "avatar":[
+        {
+            "id":1001,
+            "name":"",
+            "asset":"woman1"
+        },
+        {
+            "id":1002,
+            "name":"",
+            "asset":"man3"
+        }
+    ]
+}

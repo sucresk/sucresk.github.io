@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="StoreListItemSkin" width="64" height="64" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="icon" width="64" height="64" x="0" y="0"/>
+	<e:Image id="bg" width="64" height="64" x="0" y="0" source="itemIcon_png"/>
+	<e:Label id="txtName" text="Label" x="0" y="0" anchorOffsetX="0" width="64" size="12" anchorOffsetY="0" height="64" textAlign="center" verticalAlign="middle" textColor="0x000000"/>
+</e:Skin>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="StoreListSkin" width="640" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="640" height="500" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image width="640" height="500" x="0" y="0" source="dialog_bg_png" scale9Grid="8,8,48,49"/>
+		<e:List id="list" width="640" height="500" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" itemRendererSkinName="StoreListItemSkin">
+			<e:layout>
+				<e:TileLayout orientation="rows" horizontalAlign="left" verticalAlign="top"/>
+			</e:layout>
+		</e:List>
+	</e:Group>
+</e:Skin>
