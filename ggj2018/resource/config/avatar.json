@@ -14,6 +14,42 @@
             "id":1003,
             "name":"",
             "asset":"woman3"
+        },
+        {
+            "id":1004,
+            "name":"",
+            "asset":"man1"
+        },
+        {
+            "id":1005,
+            "name":"",
+            "asset":"man4"
+        },
+        {
+            "id":1006,
+            "name":"",
+            "asset":"man5"
+        },
+        {
+            "id":1007,
+            "name":"",
+            "asset":"man6"
+        },
+        {
+            "id":1008,
+            "name":"",
+            "asset":"man7"
+        },
+        {
+            "id":1009,
+            "name":"",
+            "asset":"man8"
+        },
+        {
+            "id":1010,
+            "name":"",
+            "asset":"man9"
         }
+        
     ]
 }

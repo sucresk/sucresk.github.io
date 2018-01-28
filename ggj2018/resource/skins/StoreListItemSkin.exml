@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="StoreListItemSkin" width="120" height="120" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bg" width="120" height="120" x="0" y="0" source="menu_bg_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="bg" width="120" height="120" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="P_5_png"/>
 	<e:Image id="icon" width="100" height="100" x="10" y="10" fillMode="scale"/>
 	<e:Label id="txtName" text="Label" x="28" y="28" anchorOffsetX="0" width="64" size="12" anchorOffsetY="0" height="64" textAlign="center" verticalAlign="middle" textColor="0x000000"/>
 </e:Skin>

@@ -2,6 +2,13 @@
     "db": [
         "actor",1,
         "man3", 1,
+        "man1", 1,
+        "man4", 1,
+        "man5", 1,
+        "man6", 1,
+        "man7", 1,
+        "man8", 1,
+        "man9", 1,
         "woman1", 1,
         "woman3", 1,
         "ui",1
