@@ -9,6 +9,11 @@
             "id":1002,
             "name":"",
             "asset":"man3"
+        },
+        {
+            "id":1003,
+            "name":"",
+            "asset":"woman3"
         }
     ]
 }

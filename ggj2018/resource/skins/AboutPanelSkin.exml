@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="AboutPanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:ViewStack id="viewStack" width="640" height="1136" x="0" y="0" selectedIndex="1">
+		<e:Group id="g0" width="100%" height="100%" name="Group">
+			<e:Image id="bg0" width="640" height="1136" x="0" y="0" source="about_png"/>
+		</e:Group>
+		<e:Group id="g1" width="100%" height="100%" name="Group">
+			<e:Image id="bg1" width="640" height="1136" x="0" y="0" source="scorebg_png"/>
+			<e:Label text="成绩" x="157" y="163" anchorOffsetX="0" width="310" textAlign="center" verticalAlign="middle" size="40"/>
+			<e:Label id="txtDanceNum" text="尬舞5次" x="103" y="275" anchorOffsetX="0" width="433" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtLastScore" text="上次得分：50" x="104" y="402" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtMaxScore" text="最高得分：50" x="104" y="339" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtBgmNum" text="舞曲3首，完成度10%" x="104" y="466" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtStageNum" text="收集场景3个，完成度10%" x="104" y="529" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtActionNum" text="学会舞步3个，完成度10%" x="104" y="593" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtAvatar" text="收集角色碎片3个，完成度10%" x="104" y="656" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtTitle" text="获得称号：舞神" x="104" y="720" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="txtRank" text="击败了全球30%的玩家" x="104" y="783" anchorOffsetX="0" width="432" textAlign="center" verticalAlign="middle"/>
+		</e:Group>
+	</e:ViewStack>
+</e:Skin>

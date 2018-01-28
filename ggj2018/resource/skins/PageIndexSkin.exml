@@ -16,7 +16,7 @@
 		</e:Skin>
 		</e:skinName>
 	</e:ToggleButton>
-	<e:ToggleButton id="btnStore" label="仓库" x="464" y="0">
+	<e:ToggleButton id="btnStore" label="信息" x="464" y="0">
 		<e:skinName>
 		<e:Skin states="up,down,disabled,selected">
 			<e:Image width="100%" height="100%" source="btn_list_act_png" source.down="btn_list_nor_png" source.selected="btn_list_nor_png"/>

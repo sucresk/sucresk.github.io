@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="StoreListSkin" width="640" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group width="640" height="500" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Image width="640" height="500" x="0" y="0" source="dialog_bg_png" scale9Grid="8,8,48,49"/>
-		<e:List id="list" width="640" height="500" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" itemRendererSkinName="StoreListItemSkin">
+<e:Skin class="StoreListSkin" width="640" height="240" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="640" height="240" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image width="640" height="240" x="0" y="0" source="dialog_bg_png" scale9Grid="8,8,48,49"/>
+		<e:Label text="你的角色太少了，赶紧和朋友一起尬舞吧" x="9" y="177" anchorOffsetX="0" width="624" anchorOffsetY="0" height="55" textColor="0x0c0b0b" textAlign="center" verticalAlign="middle"/>
+		<e:List id="list" width="640" height="240" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" itemRendererSkinName="StoreListItemSkin">
 			<e:layout>
 				<e:TileLayout orientation="rows" horizontalAlign="left" verticalAlign="top"/>
 			</e:layout>

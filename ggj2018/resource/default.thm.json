@@ -29,6 +29,8 @@
 		"resource/eui_skins/ToggleSwitchSkin.exml",
 		"resource/eui_skins/VScrollBarSkin.exml",
 		"resource/eui_skins/VSliderSkin.exml",
+		"resource/skins/AboutPanelSkin.exml",
+		"resource/skins/NewItemPanelSkin.exml",
 		"resource/skins/PageIndexSkin.exml",
 		"resource/skins/Store.exml",
 		"resource/skins/StoreListItemSkin.exml",
