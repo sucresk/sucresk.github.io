@@ -1,0 +1,1 @@
+{"width":512,"height":256,"name":"man7","imagePath":"man7_tex.png","SubTexture":[{"width":45,"y":1,"height":182,"name":"man7_arm","x":315},{"width":36,"y":1,"height":182,"name":"man7_leg","x":362},{"frameY":0,"y":1,"frameWidth":150,"frameX":0,"frameHeight":209,"width":150,"height":208,"name":"man7_body","x":1},{"width":160,"y":1,"height":168,"name":"man7_head","x":153}]}
