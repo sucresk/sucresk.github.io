@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,logo_png,btn_list_act_png,btn_list_nor_png,woman1_tex_png,woman1_tex_json,woman1_ske_json,ui_tex_png,ui_tex_json,ui_ske_json,man3_tex_png,man3_tex_json,man3_ske_json,actor_tex_png,actor_tex_json,actor_ske_json,avatar_json,dbConfig_json,btn_detail_base_line_png,btn_detail_base_png,itemIcon_png,dialog_bg_png,bgm_1_mp3,bgm_2_mp3,bgm_3_mp3,btnStart_png,startPage_png,menu_bg_png,tabBar_down_png,tabBar_selected_down_png,bgm_json,about_png,scorebg_png,title_json,woman3_tex_png,woman3_tex_json,woman3_ske_json,man1_tex_png,man1_tex_json,man1_ske_json,man4_tex_png,man4_tex_json,man4_ske_json,man5_tex_png,man5_ske_json,man5_tex_json,man6_tex_png,man6_tex_json,man6_ske_json,man7_tex_png,man7_ske_json,man7_tex_json,man8_tex_png,man8_ske_json,man8_tex_json,man9_tex_png,man9_tex_json,man9_ske_json,P_1_png,P_2_png,P_3_png,P_4_png,P_5_png,UI_2_png,P_7_png,badge_new_png,badge_orange_png",
+			"keys": "bg_jpg,logo_png,woman1_tex_png,woman1_tex_json,woman1_ske_json,ui_tex_png,ui_tex_json,ui_ske_json,man3_tex_png,man3_tex_json,man3_ske_json,actor_tex_png,actor_tex_json,actor_ske_json,avatar_json,dbConfig_json,btnStart_png,startPage_png,tabBar_down_png,tabBar_selected_down_png,bgm_json,about_png,scorebg_png,title_json,woman3_tex_png,woman3_tex_json,woman3_ske_json,man1_tex_png,man1_tex_json,man1_ske_json,man4_tex_png,man4_tex_json,man4_ske_json,man5_tex_png,man5_ske_json,man5_tex_json,man6_tex_png,man6_tex_json,man6_ske_json,man7_tex_png,man7_ske_json,man7_tex_json,man8_tex_png,man8_ske_json,man8_tex_json,man9_tex_png,man9_tex_json,man9_ske_json,P_1_png,P_2_png,P_3_png,P_4_png,P_5_png,UI_2_png,P_7_png,badge_new_png,badge_orange_png,UI_1_1_png,bgA_png",
 			"name": "preload"
 		}
 	],
@@ -15,16 +15,6 @@
 			"url": "assets/logo.png",
 			"type": "image",
 			"name": "logo_png"
-		},
-		{
-			"url": "assets/ui/btn_list_act.png",
-			"type": "image",
-			"name": "btn_list_act_png"
-		},
-		{
-			"url": "assets/ui/btn_list_nor.png",
-			"type": "image",
-			"name": "btn_list_nor_png"
 		},
 		{
 			"url": "dbAnim/actor_ske.json",
@@ -97,26 +87,6 @@
 			"name": "dbConfig_json"
 		},
 		{
-			"url": "assets/ui/btn_detail_base_line.png",
-			"type": "image",
-			"name": "btn_detail_base_line_png"
-		},
-		{
-			"url": "assets/ui/btn_detail_base.png",
-			"type": "image",
-			"name": "btn_detail_base_png"
-		},
-		{
-			"url": "assets/ui/itemIcon.png",
-			"type": "image",
-			"name": "itemIcon_png"
-		},
-		{
-			"url": "assets/ui/dialog_bg.png",
-			"type": "image",
-			"name": "dialog_bg_png"
-		},
-		{
 			"url": "assets/music/bgm_1.mp3",
 			"type": "sound",
 			"name": "bgm_1_mp3"
@@ -140,11 +110,6 @@
 			"url": "assets/startPage.png",
 			"type": "image",
 			"name": "startPage_png"
-		},
-		{
-			"url": "assets/ui/menu_bg.png",
-			"type": "image",
-			"name": "menu_bg_png"
 		},
 		{
 			"url": "assets/ui/tabBar_down.png",
@@ -340,6 +305,16 @@
 			"url": "assets/ui/badge_orange.png",
 			"type": "image",
 			"name": "badge_orange_png"
+		},
+		{
+			"url": "assets/ui/UI_1_1.png",
+			"type": "image",
+			"name": "UI_1_1_png"
+		},
+		{
+			"url": "assets/bgA.png",
+			"type": "image",
+			"name": "bgA_png"
 		}
 	]
 }
