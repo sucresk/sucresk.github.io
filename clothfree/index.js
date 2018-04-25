@@ -91028,6 +91028,9 @@ var LoggerNoti;
 var StageNoti;
 (function (StageNoti) {
     StageNoti[StageNoti["UPDATE_THREE"] = 400] = "UPDATE_THREE";
+    StageNoti[StageNoti["CANVAS_COMPLETE"] = 401] = "CANVAS_COMPLETE";
+    StageNoti[StageNoti["CHANGE_TEXTURE"] = 402] = "CHANGE_TEXTURE";
+    StageNoti[StageNoti["CHANGE_TRANSFORM"] = 403] = "CHANGE_TRANSFORM";
 })(StageNoti = exports.StageNoti || (exports.StageNoti = {}));
 var DocumentNoti;
 (function (DocumentNoti) {
@@ -91065,7 +91068,8 @@ var ShortcutType;
     ShortcutType[ShortcutType["UNDO"] = 4002] = "UNDO";
     ShortcutType[ShortcutType["REDO"] = 4003] = "REDO";
 })(ShortcutType = exports.ShortcutType || (exports.ShortcutType = {}));
-exports.defaultLayout = { "type": "BoxLayoutContainer", "isVertical": false, "bounds": { "x": 0, "y": 0, "width": 979, "height": 654 }, "firstElement": { "type": "BoxLayoutContainer", "isVertical": false, "bounds": { "x": 0, "y": 0, "width": 841, "height": 654 }, "firstElement": { "type": "BoxLayoutElement", "bounds": { "x": 0, "y": 0, "width": 313, "height": 654 }, "render": { "selectedIndex": 0, "panels": ["PANEL_LEFT"] } }, "secondElement": { "type": "BoxLayoutContainer", "isVertical": true, "bounds": { "x": 314, "y": 0, "width": 527, "height": 654 }, "firstElement": { "type": "BoxLayoutElement", "bounds": { "x": 314, "y": 0, "width": 527, "height": 389 }, "render": { "selectedIndex": 0, "panels": ["PANEL_MAIN"] } }, "secondElement": { "type": "BoxLayoutElement", "bounds": { "x": 314, "y": 390, "width": 527, "height": 264 }, "render": { "selectedIndex": 0, "panels": ["PANEL_LOGGER"] } } } }, "secondElement": { "type": "BoxLayoutElement", "bounds": { "x": 842, "y": 0, "width": 137, "height": 654 }, "render": { "selectedIndex": 0, "panels": ["PANEL_RIGHT"] } } };
+exports.defaultLayout = { "type": "BoxLayoutContainer", "isVertical": false, "bounds": { "x": 0, "y": 0, "width": 1266, "height": 654 }, "firstElement": { "type": "BoxLayoutContainer", "isVertical": false, "bounds": { "x": 0, "y": 0, "width": 999, "height": 654 }, "firstElement": { "type": "BoxLayoutElement", "bounds": { "x": 0, "y": 0, "width": 404, "height": 654 }, "render": { "selectedIndex": 0, "panels": ["PANEL_LEFT"] } }, "secondElement": { "type": "BoxLayoutContainer", "isVertical": true, "bounds": { "x": 405, "y": 0, "width": 594, "height": 654 }, "firstElement": { "type": "BoxLayoutElement", "bounds": { "x": 405, "y": 0, "width": 594, "height": 389 }, "render": { "selectedIndex": 0, "panels": ["PANEL_MAIN"] } }, "secondElement": { "type": "BoxLayoutElement", "bounds": { "x": 405, "y": 390, "width": 594, "height": 264 }, "render": { "selectedIndex": 0, "panels": ["PANEL_LOGGER"] } } } }, "secondElement": { "type": "BoxLayoutElement", "bounds": { "x": 1000, "y": 0, "width": 266, "height": 654 }, "render": { "selectedIndex": 0, "panels": ["PANEL_RIGHT"] } } };
+//{"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":979,"height":654},"firstElement":{"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":841,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":0,"y":0,"width":313,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_LEFT"]}},"secondElement":{"type":"BoxLayoutContainer","isVertical":true,"bounds":{"x":314,"y":0,"width":527,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":314,"y":0,"width":527,"height":389},"render":{"selectedIndex":0,"panels":["PANEL_MAIN"]}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":314,"y":390,"width":527,"height":264},"render":{"selectedIndex":0,"panels":["PANEL_LOGGER"]}}}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":842,"y":0,"width":137,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_RIGHT"]}}}
 /////////////////////////
 
 
@@ -91129,7 +91133,10 @@ const base_1 = __webpack_require__(/*! base */ "./base.ts");
 const Logger_1 = __webpack_require__(/*! utils/Logger */ "./utils/Logger.ts");
 class InitAlreadyCommand extends base_1.BaseCommand {
     execute() {
-        Logger_1.Logger.trace("Already go!!");
+        Logger_1.Logger.trace(`欢迎使用高端服装私人订制编辑系统（Demo版），
+        左边的纹理编辑面板可以编辑每个部件的纹理，
+        右边的纹理选择面板可以添加各种不同的图案。
+        中间的预览面板可以实时预览结果.\n三维模型文件较大，首次加载可能较慢，请耐心等待。`);
     }
 }
 exports.default = InitAlreadyCommand;
@@ -92939,12 +92946,12 @@ const base_1 = __webpack_require__(/*! ../base */ "./base.ts");
 const Lang_1 = __webpack_require__(/*! i18n/Lang */ "./i18n/Lang.ts");
 const PixiStage_1 = __webpack_require__(/*! ./pixi/PixiStage */ "./view/pixi/PixiStage.ts");
 const PropertyNumber_1 = __webpack_require__(/*! view/uiComponents/PropertyNumber */ "./view/uiComponents/PropertyNumber.tsx");
-const IconButton_1 = __webpack_require__(/*! view/uiComponents/IconButton */ "./view/uiComponents/IconButton.tsx");
+const TextButton_1 = __webpack_require__(/*! view/uiComponents/TextButton */ "./view/uiComponents/TextButton.tsx");
 class LeftPanel extends boxlayout.TabPanel {
     constructor() {
         super();
         this.id = c.PANEL_LEFT;
-        this.title = Lang_1.tr("left"); //'纹理'
+        this.title = Lang_1.tr("纹理编辑"); //'纹理'
         this.icon = "./assets/fileClose.svg";
     }
     renderContent(container) {
@@ -92963,6 +92970,17 @@ class LeftView extends base_1.BaseView {
         return "[class render.view.LeftView]";
     }
     _initialize() {
+        this._addNotification(c.StageNoti.CHANGE_TEXTURE, this.onChangeTexture);
+        this._addNotification(c.StageNoti.CHANGE_TRANSFORM, this.onChangeTransform);
+    }
+    onChangeTransform(noti) {
+        this.component.setState(noti.data);
+    }
+    onChangeTexture(noti) {
+        let id = noti.data;
+        if (this.pixiStage) {
+            this.pixiStage.changeModelTexture(id);
+        }
     }
     iniPixi() {
         let container = document.getElementById("pixiContainer");
@@ -92970,7 +92988,7 @@ class LeftView extends base_1.BaseView {
         this.pixiStage.init(this.application);
         if (container) {
             this.pixiStage.addToDom(container);
-            this.pixiStage.render();
+            //this.pixiStage.render();
         }
     }
     changeTexture(textureState) {
@@ -93019,26 +93037,30 @@ class LeftComponent extends React.Component {
         this._view.changeTexture(this.state);
     }
     onClick1() {
-        this._view.changeModel(1);
+        this._view.changeModel(0);
     }
     onClick2() {
-        this._view.changeModel(2);
+        this._view.changeModel(1);
     }
     onClick3() {
-        this._view.changeModel(3);
+        this._view.changeModel(2);
     }
     onClick4() {
-        this._view.changeModel(4);
+        this._view.changeModel(3);
     }
+    // <IconButton id="0" onClick={this.onClick1.bind(this)} icon="assets/fileClose.svg"></IconButton>
+    // <IconButton id="1" onClick={this.onClick2.bind(this)} icon="assets/fileClose.svg"></IconButton>
+    // <IconButton id="2" onClick={this.onClick3.bind(this)} icon="assets/fileClose.svg"></IconButton>
+    // <IconButton id="3" onClick={this.onClick4.bind(this)} icon="assets/fileClose.svg"></IconButton>
     render() {
         return (React.createElement("div", null,
             React.createElement("div", { style: {
                     display: "flex"
                 } },
-                React.createElement(IconButton_1.default, { id: "1", onClick: this.onClick1.bind(this), icon: "assets/fileClose.svg" }),
-                React.createElement(IconButton_1.default, { id: "2", onClick: this.onClick2.bind(this), icon: "assets/fileClose.svg" }),
-                React.createElement(IconButton_1.default, { id: "3", onClick: this.onClick3.bind(this), icon: "assets/fileClose.svg" }),
-                React.createElement(IconButton_1.default, { id: "4", onClick: this.onClick4.bind(this), icon: "assets/fileClose.svg" })),
+                React.createElement(TextButton_1.default, { id: "0", onClick: this.onClick1.bind(this), label: "背部", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "1", onClick: this.onClick2.bind(this), label: "前胸", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "2", onClick: this.onClick3.bind(this), label: "左袖子", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "3", onClick: this.onClick4.bind(this), label: "右袖子", width: 100 })),
             React.createElement("div", { style: {}, id: "pixiContainer" }),
             React.createElement(PropertyNumber_1.default, { label: "坐标x", id: "x", value: this.state.x, barMax: 100, barMin: -100, max: 1000, min: -1000, onChange: this.onChange.bind(this) }),
             React.createElement(PropertyNumber_1.default, { label: "坐标y", id: "y", value: this.state.y, barMax: 100, barMin: -100, max: 1000, min: -1000, onChange: this.onChange.bind(this) }),
@@ -93071,7 +93093,7 @@ class LoggerPanel extends boxlayout.TabPanel {
     constructor() {
         super();
         this.id = c.PANEL_LOGGER;
-        this.title = Lang_1.tr("Logger"); //PanelTitle.loggerPanel
+        this.title = Lang_1.tr("信息"); //PanelTitle.loggerPanel
         this.icon = "./assets/Colors.png"; //
         this.headerRender = new HeaderRender();
     }
@@ -93198,7 +93220,7 @@ class MainPanel extends boxlayout.TabPanel {
     constructor() {
         super();
         this.id = c.PANEL_MAIN;
-        this.title = Lang_1.tr("Main"); //'纹理'
+        this.title = Lang_1.tr("预览"); //'纹理'
         this.icon = "./assets/fileOpen.svg";
     }
     renderContent(container) {
@@ -93269,11 +93291,12 @@ const React = __webpack_require__(/*! react */ "react");
 const ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
 const base_1 = __webpack_require__(/*! ../base */ "./base.ts");
 const Lang_1 = __webpack_require__(/*! i18n/Lang */ "./i18n/Lang.ts");
+const TextButton_1 = __webpack_require__(/*! view/uiComponents/TextButton */ "./view/uiComponents/TextButton.tsx");
 class RightPanel extends boxlayout.TabPanel {
     constructor() {
         super();
         this.id = c.PANEL_RIGHT;
-        this.title = Lang_1.tr("right"); //'纹理'
+        this.title = Lang_1.tr("纹理选择"); //'纹理'
         this.icon = "./assets/fileClose.svg";
     }
     renderContent(container) {
@@ -93286,6 +93309,20 @@ class RightView extends base_1.BaseView {
         return "[class render.view.TextureView]";
     }
     _initialize() {
+        this._addNotification(c.StageNoti.CANVAS_COMPLETE, this.onCanvasComplete);
+        if (this.application.pixiHtml != null) {
+            this.onCanvasComplete();
+        }
+    }
+    changeModel(id) {
+        this._sendNotification(c.StageNoti.CHANGE_TEXTURE, id);
+    }
+    onCanvasComplete() {
+        // let container = document.getElementById("pixiTexture");
+        // if(container)
+        // {
+        //     container.appendChild(this.application.pixiHtml);
+        // }
     }
 }
 exports.RightView = RightView;
@@ -93294,8 +93331,32 @@ class RightComponent extends React.Component {
         this._view = RightView.getInstance(RightView);
         this._view.initialize(null, this);
     }
+    componentDidMount() {
+        this._view.onCanvasComplete();
+    }
+    onClick1() {
+        this._view.changeModel(0);
+    }
+    onClick2() {
+        this._view.changeModel(1);
+    }
+    onClick3() {
+        this._view.changeModel(2);
+    }
+    onClick4() {
+        this._view.changeModel(3);
+    }
+    onClick5() {
+        this._view.changeModel(4);
+    }
     render() {
-        return (React.createElement("div", null, "right"));
+        return (React.createElement("div", { style: {}, id: "pixiTexture" },
+            React.createElement("div", { style: {} },
+                React.createElement(TextButton_1.default, { id: "0", onClick: this.onClick1.bind(this), label: "无", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "1", onClick: this.onClick2.bind(this), label: "图案1", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "2", onClick: this.onClick3.bind(this), label: "图案2", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "3", onClick: this.onClick4.bind(this), label: "纹理1", width: 100 }),
+                React.createElement(TextButton_1.default, { id: "4", onClick: this.onClick5.bind(this), label: "纹理2", width: 100 }))));
     }
 }
 exports.RightComponent = RightComponent;
@@ -93317,8 +93378,6 @@ const c = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 const React = __webpack_require__(/*! react */ "react");
 const ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
 const base_1 = __webpack_require__(/*! ../base */ "./base.ts");
-const IconButton_1 = __webpack_require__(/*! ./uiComponents/IconButton */ "./view/uiComponents/IconButton.tsx");
-const Lang_1 = __webpack_require__(/*! i18n/Lang */ "./i18n/Lang.ts");
 class ToolBarView extends base_1.BaseView {
     static toString() {
         return "[class render.view.ToolBarView]";
@@ -93357,9 +93416,15 @@ class ToolBarComponent extends React.Component {
         this._view.initialize(null, this);
     }
     render() {
-        return (React.createElement("div", { style: { display: 'flex', marginLeft: "0px", borderBottomWidth: "2px", borderBottomColor: "#2a2a2a", borderBottomStyle: "solid" } },
-            React.createElement("div", null, "ClothFree"),
-            React.createElement(IconButton_1.default, { id: "import2", icon: "assets/Import.png", tip: Lang_1.tr("ToolBar.import"), onClick: this.onImport.bind(this) })));
+        return (React.createElement("div", { style: { display: 'flex',
+                marginLeft: "0px",
+                borderBottomWidth: "2px",
+                borderBottomColor: "#2a2a2a",
+                borderBottomStyle: "solid" } },
+            React.createElement("div", { style: {
+                    color: "#ffffff"
+                } }, "\u9AD8\u7AEF\u670D\u88C5\u79C1\u4EBA\u8BA2\u5236\u7F16\u8F91\u5668")));
+        //<IconButton id="import2" icon="assets/Import.png" tip={tr("ToolBar.import")} onClick={this.onImport.bind(this)}/>
     }
     onExport(e) {
         this._view.export();
@@ -93393,6 +93458,7 @@ const pixi = __webpack_require__(/*! pixi.js */ "../node_modules/pixi.js/lib/ind
 const mvc_1 = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
 const c = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 const Logger_1 = __webpack_require__(/*! ../../utils/Logger */ "./utils/Logger.ts");
+const PixiTextureStage_1 = __webpack_require__(/*! ./PixiTextureStage */ "./view/pixi/PixiTextureStage.ts");
 class PixiStage extends mvc_1.Controller {
     constructor() {
         super();
@@ -93402,21 +93468,361 @@ class PixiStage extends mvc_1.Controller {
         this.textureW = 0;
         this.textureH = 0;
         this.baseScale = [1, 1, 1, 1];
+        this.textureDatas = [];
+        this.spriteMap = {};
+        this.textureMap = {};
+        this.maskSpriteMap = {};
+        this.allTextures = [];
     }
     static toString() {
         return "[class view.pixi.PixiStage]";
     }
     _initialize() {
-        this.app = new pixi.Application({ width: 512, height: 512, backgroundColor: 0x999999, forceCanvas: true });
+        let t0 = {
+            id: 0,
+            width: 256,
+            height: 360,
+            offX: 0,
+            offY: 0,
+            offScale: 1,
+            img: "",
+            maskImg: "assets/mask1.png",
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotate: 0
+        };
+        let t1 = {
+            id: 1,
+            width: 256,
+            height: 360,
+            offX: 256,
+            offY: 0,
+            offScale: 1,
+            img: "",
+            maskImg: "assets/mask2.png",
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotate: 0
+        };
+        let t2 = {
+            id: 2,
+            width: 256,
+            height: 152,
+            offX: 0,
+            offY: 360,
+            offScale: 1,
+            img: "",
+            maskImg: "assets/mask3.png",
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotate: 0
+        };
+        let t3 = {
+            id: 3,
+            width: 256,
+            height: 152,
+            offX: 256,
+            offY: 360,
+            offScale: 1,
+            img: "",
+            maskImg: "assets/mask4.png",
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotate: 0
+        };
+        this.textureDatas = [t0, t1, t2, t3];
+        this.app = new pixi.Application({ width: 256, height: 256, backgroundColor: 0x999999, forceCanvas: true });
         this.app.renderer.autoResize = true;
-        this.model.pixiHtml = this.app.view;
+        //this.model.pixiHtml = this.app.view;
+        this.root = new pixi.Container();
+        this.app.stage.addChild(this.root);
         this.loadImg();
+        this.texturePixi = PixiTextureStage_1.PixiTextureStage.getInstance(PixiTextureStage_1.PixiTextureStage);
+        this.texturePixi.init(this.model);
+        this.model.pixiHtml = this.texturePixi.app.view;
+        this._sendNotification(c.StageNoti.CANVAS_COMPLETE);
     }
     addToDom(div) {
         div.appendChild(this.app.view);
     }
     resize(newWidth, newHeight) {
-        //this.app.renderer.resize(newWidth, newWidth);
+        this.app.renderer.resize(newWidth, newWidth);
+        this.root.x = newWidth / 2;
+        this.root.y = newWidth / 2;
+    }
+    loadImg() {
+        this.allTextures = [
+            "",
+            "assets/image1.jpg",
+            "assets/image2.jpg",
+            "assets/texture1.jpg",
+            "assets/texture2.jpg"
+        ];
+        PIXI.loader
+            .add([
+            "assets/clothFg512.png",
+            "assets/clothBg512.png",
+            "assets/image1.jpg",
+            "assets/image2.jpg",
+            "assets/texture1.jpg",
+            "assets/texture2.jpg",
+            "assets/mask1.png",
+            "assets/mask2.png",
+            "assets/mask3.png",
+            "assets/mask4.png"
+        ])
+            .load(this.setup.bind(this));
+    }
+    setup() {
+        //console.log("load complete")
+        this.render();
+    }
+    render() {
+        this.changeModel(0);
+        // let bgt = pixi.utils.TextureCache["assets/clothFg512.png"];
+        // this.bg = new pixi.Sprite(bgt);
+        // this.app.stage.addChild(this.bg);
+        // let texture0 = pixi.utils.TextureCache["assets/image1.jpg"];
+        // this.sprite0 = new PIXI.Sprite(texture0);
+        // if(texture0)
+        // {
+        //     this.textureW = texture0.width;
+        //     this.textureH = texture0.height;
+        //     let r = 256 / this.textureW;
+        //     this.baseScale[0] = r;
+        //     this.sprite0.pivot.set(this.textureW / 2, this.textureH / 2);
+        //     this.sprite0.x = 256/ 2;
+        //     this.sprite0.y = 256 / 2;
+        //     this.sprite0.scale.set(r,r);
+        //     let mask = new PIXI.Graphics();
+        //     mask.beginFill(0);
+        //     mask.drawRect(0,0,256,256);
+        //     mask.endFill();
+        //     this.sprite0.mask = mask;
+        // }
+        // this.app.stage.addChild(this.sprite0);
+        this._sendNotification(c.StageNoti.UPDATE_THREE);
+    }
+    updateTexture(textureData) {
+        if (textureData == null) {
+            return;
+        }
+        let sprite = this.getSpriteById(textureData.id);
+        let m = new PIXI.Graphics();
+        if (sprite.mask == null) {
+            m.beginFill(0);
+            //m.drawRect(textureData.width /2, textureData.height/2, textureData.width, textureData.height);
+            m.drawRect(0, 0, textureData.width, textureData.height);
+            m.endFill();
+            m.x = -textureData.width / 2;
+            m.y = -textureData.height / 2;
+            sprite.mask = m;
+        }
+        let maskSprite = this.getMaskSprite(textureData);
+        if (this.curSprite != sprite) {
+            if (this.curSprite && this.curSprite.parent) {
+                this.curSprite.parent.removeChild(this.curSprite);
+            }
+            if (this.curMask && this.curMask.parent) {
+                this.curMask.parent.removeChild(this.curMask);
+                //console.log("remove mask")
+            }
+        }
+        this.curSprite = sprite;
+        this.curMask = maskSprite;
+        if (this.curSprite.parent == null) {
+            this.root.addChild(this.curSprite);
+        }
+        this.root.addChild(m);
+        //if(maskSprite.parent == null)
+        {
+            this.root.addChild(maskSprite);
+            //console.log("add mask")
+        }
+        if (textureData.img == null || textureData.img == "") {
+            if (sprite.parent) {
+                sprite.parent.removeChild(sprite);
+            }
+        }
+        else {
+            let t = this.getTextureById(textureData.img);
+            textureData.offScale = textureData.width / t.width;
+            if (sprite.texture != t) {
+                sprite.texture = t;
+                sprite.pivot.set(t.width / 2, t.height / 2);
+                //console.log(sprite.pivot);
+            }
+        }
+        sprite.scale.x = textureData.offScale * textureData.scaleX;
+        sprite.scale.y = textureData.offScale * textureData.scaleY;
+        sprite.rotation = textureData.rotate * Math.PI / 180;
+        sprite.x = textureData.x;
+        sprite.y = textureData.y;
+        //console.log(sprite.x, sprite.y);
+        // if(sprite.mask == null)
+        // {
+        //     let mask = new PIXI.Graphics;
+        //     mask.beginFill(0);
+        //     mask.drawRect(-textureData.width /2,-textureData.height/2,textureData.width, textureData.height);
+        //     mask.endFill();
+        //     sprite.mask = mask;
+        // }
+        if (this.texturePixi) {
+            this.texturePixi.updateTexture(textureData);
+        }
+    }
+    getMaskSprite(data) {
+        let id = data.id;
+        if (this.maskSpriteMap[id] == null) {
+            let sprite = new PIXI.Sprite();
+            let t = pixi.utils.TextureCache[data.maskImg];
+            if (t) {
+                sprite.texture = t;
+                sprite.pivot.x = t.width / 2;
+                sprite.pivot.y = t.height / 2;
+            }
+            this.maskSpriteMap[id] = sprite;
+        }
+        return this.maskSpriteMap[id];
+    }
+    getSpriteById(id) {
+        if (this.spriteMap[id] == null) {
+            let sprite = new PIXI.Sprite();
+            this.spriteMap[id] = sprite;
+        }
+        return this.spriteMap[id];
+    }
+    getTextureById(id) {
+        if (this.textureMap[id] == null) {
+            let t = pixi.utils.TextureCache[id];
+            this.textureMap[id] = t;
+        }
+        return this.textureMap[id];
+    }
+    changeModelTexture(id) {
+        if (this.allTextures.length == 0) {
+            return;
+        }
+        let imgsrc = this.allTextures[id];
+        if (this.curTextureData) {
+            if (this.curTextureData.img == imgsrc) {
+                return;
+            }
+            this.curTextureData.img = imgsrc;
+            this.curTextureData.x = 0;
+            this.curTextureData.y = 0;
+            this.curTextureData.scaleX = 1;
+            this.curTextureData.scaleY = 1;
+            this.curTextureData.rotate = 0;
+            this.updateTexture(this.curTextureData);
+            this._sendNotification(c.StageNoti.CHANGE_TRANSFORM, { x: this.curTextureData.x,
+                y: this.curTextureData.y,
+                scaleX: this.curTextureData.scaleX,
+                scaleY: this.curTextureData.scaleY,
+                rotate: this.curTextureData.rotate
+            });
+            this._sendNotification(c.StageNoti.UPDATE_THREE);
+        }
+    }
+    changeModel(id) {
+        this.curIndex = id;
+        this.curTextureData = this.textureDatas[this.curIndex];
+        //console.log(this.curIndex,this.curTextureData);
+        this.updateTexture(this.curTextureData);
+        switch (id) {
+            case 0:
+                Logger_1.Logger.trace("现在选择的是“背部”");
+                break;
+            case 1:
+                Logger_1.Logger.trace("现在选择的是“前胸”");
+                break;
+            case 2:
+                Logger_1.Logger.trace("现在选择的是“左袖子”");
+                break;
+            case 3:
+                Logger_1.Logger.trace("现在选择的是“右袖子”");
+                break;
+        }
+        this._sendNotification(c.StageNoti.CHANGE_TRANSFORM, { x: this.curTextureData.x,
+            y: this.curTextureData.y,
+            scaleX: this.curTextureData.scaleX,
+            scaleY: this.curTextureData.scaleY,
+            rotate: this.curTextureData.rotate
+        });
+        // var imagesrc = "";
+        // switch(id)
+        // {
+        //     case 1:
+        //         imagesrc = "assets/clothFg.png";
+        //         break;
+        //     case 2:
+        //         imagesrc = "assets/image2.jpg";
+        //         break;
+        // }
+        // this.model.curModelId = id;
+        // let texture = pixi.utils.TextureCache[imagesrc];
+        // this.sprite.texture = texture;
+    }
+    changeTransform(transform) {
+        this.curTextureData.x = transform.x;
+        this.curTextureData.y = transform.y;
+        this.curTextureData.scaleX = transform.scaleX;
+        this.curTextureData.scaleY = transform.scaleY;
+        this.curTextureData.rotate = transform.rotate;
+        this.updateTexture(this.curTextureData);
+        // this.curSprite.x = this.textureW / 2 + transform.x + this.offsetX[this.curIndex];
+        // this.curSprite.y = this.textureH / 2 + transform.y + this.offsetY[this.curIndex];
+        // this.curSprite.scale.set(transform.scaleX * this.baseScale[this.curIndex], transform.scaleY*this.baseScale[this.curIndex]);
+        // this.curSprite.rotation = transform.rotate * Math.PI / 180;
+        this._sendNotification(c.StageNoti.UPDATE_THREE);
+        // var image = new Image();
+        // image.src = this.model.pixiHtml.toDataURL("image/jpg");
+        // let cc = document.getElementById("imageContainer")
+        // cc.appendChild(image);
+    }
+}
+exports.PixiStage = PixiStage;
+
+
+/***/ }),
+
+/***/ "./view/pixi/PixiTextureStage.ts":
+/*!***************************************!*\
+  !*** ./view/pixi/PixiTextureStage.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const pixi = __webpack_require__(/*! pixi.js */ "../node_modules/pixi.js/lib/index.js");
+const mvc_1 = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
+class PixiTextureStage extends mvc_1.Controller {
+    constructor() {
+        super();
+        this.curIndex = 0;
+        this.offsetX = [0, 0, 0, 0];
+        this.offsetY = [0, 0, 0, 0];
+        this.textureW = 0;
+        this.textureH = 0;
+        this.baseScale = [1, 1, 1, 1];
+        this.spriteMap = {};
+        this.textureMap = {};
+    }
+    static toString() {
+        return "[class view.pixi.PixiTextureStage]";
+    }
+    _initialize() {
+        this.app = new pixi.Application({ width: 512, height: 512, backgroundColor: 0x999999, forceCanvas: true });
     }
     loadImg() {
         PIXI.loader
@@ -93434,116 +93840,57 @@ class PixiStage extends mvc_1.Controller {
         this.render();
     }
     render() {
-        let bgt = pixi.utils.TextureCache["assets/clothFg512.png"];
-        this.bg = new pixi.Sprite(bgt);
-        this.app.stage.addChild(this.bg);
-        let texture0 = pixi.utils.TextureCache["assets/image1.jpg"];
-        this.sprite0 = new PIXI.Sprite(texture0);
-        if (texture0) {
-            this.textureW = texture0.width;
-            this.textureH = texture0.height;
-            let r = 256 / this.textureW;
-            this.baseScale[0] = r;
-            this.sprite0.pivot.set(this.textureW / 2, this.textureH / 2);
-            this.sprite0.x = 256 / 2;
-            this.sprite0.y = 256 / 2;
-            this.sprite0.scale.set(r, r);
-        }
-        this.app.stage.addChild(this.sprite0);
-        let texture1 = pixi.utils.TextureCache["assets/image2.jpg"];
-        this.sprite1 = new PIXI.Sprite(texture1);
-        if (texture1) {
-            this.offsetX[1] = 256;
-            this.offsetY[1] = 0;
-            this.textureW = texture1.width;
-            this.textureH = texture1.height;
-            let r = 256 / this.textureW;
-            this.baseScale[1] = r;
-            this.sprite1.pivot.set(this.textureW / 2, this.textureH / 2);
-            this.sprite1.x = 256 / 2 + this.offsetX[1];
-            this.sprite1.y = 256 / 2 + this.offsetY[1];
-            this.sprite1.scale.set(r, r);
-        }
-        this.app.stage.addChild(this.sprite1);
-        let texture2 = pixi.utils.TextureCache["assets/texture1.jpg"];
-        this.sprite2 = new PIXI.Sprite(texture2);
-        if (texture2) {
-            this.offsetX[2] = 0;
-            this.offsetY[2] = 340;
-            this.textureW = texture2.width;
-            this.textureH = texture2.height;
-            let r = 200 / this.textureW;
-            this.baseScale[2] = r;
-            this.sprite2.pivot.set(this.textureW / 2, this.textureH / 2);
-            this.sprite2.x = 200 / 2 + this.offsetX[2];
-            this.sprite2.y = 200 / 2 + this.offsetY[2];
-            this.sprite2.scale.set(r, r);
-        }
-        this.app.stage.addChild(this.sprite2);
-        let texture3 = pixi.utils.TextureCache["assets/texture2.jpg"];
-        this.sprite3 = new PIXI.Sprite(texture3);
-        if (texture3) {
-            this.offsetX[3] = 256;
-            this.offsetY[3] = 340;
-            this.textureW = texture3.width;
-            this.textureH = texture3.height;
-            let r = 200 / this.textureW;
-            this.baseScale[3] = r;
-            this.sprite3.pivot.set(this.textureW / 2, this.textureH / 2);
-            this.sprite3.x = 200 / 2 + this.offsetX[3];
-            this.sprite3.y = 200 / 2 + this.offsetY[3];
-            this.sprite3.scale.set(r, r);
-        }
-        this.app.stage.addChild(this.sprite3);
-        let fgt = pixi.utils.TextureCache["assets/clothBg512.png"];
-        this.fg = new pixi.Sprite(fgt);
-        this.app.stage.addChild(this.fg);
-        this._sendNotification(c.StageNoti.UPDATE_THREE);
     }
-    changeModel(id) {
-        this.curIndex = id - 1;
-        this.curSprite = this["sprite" + this.curIndex];
-        switch (id) {
-            case 1:
-                Logger_1.Logger.trace("现在选择的是“背部”");
-                break;
-            case 2:
-                Logger_1.Logger.trace("现在选择的是“前胸”");
-                break;
-            case 3:
-                Logger_1.Logger.trace("现在选择的是“左袖子”");
-                break;
-            case 4:
-                Logger_1.Logger.trace("现在选择的是“右袖子”");
-                break;
-        }
-        // var imagesrc = "";
-        // switch(id)
-        // {
-        //     case 1:
-        //         imagesrc = "assets/clothFg.png";
-        //         break;
-        //     case 2:
-        //         imagesrc = "assets/image2.jpg";
-        //         break;
-        // }
-        // this.model.curModelId = id;
-        // let texture = pixi.utils.TextureCache[imagesrc];
-        // this.sprite.texture = texture;
+    updateData() {
     }
-    changeTransform(transform) {
-        this.curSprite.x = this.textureW / 2 + transform.x + this.offsetX[this.curIndex];
-        this.curSprite.y = this.textureH / 2 + transform.y + this.offsetY[this.curIndex];
-        this.curSprite.scale.set(transform.scaleX * this.baseScale[this.curIndex], transform.scaleY * this.baseScale[this.curIndex]);
-        this.curSprite.rotation = transform.rotate * Math.PI / 180;
-        this._sendNotification(c.StageNoti.UPDATE_THREE);
-        // var image = new Image();
-        // image.src = this.model.pixiHtml.toDataURL("image/jpg");
-        // let cc = document.getElementById("imageContainer")
-        // cc.appendChild(image);
+    updateTexture(textureData) {
+        let sprite = this.getSpriteById(textureData.id);
+        if (textureData.img == null || textureData.img == "") {
+            if (sprite.parent) {
+                sprite.parent.removeChild(sprite);
+                return;
+            }
+        }
+        else {
+            let t = this.getTextureById(textureData.img);
+            textureData.offScale = textureData.width / t.width;
+            if (sprite.texture != t) {
+                sprite.texture = t;
+                sprite.pivot.set(t.width / 2, t.height / 2);
+            }
+        }
+        sprite.scale.x = textureData.offScale * textureData.scaleX;
+        sprite.scale.y = textureData.offScale * textureData.scaleY;
+        sprite.rotation = textureData.rotate * Math.PI / 180;
+        sprite.x = textureData.offX + textureData.x + textureData.width / 2;
+        sprite.y = textureData.offY + textureData.y + textureData.height / 2;
+        if (sprite.mask == null) {
+            let mask = new PIXI.Graphics;
+            mask.beginFill(0);
+            mask.drawRect(textureData.offX, textureData.offY, textureData.width, textureData.height);
+            mask.endFill();
+            sprite.mask = mask;
+        }
+        if (sprite.parent == null) {
+            this.app.stage.addChild(sprite);
+        }
+    }
+    getSpriteById(id) {
+        if (this.spriteMap[id] == null) {
+            let sprite = new PIXI.Sprite();
+            this.spriteMap[id] = sprite;
+        }
+        return this.spriteMap[id];
+    }
+    getTextureById(id) {
+        if (this.textureMap[id] == null) {
+            let t = PIXI.Texture.fromImage(id);
+            this.textureMap[id] = t;
+        }
+        return this.textureMap[id];
     }
 }
-exports.PixiStage = PixiStage;
+exports.PixiTextureStage = PixiTextureStage;
 
 
 /***/ }),
@@ -95940,8 +96287,8 @@ class ThreeStage extends mvc_1.Controller {
         this.camera = new THREE.PerspectiveCamera(75, this.ratio, 0.1, 1000);
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         this.material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        // var texture = THREE.ImageUtils.loadTexture("./assets/image1.jpg");
-        var texture = THREE.ImageUtils.loadTexture("./assets/closeFg.png");
+        var texture = THREE.ImageUtils.loadTexture("./assets/image1.jpg");
+        //var texture = THREE.ImageUtils.loadTexture("./assets/clothFg.png");
         this.material.map = texture;
         this.mesh = new THREE.Mesh(geometry, this.material);
         //this.scene.add( this.mesh );
@@ -95954,13 +96301,13 @@ class ThreeStage extends mvc_1.Controller {
         // this.scene.add( this.mesh2 );
         var fbxloader = new fbx.FBXLoader();
         fbxloader.load('assets/DK18-BMT-04.FBX', (obj) => {
-            console.log(obj);
+            //console.log(obj);
             let a = obj.children[1];
             a.material = this.material;
             this.scene.add(a);
             this.mesh = a;
             this.mesh.scale.setScalar(5);
-            console.log(this.mesh.position.setY(-6));
+            this.mesh.position.setY(-6);
             //this.editControl = new EditorControls(this.mesh, this.renderer.domElement);
         }, (p) => {
             console.log("progress", p);
@@ -95990,7 +96337,7 @@ class ThreeStage extends mvc_1.Controller {
         if (newHeight >= 0 && newWidth >= 0) {
             this.ratio = newWidth / newHeight;
         }
-        console.log("size", newWidth, newHeight);
+        //console.log("size",newWidth, newHeight);
     }
     addToDom(div) {
         div.appendChild(this.renderer.domElement);
@@ -96012,61 +96359,6 @@ class ThreeStage extends mvc_1.Controller {
     }
 }
 exports.ThreeStage = ThreeStage;
-
-
-/***/ }),
-
-/***/ "./view/uiComponents/IconButton.tsx":
-/*!******************************************!*\
-  !*** ./view/uiComponents/IconButton.tsx ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "react");
-class IconButton extends React.Component {
-    render() {
-        let w = (this.props.width ? this.props.width : IconButton.defaultWidth) + "px";
-        let h = (this.props.height ? this.props.height : IconButton.defaultHeight) + "px";
-        let tip = this.props.tip;
-        let tipDir = "top";
-        // if(tip !== undefined && tip != "")
-        // {
-        //     if(this.props.tipDirect !== undefined)
-        //     {
-        //         tipDir = this.props.tipDirect;
-        //     }
-        //     return <Tooltip placement={tipDir} title={tip}>
-        //                 {this.renderIcon(w,h)}
-        //             </Tooltip>
-        // }
-        return this.renderIcon(w, h);
-        // return(
-        //     <input style={{width:{w},height:{h}}} 
-        //     id={this.props.id}
-        //     type="image" 
-        //     src={this.props.icon}
-        //     onClick={this.props.onClick}/>
-        // );
-    }
-    renderIcon(w, h) {
-        return (React.createElement("div", { ref: 'bg', style: { width: w, height: h,
-                cursor: "pointer",
-                display: "flex",
-                backgroundColor: "transparent",
-                "justify-content": "center",
-                "align-items": "center",
-            }, id: this.props.id, color: "#0xff0000", onClick: this.props.onClick, onMouseOver: () => { this.refs.bg.style.backgroundColor = IconButton.OVER_COLOR; }, onMouseOut: () => { this.refs.bg.style.backgroundColor = 'transparent'; } },
-            React.createElement("img", { style: {}, src: this.props.icon })));
-    }
-}
-IconButton.defaultWidth = 24;
-IconButton.defaultHeight = 24;
-IconButton.OVER_COLOR = '#292929';
-exports.default = IconButton;
 
 
 /***/ }),
@@ -96512,6 +96804,61 @@ SliderH.defaultWidth = 154;
 SliderH.defaultHeight = 14;
 SliderH.defaultPointSize = 14;
 exports.default = SliderH;
+
+
+/***/ }),
+
+/***/ "./view/uiComponents/TextButton.tsx":
+/*!******************************************!*\
+  !*** ./view/uiComponents/TextButton.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(/*! react */ "react");
+class TextButton extends React.Component {
+    render() {
+        let w = (this.props.width ? this.props.width : TextButton.defaultWidth) + "px";
+        let h = (this.props.height ? this.props.height : TextButton.defaultHeight) + "px";
+        let tip = this.props.tip;
+        let tipDir = "top";
+        // if(tip !== undefined && tip != "")
+        // {
+        //     if(this.props.tipDirect !== undefined)
+        //     {
+        //         tipDir = this.props.tipDirect;
+        //     }
+        //     return <Tooltip placement={tipDir} title={tip}>
+        //                 {this.renderIcon(w,h)}
+        //             </Tooltip>
+        // }
+        return this.renderText(w, h);
+        // return(
+        //     <input style={{width:{w},height:{h}}} 
+        //     id={this.props.id}
+        //     type="image" 
+        //     src={this.props.icon}
+        //     onClick={this.props.onClick}/>
+        // );
+    }
+    renderText(w, h) {
+        return (React.createElement("div", { ref: 'bg', style: { width: w, height: h,
+                cursor: "pointer",
+                display: "flex",
+                backgroundColor: "transparent",
+                "justify-content": "center",
+                "align-items": "center",
+                color: "#ffffff"
+            }, id: this.props.id, color: "#0xff0000", onClick: this.props.onClick, onMouseOver: () => { this.refs.bg.style.backgroundColor = TextButton.OVER_COLOR; }, onMouseOut: () => { this.refs.bg.style.backgroundColor = 'transparent'; } }, this.props.label));
+    }
+}
+TextButton.defaultWidth = 200;
+TextButton.defaultHeight = 50;
+TextButton.OVER_COLOR = '#292929';
+exports.default = TextButton;
 
 
 /***/ }),
