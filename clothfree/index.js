@@ -91137,6 +91137,7 @@ class InitAlreadyCommand extends base_1.BaseCommand {
         左边的纹理编辑面板可以编辑每个部件的纹理，
         右边的纹理选择面板可以添加各种不同的图案。
         中间的预览面板可以实时预览结果.\n三维模型文件较大，首次加载可能较慢，请耐心等待。`);
+        Logger_1.Logger.trace(`现在可以用鼠标操控三维模型了，左键旋转，中键或者滚轮缩放，右键移动，试试看吧。`);
     }
 }
 exports.default = InitAlreadyCommand;
@@ -93895,6 +93896,237 @@ exports.PixiTextureStage = PixiTextureStage;
 
 /***/ }),
 
+/***/ "./view/three/EditorControls.ts":
+/*!**************************************!*\
+  !*** ./view/three/EditorControls.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const THREE = __webpack_require__(/*! three */ "../node_modules/three/build/three.module.js");
+class EditorControls extends THREE.EventDispatcher {
+    constructor(object, domElement) {
+        super();
+        this.enabled = true;
+        this.center = new THREE.Vector3();
+        this.panSpeed = 0.001;
+        this.zoomSpeed = 0.001;
+        this.rotationSpeed = 0.005;
+        this.domElement = (domElement !== undefined) ? domElement : document;
+        this.object = object;
+        // API
+        this.enabled = true;
+        this.center = new THREE.Vector3();
+        this.panSpeed = 0.001;
+        this.zoomSpeed = 0.001;
+        this.rotationSpeed = 0.005;
+        // internals
+        EditorControls.scope = this;
+        EditorControls.vector = new THREE.Vector3();
+        EditorControls.STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2 };
+        EditorControls.state = EditorControls.STATE.NONE;
+        EditorControls.center = this.center;
+        EditorControls.normalMatrix = new THREE.Matrix3();
+        EditorControls.pointer = new THREE.Vector2();
+        EditorControls.pointerOld = new THREE.Vector2();
+        EditorControls.spherical = new THREE.Spherical();
+        // events
+        var changeEvent = { type: 'change' };
+        this.contextmenu = this.contextmenu.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
+        this.onMouseWheel = this.onMouseWheel.bind(this);
+        this.touchStart = this.touchStart.bind(this);
+        this.touchMove = this.touchMove.bind(this);
+        this.onMouseMove = this.onMouseMove.bind(this);
+        this.onMouseUp = this.onMouseUp.bind(this);
+        console.log(this.domElement);
+        this.domElement.addEventListener('contextmenu', this.contextmenu, false);
+        this.domElement.addEventListener('mousedown', this.onMouseDown, false);
+        this.domElement.addEventListener('wheel', this.onMouseWheel, false);
+        this.domElement.addEventListener('touchstart', this.touchStart, false);
+        this.domElement.addEventListener('touchmove', this.touchMove, false);
+    }
+    focus(target) {
+        var box = new THREE.Box3().setFromObject(target);
+        var distance;
+        if (box.isEmpty() === false) {
+            EditorControls.center.copy(box.getCenter(null));
+            distance = box.getBoundingSphere(null).radius;
+        }
+        else {
+            // Focusing on an Group, AmbientLight, etc
+            EditorControls.center.setFromMatrixPosition(target.matrixWorld);
+            distance = 0.1;
+        }
+        var delta = new THREE.Vector3(0, 0, 1);
+        delta.applyQuaternion(this.object.quaternion);
+        delta.multiplyScalar(distance * 4);
+        this.object.position.copy(EditorControls.center).add(delta);
+        EditorControls.scope.dispatchEvent(EditorControls.changeEvent);
+    }
+    pan(delta) {
+        var distance = this.object.position.distanceTo(EditorControls.center);
+        delta.multiplyScalar(distance * EditorControls.scope.panSpeed);
+        delta.applyMatrix3(EditorControls.normalMatrix.getNormalMatrix(this.object.matrix));
+        this.object.position.add(delta);
+        EditorControls.center.add(delta);
+        EditorControls.scope.dispatchEvent(EditorControls.changeEvent);
+    }
+    zoom(delta) {
+        var distance = this.object.position.distanceTo(EditorControls.center);
+        delta.multiplyScalar(distance * EditorControls.scope.zoomSpeed);
+        if (delta.length() > distance)
+            return;
+        delta.applyMatrix3(EditorControls.normalMatrix.getNormalMatrix(this.object.matrix));
+        this.object.position.add(delta);
+        EditorControls.scope.dispatchEvent(EditorControls.changeEvent);
+    }
+    rotate(delta) {
+        EditorControls.vector.copy(this.object.position).sub(EditorControls.center);
+        EditorControls.spherical.setFromVector3(EditorControls.vector);
+        EditorControls.spherical.theta += delta.x;
+        EditorControls.spherical.phi += delta.y;
+        EditorControls.spherical.makeSafe();
+        EditorControls.vector.setFromSpherical(EditorControls.spherical);
+        this.object.position.copy(EditorControls.center).add(EditorControls.vector);
+        this.object.lookAt(EditorControls.center);
+        EditorControls.scope.dispatchEvent(EditorControls.changeEvent);
+    }
+    ;
+    // mouse
+    onMouseDown(event) {
+        if (EditorControls.scope.enabled === false)
+            return;
+        if (event.button === 0) {
+            EditorControls.state = EditorControls.STATE.ROTATE;
+        }
+        else if (event.button === 1) {
+            EditorControls.state = EditorControls.STATE.ZOOM;
+        }
+        else if (event.button === 2) {
+            EditorControls.state = EditorControls.STATE.PAN;
+        }
+        EditorControls.pointerOld.set(event.clientX, event.clientY);
+        this.domElement.addEventListener('mousemove', this.onMouseMove, false);
+        this.domElement.addEventListener('mouseup', this.onMouseUp, false);
+        this.domElement.addEventListener('mouseout', this.onMouseUp, false);
+        this.domElement.addEventListener('dblclick', this.onMouseUp, false);
+    }
+    onMouseMove(event) {
+        if (EditorControls.scope.enabled === false)
+            return;
+        EditorControls.pointer.set(event.clientX, event.clientY);
+        var movementX = EditorControls.pointer.x - EditorControls.pointerOld.x;
+        var movementY = EditorControls.pointer.y - EditorControls.pointerOld.y;
+        if (EditorControls.state === EditorControls.STATE.ROTATE) {
+            EditorControls.scope.rotate(new THREE.Vector3(-movementX * EditorControls.scope.rotationSpeed, -movementY * EditorControls.scope.rotationSpeed, 0));
+        }
+        else if (EditorControls.state === EditorControls.STATE.ZOOM) {
+            EditorControls.scope.zoom(new THREE.Vector3(0, 0, movementY));
+        }
+        else if (EditorControls.state === EditorControls.STATE.PAN) {
+            EditorControls.scope.pan(new THREE.Vector3(-movementX, movementY, 0));
+        }
+        EditorControls.pointerOld.set(event.clientX, event.clientY);
+    }
+    onMouseUp(event) {
+        this.domElement.removeEventListener('mousemove', this.onMouseMove, false);
+        this.domElement.removeEventListener('mouseup', this.onMouseUp, false);
+        this.domElement.removeEventListener('mouseout', this.onMouseUp, false);
+        this.domElement.removeEventListener('dblclick', this.onMouseUp, false);
+        EditorControls.state = EditorControls.STATE.NONE;
+    }
+    onMouseWheel(event) {
+        event.preventDefault();
+        // if ( scope.enabled === false ) return;
+        EditorControls.scope.zoom(new THREE.Vector3(0, 0, event.deltaY));
+    }
+    contextmenu(event) {
+        event.preventDefault();
+    }
+    dispose() {
+        this.domElement.removeEventListener('contextmenu', this.contextmenu, false);
+        this.domElement.removeEventListener('mousedown', this.onMouseDown, false);
+        this.domElement.removeEventListener('wheel', this.onMouseWheel, false);
+        this.domElement.removeEventListener('mousemove', this.onMouseMove, false);
+        this.domElement.removeEventListener('mouseup', this.onMouseUp, false);
+        this.domElement.removeEventListener('mouseout', this.onMouseUp, false);
+        this.domElement.removeEventListener('dblclick', this.onMouseUp, false);
+        this.domElement.removeEventListener('touchstart', this.touchStart, false);
+        this.domElement.removeEventListener('touchmove', this.touchMove, false);
+    }
+    touchStart(event) {
+        if (EditorControls.scope.enabled === false)
+            return;
+        switch (event.touches.length) {
+            case 1:
+                EditorControls.touches[0].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                EditorControls.touches[1].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                break;
+            case 2:
+                EditorControls.touches[0].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                EditorControls.touches[1].set(event.touches[1].pageX, event.touches[1].pageY, 0);
+                EditorControls.prevDistance = EditorControls.touches[0].distanceTo(EditorControls.touches[1]);
+                break;
+        }
+        EditorControls.prevTouches[0].copy(EditorControls.touches[0]);
+        EditorControls.prevTouches[1].copy(EditorControls.touches[1]);
+    }
+    touchMove(event) {
+        if (EditorControls.scope.enabled === false)
+            return;
+        event.preventDefault();
+        event.stopPropagation();
+        function getClosest(touch, touches) {
+            var closest = touches[0];
+            for (var i in touches) {
+                if (closest.distanceTo(touch) > touches[i].distanceTo(touch))
+                    closest = touches[i];
+            }
+            return closest;
+        }
+        switch (event.touches.length) {
+            case 1:
+                EditorControls.touches[0].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                EditorControls.touches[1].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                EditorControls.scope.rotate(EditorControls.touches[0].sub(getClosest(EditorControls.touches[0], EditorControls.prevTouches)).multiplyScalar(-EditorControls.scope.rotationSpeed));
+                break;
+            case 2:
+                EditorControls.touches[0].set(event.touches[0].pageX, event.touches[0].pageY, 0);
+                EditorControls.touches[1].set(event.touches[1].pageX, event.touches[1].pageY, 0);
+                var distance = EditorControls.touches[0].distanceTo(EditorControls.touches[1]);
+                EditorControls.scope.zoom(new THREE.Vector3(0, 0, EditorControls.prevDistance - distance));
+                EditorControls.prevDistance = distance;
+                var offset0 = EditorControls.touches[0].clone().sub(getClosest(EditorControls.touches[0], EditorControls.prevTouches));
+                var offset1 = EditorControls.touches[1].clone().sub(getClosest(EditorControls.touches[1], EditorControls.prevTouches));
+                offset0.x = -offset0.x;
+                offset1.x = -offset1.x;
+                EditorControls.scope.pan(offset0.add(offset1).multiplyScalar(0.5));
+                break;
+        }
+        EditorControls.prevTouches[0].copy(EditorControls.touches[0]);
+        EditorControls.prevTouches[1].copy(EditorControls.touches[1]);
+    }
+}
+EditorControls.vector = new THREE.Vector3();
+EditorControls.STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2 };
+EditorControls.normalMatrix = new THREE.Matrix3();
+EditorControls.pointer = new THREE.Vector2();
+EditorControls.pointerOld = new THREE.Vector2();
+EditorControls.spherical = new THREE.Spherical();
+EditorControls.changeEvent = { type: 'change' };
+// touch
+EditorControls.touches = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
+EditorControls.prevTouches = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
+EditorControls.prevDistance = null;
+exports.EditorControls = EditorControls;
+
+
+/***/ }),
+
 /***/ "./view/three/FBXLoader.ts":
 /*!*********************************!*\
   !*** ./view/three/FBXLoader.ts ***!
@@ -96247,6 +96479,7 @@ const THREE = __webpack_require__(/*! three */ "../node_modules/three/build/thre
 const mvc_1 = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
 const c = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 const fbx = __webpack_require__(/*! ./FBXLoader */ "./view/three/FBXLoader.ts");
+const EditorControls_1 = __webpack_require__(/*! ./EditorControls */ "./view/three/EditorControls.ts");
 class ThreeStage extends mvc_1.Controller {
     constructor() {
         super();
@@ -96307,8 +96540,8 @@ class ThreeStage extends mvc_1.Controller {
             this.scene.add(a);
             this.mesh = a;
             this.mesh.scale.setScalar(5);
-            this.mesh.position.setY(-6);
-            //this.editControl = new EditorControls(this.mesh, this.renderer.domElement);
+            this.mesh.position.setY(-7);
+            this.editControl = new EditorControls_1.EditorControls(this.camera, this.renderer.domElement);
         }, (p) => {
             console.log("progress", p);
         }, (e) => {
@@ -96348,7 +96581,7 @@ class ThreeStage extends mvc_1.Controller {
             requestAnimationFrame(animate);
             //this.mesh.rotation.x += 0.01;
             //this.mesh.rotation.y += 0.01;
-            this.mesh.rotation.z += 0.01;
+            //this.mesh.rotation.z += 0.01;
             // this.mesh2.rotation.x -= 0.01;
             // this.mesh2.rotation.y -= 0.01;
             this.camera.aspect = this.ratio;
