@@ -1,0 +1,89 @@
+.SliderPoint{background-color:#3b3b3b}
+.SliderPoint:hover{background-color:#c3c3c3}
+.IntInput{
+    border:0px;
+    outline:none;
+    color:#ffffff;
+    background-color:#3b3b3b
+}
+.IntInput:focus {
+    border:1px;
+    filter: none;
+    border-color :#ff0000;
+    background-color:#2a2a2a
+}
+.ant-collapse-borderless {
+    background-color: #3b3b3b;
+    border: 0;
+}
+.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content {
+    background-color: #3b3b3b;
+    border-top: 0;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    line-height: 22px;
+    padding: 12px 0 12px 40px;
+    color:#d6d6d6;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+.collapse::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 40px;
+    margin:"2px";
+}
+.collapse::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 6px;
+    background: #5f5f5f;
+    margin:2px;
+}
+.collapse::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    border-radius: 6px;
+    background: #3b3b3b;
+    margin:2px;
+}
+.ant-modal-close-x:before {
+    content: "\E633";
+    display: none;
+}
+div.ant-modal-title{
+    color: #ffffff;
+    background-color: #3b3b3b
+}
+div.ant-modal-header{
+    color: #ffffff;
+    background-color: #3b3b3b;
+    border-bottom: 1px solid #020202;
+}
+div.ant-modal-body{
+    color: #ffffff;
+    background-color: #3b3b3b
+}
+.plus {
+    box-sizing : border-box;
+    display    : inline-block;
+    position   : relative;
+    font-size  : 20px;
+}
+
+.plus:before, .plus:after {
+    content        : '';
+    pointer-events : none;
+    position       : absolute;
+    left           : 50%;
+    top            : 50%;
+    transform      : translate(-50%, -50%);
+    box-shadow     : inset 0 0 0 1em;
+}
+
+.plus:before {
+    width  : 1em;
+    height : 2px;
+}
+
+.plus:after {
+    height : 1em;
+    width  : 2px;
+}
