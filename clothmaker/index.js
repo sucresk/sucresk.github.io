@@ -44953,17 +44953,18 @@ var EditShapeNoti;
 (function (EditShapeNoti) {
     EditShapeNoti[EditShapeNoti["ADD_POINT"] = 11000] = "ADD_POINT";
     EditShapeNoti[EditShapeNoti["REMOVE_POINT"] = 11001] = "REMOVE_POINT";
-    EditShapeNoti[EditShapeNoti["MODIFY_POINT"] = 11002] = "MODIFY_POINT";
-    EditShapeNoti[EditShapeNoti["CLOSE_LINE"] = 11003] = "CLOSE_LINE";
-    EditShapeNoti[EditShapeNoti["OVER_POINT"] = 11004] = "OVER_POINT";
-    EditShapeNoti[EditShapeNoti["SELECT_POINT"] = 11005] = "SELECT_POINT";
-    EditShapeNoti[EditShapeNoti["OVER_LINE"] = 11006] = "OVER_LINE";
-    EditShapeNoti[EditShapeNoti["SELECT_LINE"] = 11007] = "SELECT_LINE";
-    EditShapeNoti[EditShapeNoti["OVER_CUT"] = 11008] = "OVER_CUT";
-    EditShapeNoti[EditShapeNoti["SELECT_CUT"] = 11009] = "SELECT_CUT";
-    EditShapeNoti[EditShapeNoti["OVER_HANDLE"] = 11010] = "OVER_HANDLE";
-    EditShapeNoti[EditShapeNoti["SELECT_HANDLE"] = 11011] = "SELECT_HANDLE";
-    EditShapeNoti[EditShapeNoti["test"] = 11012] = "test";
+    EditShapeNoti[EditShapeNoti["INSERT_POINT"] = 11002] = "INSERT_POINT";
+    EditShapeNoti[EditShapeNoti["MODIFY_POINT"] = 11003] = "MODIFY_POINT";
+    EditShapeNoti[EditShapeNoti["CLOSE_LINE"] = 11004] = "CLOSE_LINE";
+    EditShapeNoti[EditShapeNoti["OVER_POINT"] = 11005] = "OVER_POINT";
+    EditShapeNoti[EditShapeNoti["SELECT_POINT"] = 11006] = "SELECT_POINT";
+    EditShapeNoti[EditShapeNoti["OVER_LINE"] = 11007] = "OVER_LINE";
+    EditShapeNoti[EditShapeNoti["SELECT_LINE"] = 11008] = "SELECT_LINE";
+    EditShapeNoti[EditShapeNoti["OVER_CUT"] = 11009] = "OVER_CUT";
+    EditShapeNoti[EditShapeNoti["SELECT_CUT"] = 11010] = "SELECT_CUT";
+    EditShapeNoti[EditShapeNoti["OVER_HANDLE"] = 11011] = "OVER_HANDLE";
+    EditShapeNoti[EditShapeNoti["SELECT_HANDLE"] = 11012] = "SELECT_HANDLE";
+    EditShapeNoti[EditShapeNoti["PRE_INSERT_POINT"] = 11013] = "PRE_INSERT_POINT";
 })(EditShapeNoti = exports.EditShapeNoti || (exports.EditShapeNoti = {}));
 exports.defaultLayout = { 'type': 'BoxLayoutContainer', 'isVertical': false, 'bounds': { 'x': 0, 'y': 0, 'width': 1276, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutContainer', 'isVertical': false, 'bounds': { 'x': 0, 'y': 0, 'width': 1111, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 0, 'y': 0, 'width': 181, 'height': 641 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_LEFT'] } }, 'secondElement': { 'type': 'BoxLayoutContainer', 'isVertical': true, 'bounds': { 'x': 182, 'y': 0, 'width': 929, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 182, 'y': 0, 'width': 929, 'height': 530 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_MAIN'] } }, 'secondElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 182, 'y': 531, 'width': 929, 'height': 110 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_LOGGER'] } } } }, 'secondElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 1112, 'y': 0, 'width': 164, 'height': 641 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_RIGHT'] } } };
 // {"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":1025,"height":654},"firstElement":{"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":841,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":0,"y":0,"width":228,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_LEFT"]}},"secondElement":{"type":"BoxLayoutContainer","isVertical":true,"bounds":{"x":229,"y":0,"width":612,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":229,"y":0,"width":612,"height":389},"render":{"selectedIndex":0,"panels":["PANEL_MAIN"]}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":229,"y":390,"width":612,"height":264},"render":{"selectedIndex":0,"panels":["PANEL_LOGGER","PANEL_DOPE_SHEET"]}}}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":842,"y":0,"width":183,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_RIGHT"]}}}
@@ -45006,6 +45007,9 @@ exports.SELECTED_LINE_COLOR = 0x00ff00;
 exports.SELECTED_POINT_COLOR = 0x00ff00;
 exports.END_LINE_COLOR = 0x00ff00;
 exports.END_POINT_COLOR = 0x00ff00;
+exports.INSERT_POINT_COLOR = 0x00ffFF;
+exports.DELETE_POINT_COLOR = 0xFF0000;
+exports.HANDLE_COLOR = 0x989800;
 exports.TIP_INIIT = `目前可以体验的功能有 工具栏中的：绘制线，修改点，转换点，其他的还未实现
 使用滚轮可以缩放舞台，使用右键拖动可以移动舞台
 还未测试，如果发现bug望见谅并告知`;
@@ -45025,7 +45029,9 @@ exports.TIP_CHANGE_BEZIER = `转换点工具：每个点有两种状态，
 在一个点上点击可以在这两种状态间相互切换。
 如果一个点的控制手柄很短那么就不容易修改它的控制手柄，这时可以先把点变成方的状态
 然后在点上按住鼠标不放拖动就可以修改该点的控制手柄了。`;
-exports.TIP_INSERT_BEZIER = `添加删除点工具，可以在现有的线上添加或者删除点，还未实现`;
+exports.TIP_INSERT_BEZIER = `添加删除点工具，可以在现有的线上添加或者删除点，
+鼠标移动到线上，出现绿色点时，点击鼠标可以添加一个点，
+鼠标移动到点上，点变成红色时，点击鼠标可以删除一个点`;
 
 
 /***/ }),
@@ -46557,6 +46563,17 @@ class HistoryController extends mvc.Controller {
     static get instance() {
         return HistoryController._instance;
     }
+    static get silence() {
+        return HistoryController._silence > 0;
+    }
+    static set silence(v) {
+        if (v) {
+            HistoryController._silence++;
+        }
+        else {
+            HistoryController._silence--;
+        }
+    }
     static toString() {
         return '[class render.controller.HistoryController]';
     }
@@ -46659,7 +46676,7 @@ class HistoryController extends mvc.Controller {
         let undo = this._history.back();
     }
 }
-HistoryController.silence = false;
+HistoryController._silence = 0;
 exports.default = HistoryController;
 
 
@@ -47271,10 +47288,12 @@ class ChangePointController extends SubSelectController_1.SubSelectController {
         }
         // }
         // 选择点
-        if (this.model.selectedPoint != this.model.overPoint) {
-            this.model.selectedPoint = this.model.overPoint;
+        if (this.model.overHandle == null) {
+            if (this.model.selectedPoint != this.model.overPoint) {
+                this.model.selectedPoint = this.model.overPoint;
+            }
         }
-        if (this.model.selectedPoint) {
+        if (this.model.selectedPoint && this.model.overPoint == this.model.selectedPoint) {
             this.movedPoint = this.model.getSelectedBezierPoint();
             if (this.movedPoint.type == ClothModelTypes_1.BezierPointType.CONNECT) {
                 this.movedPoint.modifyType(ClothModelTypes_1.BezierPointType.NO_CONNECT);
@@ -47338,6 +47357,128 @@ exports.DrawBezierBaseController = DrawBezierBaseController;
 
 /***/ }),
 
+/***/ "./controller/drawBezier/InsertPointController.ts":
+/*!********************************************************!*\
+  !*** ./controller/drawBezier/InsertPointController.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
+const BezierPoint_1 = __webpack_require__(/*! model/clothModels/BezierPoint */ "./model/clothModels/BezierPoint.ts");
+const BezierUtils_1 = __webpack_require__(/*! utils/BezierUtils */ "./utils/BezierUtils.ts");
+const SubSelectController_1 = __webpack_require__(/*! ./SubSelectController */ "./controller/drawBezier/SubSelectController.ts");
+class InsertPointController extends SubSelectController_1.SubSelectController {
+    static toString() {
+        return 'InsertPointController';
+    }
+    onMouseDown(noti) {
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_UP, this.onMouseUp);
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onMouseMove);
+        this.movedPoint = null;
+        this.movedHandle = null;
+        // 如果没有选择线就选择一条线
+        if (this.model.selectedLine != this.model.overLine && this.model.overLine != null) {
+            this.model.selectedLine = this.model.overLine;
+        }
+        // 如果选择了线，就在线上加点
+        // 选择点
+        if (this.model.overHandle == null) {
+            if (this.model.selectedPoint != this.model.overPoint) {
+                this.model.selectedPoint = this.model.overPoint;
+            }
+        }
+        let curLine = this.model.getCurBezierLine();
+        if (curLine) {
+            if (this.model.selectedPoint && this.model.overPoint == this.model.selectedPoint) {
+                // 删除点
+                curLine.removePoint(this.model.selectedPoint);
+            }
+            else if (this.model.insertT) {
+                let pomaxLine = curLine.pomaxBezier;
+                let i0 = this.model.insertT[0];
+                let t0 = this.model.insertT[1];
+                let pomaxB = pomaxLine[i0];
+                let split0 = pomaxB.split(t0);
+                let p = split0.left.points[3];
+                let handle0 = split0.left.points[2];
+                let handle1 = split0.right.points[1];
+                let leftHanlde = split0.left.points[1];
+                let rightHanle = split0.right.points[2];
+                let bp = new BezierPoint_1.default(p.x, p.y, handle0.x, handle0.y, handle1.x, handle1.y);
+                curLine.insertPoint(i0 + 1, bp, leftHanlde, rightHanle);
+            }
+            else if (this.model.overHandle) {
+                this.movedHandle = this.model.getOverHandle();
+                this.movedHandlePoint = this.model.getOverHandlePoint();
+            }
+        }
+    }
+    onMouseMove(noti) {
+        let data = noti.data;
+        let canvasPos = data.canvasPos;
+        if (this.movedPoint) {
+            //
+        }
+        else if (this.movedHandle && this.movedHandlePoint) {
+            if (this.movedHandle === this.movedHandlePoint.handle0) {
+                this.movedHandlePoint.modifyHandle0(canvasPos.x, canvasPos.y);
+            }
+            else if (this.movedHandle === this.movedHandlePoint.handle1) {
+                this.movedHandlePoint.modifyHandle1(canvasPos.x, canvasPos.y);
+            }
+        }
+    }
+    onCheckOver(noti) {
+        if (this.model == null) {
+            return;
+        }
+        let data = noti.data;
+        if (this.model.selectedLine) {
+            this.checkOverPoint(data.canvasPos);
+        }
+        if (this.model.selectedCut) {
+            this.checkOverLine(data.canvasPos);
+        }
+    }
+    checkOverLine(canvasPos) {
+        //
+        this.model.overLine = null;
+        this.model.insertT = null;
+        let scale = this.view ? this.view.stageScale : 1;
+        let overDis = (this.overSize / scale) * (this.overSize / scale);
+        if (this.model.selectedCut) {
+            let curPiece = this.model.getCurCutPiece();
+            for (let i = 0, len = curPiece.lines.length; i < len; i++) {
+                let line = curPiece.lines[i];
+                let pomax = line.pomaxBezier;
+                let indexAndProj = BezierUtils_1.projectPomax2Point(pomax, canvasPos);
+                let proj = indexAndProj[1];
+                let index = indexAndProj[0];
+                // console.log(proj);
+                if (proj) {
+                    let dis2 = BezierUtils_1.distance2(proj, canvasPos);
+                    if (dis2 < overDis) {
+                        if (line.hashCode == this.model.selectedLine) {
+                            this.model.insertT = [index, proj.t];
+                            this.model.insertP = proj;
+                        }
+                        this.model.overLine = line.hashCode;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+exports.InsertPointController = InsertPointController;
+
+
+/***/ }),
+
 /***/ "./controller/drawBezier/SubSelectController.ts":
 /*!******************************************************!*\
   !*** ./controller/drawBezier/SubSelectController.ts ***!
@@ -47377,15 +47518,15 @@ class SubSelectController extends DrawBezierBaseController_1.DrawBezierBaseContr
         this._addNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onMouseMove);
         this.movedPoint = null;
         this.movedHandle = null;
-        // if (this.model.selectedLine == null) {
         if (this.model.selectedLine != this.model.overLine && this.model.overLine != null) {
             this.model.selectedLine = this.model.overLine;
         }
-        // }
-        if (this.model.selectedPoint != this.model.overPoint) {
-            this.model.selectedPoint = this.model.overPoint;
+        if (this.model.overHandle == null) {
+            if (this.model.selectedPoint != this.model.overPoint) {
+                this.model.selectedPoint = this.model.overPoint;
+            }
         }
-        if (this.model.selectedPoint) {
+        if (this.model.selectedPoint && this.model.overPoint == this.model.selectedPoint) {
             this.movedPoint = this.model.getSelectedBezierPoint();
         }
         else if (this.model.overHandle) {
@@ -47597,7 +47738,7 @@ var DrawHandleType;
 (function (DrawHandleType) {
     DrawHandleType[DrawHandleType["ALL"] = 0] = "ALL";
     DrawHandleType[DrawHandleType["LEFT"] = 1] = "LEFT";
-    DrawHandleType[DrawHandleType["RIGH"] = 2] = "RIGH";
+    DrawHandleType[DrawHandleType["RIGHT"] = 2] = "RIGHT";
 })(DrawHandleType = exports.DrawHandleType || (exports.DrawHandleType = {}));
 var BezierPointType;
 (function (BezierPointType) {
@@ -47633,7 +47774,6 @@ const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 const AnimationAssetData_1 = __webpack_require__(/*! ./assets/AnimationAssetData */ "./model/assets/AnimationAssetData.ts");
 const MovieClipData_1 = __webpack_require__(/*! ./assets/MovieClipData */ "./model/assets/MovieClipData.ts");
 const pixi_js_1 = __webpack_require__(/*! pixi.js */ "../node_modules/pixi.js/lib/index.js");
-const ClothMakerConst_1 = __webpack_require__(/*! ClothMakerConst */ "./ClothMakerConst.ts");
 const ClothModel_1 = __webpack_require__(/*! ./clothModels/ClothModel */ "./model/clothModels/ClothModel.ts");
 const CutPieceModel_1 = __webpack_require__(/*! ./clothModels/CutPieceModel */ "./model/clothModels/CutPieceModel.ts");
 const StageTransformModel_1 = __webpack_require__(/*! ./StageTransformModel */ "./model/StageTransformModel.ts");
@@ -47652,7 +47792,6 @@ class Document extends mvc.Model {
         this.stageTransform.scale.set(1, 1);
         this.stageTransform.position.set(0, 0);
         this.stageMouseTransform = new StageTransformModel_1.default();
-        this.toolType = ClothMakerConst_1.ToolType.SELECT;
         this.initData();
         HistoryController_1.default.silence = false;
     }
@@ -47710,10 +47849,6 @@ __decorate([
     dec.addHistoryAndNotification(true, AppConst_1.DocumentNoti.UPDATE_NAME),
     dec.getterSetter(true, true)
 ], Document.prototype, "name", void 0);
-__decorate([
-    dec.addNotification(ClothMakerConst_1.ToolNoti.TOOL_CHANGE),
-    dec.getterSetter(true, true)
-], Document.prototype, "toolType", void 0);
 exports.default = Document;
 
 
@@ -48175,6 +48310,26 @@ class BezierLine extends mvc.Model {
         this.shape.push(p);
         this._sendNotification(AppConst_1.EditShapeNoti.ADD_POINT);
     }
+    insertPoint(index, p, leftHandle, rightHandle) {
+        if (this.shape.length > index) {
+            let leftIndex = index - 1;
+            let rightIndex = index;
+            if (leftIndex < 0) {
+                leftIndex = this.shape.length - 1;
+            }
+            if (rightIndex >= this.shape.length) {
+                rightIndex = 0;
+            }
+            let leftPoint = this.shape[leftIndex];
+            let rightPoint = this.shape[rightIndex];
+            leftPoint.handle1.x = leftHandle.x;
+            leftPoint.handle1.y = leftHandle.y;
+            rightPoint.handle0.x = rightHandle.x;
+            rightPoint.handle0.y = rightHandle.y;
+            this.shape.splice(index, 0, p);
+            this._sendNotification(AppConst_1.EditShapeNoti.INSERT_POINT);
+        }
+    }
     get pomaxBezier() {
         let pomax = [];
         if (this.shape && this.shape.length > 1) {
@@ -48194,6 +48349,30 @@ class BezierLine extends mvc.Model {
             return first === end;
         }
         return false;
+    }
+    removePoint(pointId) {
+        for (let i = 0, len = this.shape.length; i < len; i++) {
+            let p = this.shape[i];
+            if (p.hashCode == pointId) {
+                if (this.lineIsCircle()) {
+                    if (this.shape.length > 4) {
+                        if (i == 0) {
+                            this.shape[len - 1] = this.shape[1];
+                            this.shape.splice(i, 1);
+                        }
+                        else {
+                            this.shape.splice(i, 1);
+                        }
+                        this._sendNotification(AppConst_1.EditShapeNoti.REMOVE_POINT);
+                    }
+                }
+                else {
+                    this.shape.splice(i, 1);
+                    this._sendNotification(AppConst_1.EditShapeNoti.REMOVE_POINT);
+                }
+                break;
+            }
+        }
     }
     createPomaxBezier(p0, p1, p2, p3) {
         let b = new Bezier(p0, p1, p2, p3);
@@ -48338,9 +48517,11 @@ const mvc = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
 const dec = __webpack_require__(/*! controller/decorator */ "./controller/decorator.ts");
 const BezierLine_1 = __webpack_require__(/*! ./BezierLine */ "./model/clothModels/BezierLine.ts");
 const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
+const ClothMakerConst_1 = __webpack_require__(/*! ClothMakerConst */ "./ClothMakerConst.ts");
 class ClothModel extends mvc.Model {
     constructor() {
         super(...arguments);
+        this.toolType = ClothMakerConst_1.ToolType.SELECT;
         this.cutPieces = []; // 包含贝塞尔曲线
         this.selectedCut = null;
         this.selectedLine = null;
@@ -48350,6 +48531,7 @@ class ClothModel extends mvc.Model {
         this.overLine = null;
         this.overPoint = null;
         this.overHandle = null;
+        this.insertT = null;
     }
     static toString() {
         return 'ClothModel';
@@ -48459,6 +48641,10 @@ class ClothModel extends mvc.Model {
     }
 }
 __decorate([
+    dec.addNotification(ClothMakerConst_1.ToolNoti.TOOL_CHANGE),
+    dec.getterSetter(true, true)
+], ClothModel.prototype, "toolType", void 0);
+__decorate([
     dec.addNotification(AppConst_1.EditShapeNoti.SELECT_CUT),
     dec.getterSetter(true, true)
 ], ClothModel.prototype, "selectedCut", void 0);
@@ -48490,6 +48676,10 @@ __decorate([
     dec.addNotification(AppConst_1.EditShapeNoti.OVER_HANDLE),
     dec.getterSetter(true, true)
 ], ClothModel.prototype, "overHandle", void 0);
+__decorate([
+    dec.addNotification(AppConst_1.EditShapeNoti.PRE_INSERT_POINT),
+    dec.getterSetter(true, true)
+], ClothModel.prototype, "insertT", void 0);
 exports.default = ClothModel;
 
 
@@ -48720,6 +48910,24 @@ exports.default = TimelineData;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+function projectPomax2Point(b, p) {
+    let min = Number.MAX_SAFE_INTEGER;
+    let proj;
+    let index = 0;
+    if (b && p) {
+        for (let i = 0, len = b.length; i < len; i++) {
+            let pomax = b[i];
+            let d = project2Point(pomax, p);
+            if (d[0] < min) {
+                min = d[0];
+                proj = d[1];
+                index = i;
+            }
+        }
+    }
+    return [index, proj];
+}
+exports.projectPomax2Point = projectPomax2Point;
 function distancePomax2Point(b, p) {
     let min = Number.MAX_SAFE_INTEGER;
     if (b && p) {
@@ -48734,6 +48942,12 @@ function distancePomax2Point(b, p) {
     return min;
 }
 exports.distancePomax2Point = distancePomax2Point;
+function project2Point(b, p) {
+    let proj = b.project(p);
+    let min = distance2(proj, p);
+    return [min, proj];
+}
+exports.project2Point = project2Point;
 function distance2Point(b, p) {
     // let lut = b.getLUT();
     // let min = Number.MAX_SAFE_INTEGER;
@@ -48754,6 +48968,7 @@ exports.distance2Point = distance2Point;
 function distance2(p0, p1) {
     return (p0.x - p1.x) * (p0.x - p1.x) + (p0.y - p1.y) * (p0.y - p1.y);
 }
+exports.distance2 = distance2;
 
 
 /***/ }),
@@ -49772,7 +49987,7 @@ class MainView extends base_1.BaseView {
         return this._stageScale;
     }
     get toolType() {
-        return this.document.toolType;
+        return this.document.clothModel.toolType;
     }
     static toString() {
         return '[class render.view.MainView]';
@@ -49795,7 +50010,9 @@ class MainView extends base_1.BaseView {
         this._addNotification(AppConst_1.StageTransformNoti.CANVAS_SCALE, this.onScaleCanvas);
         this._addNotification(AppConst_1.StageTransformNoti.STAGE_RESIZE, this.onResizeStage);
         this._addNotification(c.EditShapeNoti.ADD_POINT, this.onUpdateDisplay);
+        this._addNotification(c.EditShapeNoti.REMOVE_POINT, this.onUpdateDisplay);
         this._addNotification(c.EditShapeNoti.MODIFY_POINT, this.onUpdateDisplay);
+        this._addNotification(c.EditShapeNoti.PRE_INSERT_POINT, this.onUpdateDisplay);
         this._addNotification(c.EditShapeNoti.OVER_POINT, this.onUpdateDisplay);
         this._addNotification(c.EditShapeNoti.SELECT_POINT, this.onUpdateDisplay);
         this._addNotification(c.EditShapeNoti.OVER_LINE, this.onUpdateDisplay);
@@ -49852,7 +50069,10 @@ class MainView extends base_1.BaseView {
     }
     changeTool(toolType) {
         let document = this.application.getCurDocument();
-        document.toolType = toolType;
+        let clothModel = document.clothModel;
+        if (clothModel) {
+            clothModel.toolType = toolType;
+        }
     }
     onToolChanged() {
         this.component.refresh();
@@ -49915,7 +50135,7 @@ class MainView extends base_1.BaseView {
         }
     }
     onCloseLine(noti) {
-        this.model.toolType = ClothMakerConst_1.ToolType.SUB_SELECT;
+        this.model.clothModel.toolType = ClothMakerConst_1.ToolType.SUB_SELECT;
     }
 }
 MainView.onlyOne = 0;
@@ -50542,9 +50762,9 @@ class BezierCreateLayer extends PIXI.Container {
         if (this._model == null) {
             return;
         }
+        this.drawCurHandles();
         this.drawBezier();
         this.drawPoint();
-        this.drawCurHandles();
         this.drawReadyToClose();
     }
     drawBezier() {
@@ -50572,7 +50792,7 @@ class BezierCreateLayer extends PIXI.Container {
             let lines = this._model.shape;
             for (let i = 0, len = lines.length; i < len; i++) {
                 let point0 = lines[i];
-                // this._shape.beginFill(NORMAL_POINT_COLOR);
+                this._shape.beginFill(this._curPointColor);
                 switch (point0.type) {
                     case ClothModelTypes_1.BezierPointType.CONNECT:
                         this._shape.drawCircle(point0.point.x * this._scale, point0.point.y * this._scale, ClothMakerConst_1.POINT_SIZE);
@@ -50582,6 +50802,7 @@ class BezierCreateLayer extends PIXI.Container {
                         this._shape.drawRect(point0.point.x * this._scale - halfSize, point0.point.y * this._scale - halfSize, ClothMakerConst_1.POINT_SIZE, ClothMakerConst_1.POINT_SIZE);
                         break;
                 }
+                this._shape.endFill();
             }
         }
     }
@@ -50601,7 +50822,7 @@ class BezierCreateLayer extends PIXI.Container {
                 let endP = this._model.shape[len - 1];
                 if (startP !== endP) {
                     let preEndP = this._model.shape[len - 2];
-                    this.drawBeizerHandle(preEndP, ClothModelTypes_1.DrawHandleType.RIGH);
+                    this.drawBeizerHandle(preEndP, ClothModelTypes_1.DrawHandleType.RIGHT);
                     this.drawBeizerHandle(endP, ClothModelTypes_1.DrawHandleType.ALL);
                 }
             }
@@ -50616,8 +50837,10 @@ class BezierCreateLayer extends PIXI.Container {
                 let lines = this._model.shape;
                 let startP = lines[0];
                 this._shape.lineColor = ClothMakerConst_1.END_LINE_COLOR;
+                this._shape.beginFill(ClothMakerConst_1.END_POINT_COLOR);
                 this._shape.drawCircle(startP.point.x * this._scale, startP.point.y * this._scale, ClothMakerConst_1.POINT_SIZE);
                 this._shape.lineColor = this._curLineColor;
+                this._shape.endFill();
             }
         }
     }
@@ -50626,7 +50849,7 @@ class BezierCreateLayer extends PIXI.Container {
             case ClothModelTypes_1.DrawHandleType.LEFT:
                 this.drawHandle(bPoint.point.x, bPoint.point.y, bPoint.handle0.x, bPoint.handle0.y);
                 break;
-            case ClothModelTypes_1.DrawHandleType.RIGH:
+            case ClothModelTypes_1.DrawHandleType.RIGHT:
                 this.drawHandle(bPoint.point.x, bPoint.point.y, bPoint.handle1.x, bPoint.handle1.y);
                 break;
             case ClothModelTypes_1.DrawHandleType.ALL:
@@ -50636,10 +50859,12 @@ class BezierCreateLayer extends PIXI.Container {
         }
     }
     drawHandle(px, py, hx, hy) {
+        this._shape.lineStyle(1, ClothMakerConst_1.HANDLE_COLOR);
         this._shape.moveTo(px * this._scale, py * this._scale);
         this._shape.lineTo(hx * this._scale, hy * this._scale);
-        this._shape.beginFill(this._curPointColor);
+        this._shape.beginFill(ClothMakerConst_1.HANDLE_COLOR);
         this._shape.drawCircle(hx * this._scale, hy * this._scale, ClothMakerConst_1.HANDLE_SIZE);
+        this._shape.endFill();
     }
 }
 exports.BezierCreateLayer = BezierCreateLayer;
@@ -50698,6 +50923,7 @@ class BezierEditLayer extends PIXI.Container {
         this.refresh();
     }
     refresh() {
+        //  这里只绘制正在编辑的线；
         this.clearData();
         this._shape.clear();
         if (this._model == null) {
@@ -50709,10 +50935,11 @@ class BezierEditLayer extends PIXI.Container {
         }
         if (this._curline) {
             this.drawBezier();
-            this.drawPoint();
             this.drawCurHandles();
+            this.drawPointInBezier();
             this.drawSelect();
             this.drawOver();
+            this.drawInsert();
         }
         this.drawOverLine();
     }
@@ -50723,6 +50950,7 @@ class BezierEditLayer extends PIXI.Container {
     updateData() {
         this._curPiece = this._model.getCurCutPiece();
         this._curline = this._model.getCurBezierLine();
+        this._curLineColor = ClothMakerConst_1.SELECTED_LINE_COLOR;
     }
     drawBezier() {
         this._shape.lineStyle(1, this._curLineColor);
@@ -50743,6 +50971,7 @@ class BezierEditLayer extends PIXI.Container {
                 let point0 = lines[i];
                 if (point0.hashCode == selectP) {
                     this._shape.beginFill(ClothMakerConst_1.SELECTED_POINT_COLOR);
+                    this._shape.lineStyle(1, ClothMakerConst_1.SELECTED_POINT_COLOR);
                     switch (point0.type) {
                         case ClothModelTypes_1.BezierPointType.CONNECT:
                             this._shape.drawCircle(point0.point.x * this._scale, point0.point.y * this._scale, ClothMakerConst_1.POINT_SIZE);
@@ -50779,7 +51008,19 @@ class BezierEditLayer extends PIXI.Container {
             for (let i = 0, len = lines.length; i < len; i++) {
                 let point0 = lines[i];
                 if (point0.hashCode == overP) {
-                    this._shape.beginFill(ClothMakerConst_1.OVER_POINT_COLOR);
+                    let color = ClothMakerConst_1.OVER_POINT_COLOR;
+                    if (this._model.toolType == ClothMakerConst_1.ToolType.INSERT) {
+                        if (this._curline.lineIsCircle()) {
+                            if (this._curline.shape.length > 4) {
+                                color = ClothMakerConst_1.DELETE_POINT_COLOR;
+                            }
+                        }
+                        else {
+                            color = ClothMakerConst_1.DELETE_POINT_COLOR;
+                        }
+                    }
+                    this._shape.lineStyle(1, color);
+                    this._shape.beginFill(color);
                     switch (point0.type) {
                         case ClothModelTypes_1.BezierPointType.CONNECT:
                             this._shape.drawCircle(point0.point.x * this._scale, point0.point.y * this._scale, ClothMakerConst_1.POINT_SIZE);
@@ -50798,12 +51039,13 @@ class BezierEditLayer extends PIXI.Container {
         this._shape.moveTo(startP.x * this._scale, startP.y * this._scale);
         this._shape.bezierCurveTo(handleStartP.x * this._scale, handleStartP.y * this._scale, handleEndP.x * this._scale, handleEndP.y * this._scale, endP.x * this._scale, endP.y * this._scale);
     }
-    drawPoint() {
+    drawPointInBezier() {
         if (this._curline && this._curline.shape && this._curline.shape.length > 0) {
             let lines = this._curline.shape;
             for (let i = 0, len = lines.length; i < len; i++) {
                 let point0 = lines[i];
-                // this._shape.beginFill(NORMAL_POINT_COLOR);
+                this._shape.beginFill(ClothMakerConst_1.NORMAL_POINT_COLOR);
+                this._shape.lineStyle(1, ClothMakerConst_1.NORMAL_POINT_COLOR);
                 switch (point0.type) {
                     case ClothModelTypes_1.BezierPointType.CONNECT:
                         this._shape.drawCircle(point0.point.x * this._scale, point0.point.y * this._scale, ClothMakerConst_1.POINT_SIZE);
@@ -50813,29 +51055,47 @@ class BezierEditLayer extends PIXI.Container {
                         this._shape.drawRect(point0.point.x * this._scale - halfSize, point0.point.y * this._scale - halfSize, ClothMakerConst_1.POINT_SIZE, ClothMakerConst_1.POINT_SIZE);
                         break;
                 }
-                //this._shape.endFill();
+                this._shape.endFill();
             }
         }
     }
     drawCurHandles() {
+        let selectP = this._model.selectedPoint;
         if (this._curline.shape) {
             let len = this._curline.shape.length;
             for (let i = 0; i < len; i++) {
-                this.drawBeizerHandle(this._curline.shape[i], ClothModelTypes_1.DrawHandleType.ALL);
+                let nextP;
+                let prevP;
+                if (i < len - 1) {
+                    nextP = this._curline.shape[i + 1];
+                }
+                else if (this._curline.lineIsCircle()) {
+                    nextP = this._curline.shape[0];
+                }
+                if (i > 0) {
+                    prevP = this._curline.shape[i - 1];
+                }
+                else if (this._curline.lineIsCircle()) {
+                    prevP = this._curline.shape[0];
+                }
+                if (nextP && nextP.hashCode == selectP) {
+                    this.drawBeizerHandle(this._curline.shape[i], ClothModelTypes_1.DrawHandleType.RIGHT);
+                }
+                else if (prevP && prevP.hashCode == selectP) {
+                    this.drawBeizerHandle(this._curline.shape[i], ClothModelTypes_1.DrawHandleType.LEFT);
+                }
+                else if (this._curline.shape[i].hashCode == selectP) {
+                    this.drawBeizerHandle(this._curline.shape[i], ClothModelTypes_1.DrawHandleType.ALL);
+                }
             }
-            // if (len < 2) {
-            //     for (let i: number = 0; i < len; i++) {
-            //         this.drawBeizerHandle(this._curline.shape[i], DrawHandleType.ALL);
-            //     }
-            // } else {
-            //     let startP = this._curline.shape[0];
-            //     let endP = this._curline.shape[len - 1];
-            //     if (startP !== endP) {
-            //         let preEndP = this._curline.shape[len - 2];
-            //         this.drawBeizerHandle(preEndP, DrawHandleType.RIGH);
-            //         this.drawBeizerHandle(endP, DrawHandleType.ALL);
-            //     }
-            // }
+        }
+    }
+    drawInsert() {
+        if (this._model.toolType != ClothMakerConst_1.ToolType.INSERT) {
+            return;
+        }
+        if (this._model.insertP && this._model.insertT && this._model.overPoint == null) {
+            this.drawColorPoint(this._model.insertP.x, this._model.insertP.y, ClothMakerConst_1.INSERT_POINT_COLOR);
         }
     }
     drawBeizerHandle(bPoint, mode = ClothModelTypes_1.DrawHandleType.ALL) {
@@ -50843,7 +51103,7 @@ class BezierEditLayer extends PIXI.Container {
             case ClothModelTypes_1.DrawHandleType.LEFT:
                 this.drawHandle(bPoint.point.x, bPoint.point.y, bPoint.handle0.x, bPoint.handle0.y);
                 break;
-            case ClothModelTypes_1.DrawHandleType.RIGH:
+            case ClothModelTypes_1.DrawHandleType.RIGHT:
                 this.drawHandle(bPoint.point.x, bPoint.point.y, bPoint.handle1.x, bPoint.handle1.y);
                 break;
             case ClothModelTypes_1.DrawHandleType.ALL:
@@ -50853,10 +51113,17 @@ class BezierEditLayer extends PIXI.Container {
         }
     }
     drawHandle(px, py, hx, hy) {
+        this._shape.lineStyle(1, ClothMakerConst_1.HANDLE_COLOR);
         this._shape.moveTo(px * this._scale, py * this._scale);
         this._shape.lineTo(hx * this._scale, hy * this._scale);
-        this._shape.beginFill(this._curPointColor);
+        this._shape.beginFill(ClothMakerConst_1.HANDLE_COLOR);
         this._shape.drawCircle(hx * this._scale, hy * this._scale, ClothMakerConst_1.HANDLE_SIZE);
+        this._shape.endFill();
+    }
+    drawColorPoint(x, y, color) {
+        this._shape.lineStyle(1, color);
+        this._shape.beginFill(color);
+        this._shape.drawCircle(x * this._scale, y * this._scale, ClothMakerConst_1.POINT_SIZE);
         this._shape.endFill();
     }
 }
@@ -50889,6 +51156,7 @@ const SubSelectController_1 = __webpack_require__(/*! controller/drawBezier/SubS
 const ChangePointController_1 = __webpack_require__(/*! controller/drawBezier/ChangePointController */ "./controller/drawBezier/ChangePointController.ts");
 const Logger_1 = __webpack_require__(/*! utils/Logger */ "./utils/Logger.ts");
 const ClothMakerConst_2 = __webpack_require__(/*! ClothMakerConst */ "./ClothMakerConst.ts");
+const InsertPointController_1 = __webpack_require__(/*! controller/drawBezier/InsertPointController */ "./controller/drawBezier/InsertPointController.ts");
 class MainStage extends PIXI.Application {
     constructor(model, options = null) {
         super(options);
@@ -50953,7 +51221,7 @@ class MainStage extends PIXI.Application {
         this._shapeLayer.refresh();
     }
     changeTool() {
-        this.tool = this.model.toolType;
+        this.tool = this.model.clothModel.toolType;
         this._shapeLayer.refresh();
     }
     initStage() {
@@ -50970,7 +51238,7 @@ class MainStage extends PIXI.Application {
         let curPiece;
         this._bezierEditLayer = new BezierEditLayer_1.BezierEditLayer(null);
         this._bezierCreateLayer = new BezierCreateLayer_1.BezierCreateLayer(null);
-        this._shapeLayer = new ShapeLayer_1.ShapeLayer(this.model);
+        this._shapeLayer = new ShapeLayer_1.ShapeLayer(this.model.clothModel);
         this._allStageLayer.push(this._bg);
         this._allStageLayer.push(this._bezierEditLayer);
         this._allStageLayer.push(this._bezierCreateLayer);
@@ -50988,7 +51256,7 @@ class MainStage extends PIXI.Application {
         this.stageMouseController = StageMouseController_1.StageMouseController.getInstance(StageMouseController_1.StageMouseController);
         this.stageMouseController.initialize(this.model.stageMouseTransform, this);
         this.stageMouseController.start();
-        this.tool = this.model.toolType;
+        this.tool = this.model.clothModel.toolType;
     }
     initData() {
         this.setScale(1);
@@ -51034,7 +51302,9 @@ class MainStage extends PIXI.Application {
                     Logger_1.Logger.showTip(ClothMakerConst_2.TIP_CHANGE_BEZIER);
                     break;
                 case ClothMakerConst_1.ToolType.INSERT:
-                    this.drawToolController = null;
+                    this.drawToolController = InsertPointController_1.InsertPointController.getInstance(InsertPointController_1.InsertPointController);
+                    let clothModel2 = this.model.clothModel;
+                    this.drawToolController.initialize(clothModel2, this._bezierEditLayer);
                     Logger_1.Logger.showTip(ClothMakerConst_2.TIP_INSERT_BEZIER);
                     break;
                 default:
@@ -51700,7 +51970,7 @@ class ShapeLayer extends PIXI.Container {
         if (this._model == null) {
             return;
         }
-        let cutPiece = this._model.clothModel.getCurCutPiece();
+        let cutPiece = this._model.getCurCutPiece();
         if (cutPiece) {
             let lines = cutPiece.lines; // todo
             for (let i = 0, len = lines.length; i < len; i++) {
