@@ -1,0 +1,80 @@
+{
+	"groups": [
+		{
+			"keys": "egret_icon_png,description_json,Package1_fui,joystick_fui_atlas0,joystick_fui,player_ske_json,player_tex_json,player_tex_png,dbConfig_json,Package1_fui_atlas0,bg2_jpg,homeSpace_tex_json,homeSpace_tex_png,homeSpace_ske_json",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/fui/Package1.fui",
+			"type": "bin",
+			"name": "Package1_fui"
+		},
+		{
+			"url": "assets/fui/joystick_atlas0.png",
+			"type": "image",
+			"name": "joystick_fui_atlas0"
+		},
+		{
+			"url": "assets/fui/joystick.fui",
+			"type": "bin",
+			"name": "joystick_fui"
+		},
+		{
+			"url": "assets/db/player_ske.json",
+			"type": "json",
+			"name": "player_ske_json"
+		},
+		{
+			"url": "assets/db/player_tex.json",
+			"type": "json",
+			"name": "player_tex_json"
+		},
+		{
+			"url": "assets/db/player_tex.png",
+			"type": "image",
+			"name": "player_tex_png"
+		},
+		{
+			"url": "config/dbConfig.json",
+			"type": "json",
+			"name": "dbConfig_json"
+		},
+		{
+			"url": "assets/fui/Package1_atlas0.png",
+			"type": "image",
+			"name": "Package1_fui_atlas0"
+		},
+		{
+			"name": "bg2_jpg",
+			"type": "image",
+			"url": "assets/bg2.jpg"
+		},
+		{
+			"name": "homeSpace_tex_json",
+			"type": "json",
+			"url": "assets/db/homeSpace_tex.json"
+		},
+		{
+			"name": "homeSpace_tex_png",
+			"type": "image",
+			"url": "assets/db/homeSpace_tex.png"
+		},
+		{
+			"name": "homeSpace_ske_json",
+			"type": "json",
+			"url": "assets/db/homeSpace_ske.json"
+		}
+	]
+}
