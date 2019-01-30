@@ -1,0 +1,190 @@
+{
+	"groups": [
+		{
+			"keys": "egret_icon_png,description_json,Package1_fui,joystick_fui_atlas0,joystick_fui,player_ske_json,player_tex_json,player_tex_png,dbConfig_json,Package1_fui_atlas0,bg2_jpg,homeSpace_tex_json,homeSpace_tex_png,homeSpace_ske_json,img_stone_4_png,img_stone_5_png,img_stone_6_png,img_stone_7_png,img_stone_8_png,img_stone_9_png,img_stone_10_png,img_stone_11_png,img_stone_12_png,img_stone_13_png,img_stone_14_png,img_stone_15_png,img_stone_16_png,img_stone_17_png,img_stone_18_png,img_stone_19_png,img_stone_1_png,img_stone_2_png,img_stone_3_png,img_score_png,img_oxy_png,img_team_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/fui/Package1.fui",
+			"type": "bin",
+			"name": "Package1_fui"
+		},
+		{
+			"url": "assets/fui/joystick_atlas0.png",
+			"type": "image",
+			"name": "joystick_fui_atlas0"
+		},
+		{
+			"url": "assets/fui/joystick.fui",
+			"type": "bin",
+			"name": "joystick_fui"
+		},
+		{
+			"url": "assets/db/player_ske.json",
+			"type": "json",
+			"name": "player_ske_json"
+		},
+		{
+			"url": "assets/db/player_tex.json",
+			"type": "json",
+			"name": "player_tex_json"
+		},
+		{
+			"url": "assets/db/player_tex.png",
+			"type": "image",
+			"name": "player_tex_png"
+		},
+		{
+			"url": "config/dbConfig.json",
+			"type": "json",
+			"name": "dbConfig_json"
+		},
+		{
+			"url": "assets/fui/Package1_atlas0.png",
+			"type": "image",
+			"name": "Package1_fui_atlas0"
+		},
+		{
+			"url": "assets/bg2.jpg",
+			"type": "image",
+			"name": "bg2_jpg"
+		},
+		{
+			"url": "assets/db/homeSpace_tex.json",
+			"type": "json",
+			"name": "homeSpace_tex_json"
+		},
+		{
+			"url": "assets/db/homeSpace_tex.png",
+			"type": "image",
+			"name": "homeSpace_tex_png"
+		},
+		{
+			"url": "assets/db/homeSpace_ske.json",
+			"type": "json",
+			"name": "homeSpace_ske_json"
+		},
+		{
+			"url": "assets/img_stone_4.png",
+			"type": "image",
+			"name": "img_stone_4_png"
+		},
+		{
+			"url": "assets/img_stone_5.png",
+			"type": "image",
+			"name": "img_stone_5_png"
+		},
+		{
+			"url": "assets/img_stone_6.png",
+			"type": "image",
+			"name": "img_stone_6_png"
+		},
+		{
+			"url": "assets/img_stone_7.png",
+			"type": "image",
+			"name": "img_stone_7_png"
+		},
+		{
+			"url": "assets/img_stone_8.png",
+			"type": "image",
+			"name": "img_stone_8_png"
+		},
+		{
+			"url": "assets/img_stone_9.png",
+			"type": "image",
+			"name": "img_stone_9_png"
+		},
+		{
+			"url": "assets/img_stone_10.png",
+			"type": "image",
+			"name": "img_stone_10_png"
+		},
+		{
+			"url": "assets/img_stone_11.png",
+			"type": "image",
+			"name": "img_stone_11_png"
+		},
+		{
+			"url": "assets/img_stone_12.png",
+			"type": "image",
+			"name": "img_stone_12_png"
+		},
+		{
+			"url": "assets/img_stone_13.png",
+			"type": "image",
+			"name": "img_stone_13_png"
+		},
+		{
+			"url": "assets/img_stone_14.png",
+			"type": "image",
+			"name": "img_stone_14_png"
+		},
+		{
+			"url": "assets/img_stone_15.png",
+			"type": "image",
+			"name": "img_stone_15_png"
+		},
+		{
+			"url": "assets/img_stone_16.png",
+			"type": "image",
+			"name": "img_stone_16_png"
+		},
+		{
+			"url": "assets/img_stone_17.png",
+			"type": "image",
+			"name": "img_stone_17_png"
+		},
+		{
+			"url": "assets/img_stone_18.png",
+			"type": "image",
+			"name": "img_stone_18_png"
+		},
+		{
+			"url": "assets/img_stone_19.png",
+			"type": "image",
+			"name": "img_stone_19_png"
+		},
+		{
+			"url": "assets/img_stone_1.png",
+			"type": "image",
+			"name": "img_stone_1_png"
+		},
+		{
+			"url": "assets/img_stone_2.png",
+			"type": "image",
+			"name": "img_stone_2_png"
+		},
+		{
+			"url": "assets/img_stone_3.png",
+			"type": "image",
+			"name": "img_stone_3_png"
+		},
+		{
+			"url": "assets/img_score.png",
+			"type": "image",
+			"name": "img_score_png"
+		},
+		{
+			"url": "assets/img_oxy.png",
+			"type": "image",
+			"name": "img_oxy_png"
+		},
+		{
+			"url": "assets/img_team.png",
+			"type": "image",
+			"name": "img_team_png"
+		}
+	]
+}
