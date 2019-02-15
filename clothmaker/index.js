@@ -49804,6 +49804,7 @@ var EditShapeNoti;
 var EditMeasureNoti;
 (function (EditMeasureNoti) {
     EditMeasureNoti[EditMeasureNoti["MODIFY_MEASURE"] = 12000] = "MODIFY_MEASURE";
+    EditMeasureNoti[EditMeasureNoti["MODIFY_MEASURE_SIZE"] = 12001] = "MODIFY_MEASURE_SIZE";
 })(EditMeasureNoti = exports.EditMeasureNoti || (exports.EditMeasureNoti = {}));
 var EditModeNoti;
 (function (EditModeNoti) {
@@ -49818,6 +49819,7 @@ var MouseTransformNoti;
 var EditRelationshipNoti;
 (function (EditRelationshipNoti) {
     EditRelationshipNoti[EditRelationshipNoti["ADD_RELATIONSHIP"] = 15000] = "ADD_RELATIONSHIP";
+    EditRelationshipNoti[EditRelationshipNoti["SELECT_RELATIONSHIP"] = 15001] = "SELECT_RELATIONSHIP";
 })(EditRelationshipNoti = exports.EditRelationshipNoti || (exports.EditRelationshipNoti = {}));
 exports.defaultLayout = { 'type': 'BoxLayoutContainer', 'isVertical': false, 'bounds': { 'x': 0, 'y': 0, 'width': 1276, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutContainer', 'isVertical': false, 'bounds': { 'x': 0, 'y': 0, 'width': 1111, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 0, 'y': 0, 'width': 181, 'height': 641 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_LEFT'] } }, 'secondElement': { 'type': 'BoxLayoutContainer', 'isVertical': true, 'bounds': { 'x': 182, 'y': 0, 'width': 929, 'height': 641 }, 'firstElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 182, 'y': 0, 'width': 929, 'height': 530 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_MAIN'] } }, 'secondElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 182, 'y': 531, 'width': 929, 'height': 110 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_LOGGER'] } } } }, 'secondElement': { 'type': 'BoxLayoutElement', 'bounds': { 'x': 1112, 'y': 0, 'width': 164, 'height': 641 }, 'render': { 'selectedIndex': 0, 'panels': ['PANEL_RIGHT'] } } };
 // {"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":1025,"height":654},"firstElement":{"type":"BoxLayoutContainer","isVertical":false,"bounds":{"x":0,"y":0,"width":841,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":0,"y":0,"width":228,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_LEFT"]}},"secondElement":{"type":"BoxLayoutContainer","isVertical":true,"bounds":{"x":229,"y":0,"width":612,"height":654},"firstElement":{"type":"BoxLayoutElement","bounds":{"x":229,"y":0,"width":612,"height":389},"render":{"selectedIndex":0,"panels":["PANEL_MAIN"]}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":229,"y":390,"width":612,"height":264},"render":{"selectedIndex":0,"panels":["PANEL_LOGGER","PANEL_DOPE_SHEET"]}}}},"secondElement":{"type":"BoxLayoutElement","bounds":{"x":842,"y":0,"width":183,"height":654},"render":{"selectedIndex":0,"panels":["PANEL_RIGHT"]}}}
@@ -50000,7 +50002,6 @@ class InitDataCommand extends base_1.BaseCommand {
             this.initMeasureData(clothModel);
             clothModel.name = '示例衣服1';
             let cutPiece = new CutPieceModel_1.default();
-            ;
             cutPiece.name = '前片';
             clothModel.selectedCut = cutPiece.hashCode;
             clothModel.cutPieces.push(cutPiece);
@@ -50009,7 +50010,7 @@ class InitDataCommand extends base_1.BaseCommand {
         this._release(true);
     }
     initMeasureData(clothModel) {
-        let measrueModel = clothModel.measurement;
+        let measureModel = clothModel.measurement;
         let measures = [
             {
                 name: ClothModelTypes_1.MeasureNameEnum.HEIGHT,
@@ -50062,13 +50063,23 @@ class InitDataCommand extends base_1.BaseCommand {
                 value: 10
             },
         ];
-        measrueModel.curSize = ClothModelTypes_1.MeasureSizeEnum.L;
-        let defaultSize = measrueModel.curSize;
+        measureModel.curSize = ClothModelTypes_1.MeasureSizeEnum.L;
+        let defaultSize = measureModel.curSize;
         for (let i = 0, len = measures.length; i < len; i++) {
             let measureItem = measures[i];
             let measure;
             measure = new MeasureModel_1.default(measureItem.name, measureItem.label, defaultSize, measureItem.value);
-            measrueModel.measures.push(measure);
+            measureModel.measures.push(measure);
+        }
+        for (let i = 0, len = measures.length; i < len; i++) {
+            let measureItem = measures[i];
+            let measure = measureModel.measures[i];
+            measure.changeValue(ClothModelTypes_1.MeasureSizeEnum.XL, measure.getValue(ClothModelTypes_1.MeasureSizeEnum.L) + 2);
+        }
+        for (let i = 0, len = measures.length; i < len; i++) {
+            let measureItem = measures[i];
+            let measure = measureModel.measures[i];
+            measure.changeValue(ClothModelTypes_1.MeasureSizeEnum.FREE, measure.getValue(ClothModelTypes_1.MeasureSizeEnum.L) + 4);
         }
     }
 }
@@ -50212,7 +50223,11 @@ const App_1 = __webpack_require__(/*! App */ "./App.ts");
 const shortcut_1 = __webpack_require__(/*! model/shortcut */ "./model/shortcut.ts");
 class InitShortcutCommand extends base_1.BaseCommand {
     execute() {
-        let shortcutModel = new shortcut_1.default();
+        let shortcutModel = shortcut_1.default.getInstance(shortcut_1.default);
+        let doc = this.application.getCurDocument();
+        if (doc) {
+            doc.shortcut = shortcutModel;
+        }
         App_1.default.shortcutController.init(shortcutModel);
         // document.addEventListener("mousemove",(e)=>{
         //     e.preventDefault();
@@ -50244,10 +50259,10 @@ const InitDataCommand_1 = __webpack_require__(/*! ./InitDataCommand */ "./comman
 class InitialCommand extends mvc_1.QueueCommand {
     _initialize() {
         this._addCommand(InitRegistCommand_1.default);
-        this._addCommand(InitShortcutCommand_1.default);
         this._addCommand(InitDataCommand_1.default);
         this._addCommand(InitHistoryCommand_1.default);
         this._addCommand(InitLayoutCommand_1.default);
+        this._addCommand(InitShortcutCommand_1.default);
         this._addCommand(InitAlreadyCommand_1.default);
     }
 }
@@ -51420,6 +51435,9 @@ class BaseObject {
     constructor() {
         this.hashCode = BaseObject._hashCode++;
     }
+    static setInitHashCode(hashCode) {
+        BaseObject._hashCode = hashCode;
+    }
     static toString() {
         throw new Error();
     }
@@ -51811,12 +51829,46 @@ class ShortcutController extends mvc.View {
             this._keyPress.sort();
         }
         this.model.matchShortcut(this._keyPress);
+        switch (code) {
+            case 16://shift
+                this.model.shiftDown = true;
+                break;
+            case 17://control
+                this.model.controlDown = true;
+                break;
+            case 18://alt
+                this.model.altDown = true;
+                break;
+            case 91://command left
+                this.model.commandDown = true;
+                break;
+            case 93://command right
+                this.model.commandDown = true;
+                break;
+        }
     }
     onKeyUp(e) {
         let code = e.keyCode;
         let i = this._keyPress.indexOf(code);
         if (i >= 0) {
             this._keyPress.splice(i, 1);
+        }
+        switch (code) {
+            case 16://shift
+                this.model.shiftDown = false;
+                break;
+            case 17://control
+                this.model.controlDown = false;
+                break;
+            case 18://alt
+                this.model.altDown = false;
+                break;
+            case 91://command left
+                this.model.commandDown = false;
+                break;
+            case 93://command right
+                this.model.commandDown = false;
+                break;
         }
     }
     onShorcut(type) {
@@ -52209,7 +52261,7 @@ exports.modifyProperty = modifyProperty;
 Object.defineProperty(exports, "__esModule", { value: true });
 const DrawBezierBaseController_1 = __webpack_require__(/*! ./DrawBezierBaseController */ "./controller/drawBezier/DrawBezierBaseController.ts");
 const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
-const BezierPoint_1 = __webpack_require__(/*! model/clothModels/BezierPoint */ "./model/clothModels/BezierPoint.ts");
+const BezierTweenPoint_1 = __webpack_require__(/*! model/clothModels/BezierTweenPoint */ "./model/clothModels/BezierTweenPoint.ts");
 class AddBeizerPointController extends DrawBezierBaseController_1.DrawBezierBaseController {
     static get instance() {
         if (AddBeizerPointController._instance == null) {
@@ -52244,7 +52296,7 @@ class AddBeizerPointController extends DrawBezierBaseController_1.DrawBezierBase
             if (!this.model.exterReadyToClose) {
                 let canvasX = data.canvasPos.x;
                 let canvasY = data.canvasPos.y;
-                let p = new BezierPoint_1.default(canvasX, canvasY);
+                let p = new BezierTweenPoint_1.default(canvasX, canvasY);
                 this.model.addPoint(p);
                 this.justAddPoint = p;
             }
@@ -52303,6 +52355,7 @@ exports.AddBeizerPointController = AddBeizerPointController;
 Object.defineProperty(exports, "__esModule", { value: true });
 const DrawBezierBaseController_1 = __webpack_require__(/*! ./DrawBezierBaseController */ "./controller/drawBezier/DrawBezierBaseController.ts");
 const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
+const shortcut_1 = __webpack_require__(/*! model/shortcut */ "./model/shortcut.ts");
 class BindSelectController extends DrawBezierBaseController_1.DrawBezierBaseController {
     constructor() {
         super(...arguments);
@@ -52320,6 +52373,7 @@ class BindSelectController extends DrawBezierBaseController_1.DrawBezierBaseCont
         }
     }
     start() {
+        this.shortcut = shortcut_1.default.getInstance(shortcut_1.default);
         this._addNotification(AppConst_1.StageTransformNoti.MOUSE_DOWN, this.onMouseDown);
         this._addNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onCheckOver);
     }
@@ -52334,7 +52388,12 @@ class BindSelectController extends DrawBezierBaseController_1.DrawBezierBaseCont
             // 点选
             if (this.multSelect) {
                 // 多选
-                this.model.selectedPoint = this._overPoint.hashCode;
+                if (this.shortcut.controlDown) {
+                    this.model.addSelectPoint(this._overPoint.hashCode);
+                }
+                else {
+                    this.model.selectedPoint = this._overPoint.hashCode;
+                }
             }
             else {
                 this.model.selectedPoint = this._overPoint.hashCode;
@@ -52459,7 +52518,12 @@ class BindSelectController extends DrawBezierBaseController_1.DrawBezierBaseCont
             }
         }
         if (!this.isSameSelect(selectPoints)) {
-            this.model.updateSelectedPoint(selectPoints);
+            if (this.shortcut.controlDown) {
+                this.model.addSelectPoints(selectPoints);
+            }
+            else {
+                this.model.updateSelectedPoint(selectPoints);
+            }
             this.lastSelectPoints = selectPoints;
         }
     }
@@ -52582,6 +52646,301 @@ exports.DrawBezierBaseController = DrawBezierBaseController;
 
 /***/ }),
 
+/***/ "./controller/drawBezier/ExpandController.ts":
+/*!***************************************************!*\
+  !*** ./controller/drawBezier/ExpandController.ts ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const DrawBezierBaseController_1 = __webpack_require__(/*! ./DrawBezierBaseController */ "./controller/drawBezier/DrawBezierBaseController.ts");
+const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
+const BasePoint_1 = __webpack_require__(/*! model/clothModels/BasePoint */ "./model/clothModels/BasePoint.ts");
+const shortcut_1 = __webpack_require__(/*! model/shortcut */ "./model/shortcut.ts");
+class ExpandController extends DrawBezierBaseController_1.DrawBezierBaseController {
+    constructor() {
+        super(...arguments);
+        this.overSize = 5;
+        this.multSelect = true;
+        this.rectangleSelect = true;
+        this.lastSelectPoints = [];
+        this.helpPoint0 = new BasePoint_1.default();
+        this.helpPoint1 = new BasePoint_1.default();
+        this.helpPoint2 = new BasePoint_1.default();
+    }
+    static toString() {
+        return 'ExpandController';
+    }
+    update() {
+        if (this.view && this.model) {
+            this.view.model = this.model;
+        }
+    }
+    start() {
+        this.shortcut = shortcut_1.default.getInstance(shortcut_1.default);
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_DOWN, this.onMouseDown);
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onCheckOver);
+    }
+    stop() {
+        this._removeNotification(AppConst_1.StageTransformNoti.MOUSE_DOWN, this.onMouseDown);
+        this._removeNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onCheckOver);
+    }
+    onMouseDown(noti) {
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_UP, this.onMouseUp);
+        this._addNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onMouseMove);
+        if (this._overPoint) {
+            if (this.model.selectedPoints.indexOf(this._overPoint.hashCode) >= 0) {
+                this.downToMove = true;
+                this.downToMovePoint = this._overPoint;
+                this.downPointValue = this.downToMovePoint.getBezierTweenValue();
+                let data = noti.data;
+                let canvasPos = data.canvasPos;
+                this.downCanvasPos = { x: canvasPos.x, y: canvasPos.y };
+            }
+            else {
+                this.downToMove = false;
+                // 点选
+                if (this.multSelect) {
+                    // 多选
+                    if (this.shortcut.controlDown) {
+                        this.model.addSelectPoint(this._overPoint.hashCode);
+                    }
+                    else {
+                        this.model.selectedPoint = this._overPoint.hashCode;
+                    }
+                }
+                else {
+                    this.model.selectedPoint = this._overPoint.hashCode;
+                }
+            }
+        }
+        else if (this.rectangleSelect) {
+            // 框选
+            let data = noti.data;
+            let canvasPos = data.canvasPos;
+            this.rectStartPoint = { x: canvasPos.x, y: canvasPos.y };
+            this._sendNotification(AppConst_1.MouseTransformNoti.RECT_SELECT_START, { x: data.stagePos.x, y: data.stagePos.y });
+        }
+    }
+    onMouseUp(noti) {
+        this._removeNotification(AppConst_1.StageTransformNoti.MOUSE_UP, this.onMouseUp);
+        this._removeNotification(AppConst_1.StageTransformNoti.MOUSE_MOVE, this.onMouseMove);
+        if (this.model) {
+            this.model.overHandle = null;
+            this.model.overPoint = null;
+        }
+        if (this.downToMove) {
+            this.downToMove = false;
+            if (this.downToMovePoint) {
+                let curRelation = this.getSelectRelationGroup();
+                let measurement = this.model.measurement;
+                let curMeasureName = curRelation.measurementName;
+                let measureValue = measurement.getOneNameValuesBySize(curMeasureName);
+                let curBezierValue = this.downToMovePoint.getBezierTweenValue();
+                this.downToMovePoint.modifyTweenValue(curMeasureName, measureValue.value, curBezierValue);
+                this.downToMovePoint.setTempPos(null, null, null);
+            }
+        }
+        else {
+            if (this.rectangleSelect) {
+                if (this.rectStartPoint != null && this.rectEndPoint == null) {
+                    this.model.updateSelectedPoint([]);
+                }
+                else if (this.rectStartPoint && this.rectEndPoint && (this.rectStartPoint.x == this.rectEndPoint.x && this.rectStartPoint.y == this.rectEndPoint.y)) {
+                    this.model.updateSelectedPoint([]);
+                }
+                this.rectStartPoint = null;
+                this.rectEndPoint = null;
+                this._sendNotification(AppConst_1.MouseTransformNoti.RECT_SELECT_END);
+            }
+        }
+    }
+    onMouseMove(noti) {
+        let data = noti.data;
+        let canvasPos = data.canvasPos;
+        if (this.downToMove) {
+            let offX = canvasPos.x - this.downCanvasPos.x;
+            let offY = canvasPos.y - this.downCanvasPos.y;
+            this.helpPoint0.x = this.downPointValue.point.x + offX;
+            this.helpPoint0.y = this.downPointValue.point.y + offY;
+            this.helpPoint1.x = this.downPointValue.handle0.x + offX;
+            this.helpPoint1.y = this.downPointValue.handle0.y + offY;
+            this.helpPoint2.x = this.downPointValue.handle1.x + offX;
+            this.helpPoint2.y = this.downPointValue.handle1.y + offY;
+            this.downToMovePoint.setTempPos(this.helpPoint0, this.helpPoint1, this.helpPoint2);
+        }
+        else {
+            if (this.rectangleSelect) {
+                this.rectEndPoint = canvasPos;
+                this.checkRectangleSelect();
+                this._sendNotification(AppConst_1.MouseTransformNoti.RECT_SELECT_UPDATE, data.stagePos);
+            }
+        }
+    }
+    onCheckOver(noti) {
+        if (this.model == null) {
+            return;
+        }
+        let data = noti.data;
+        if (this.model) {
+            this.checkOverPoint(data.canvasPos);
+        }
+    }
+    checkOverPoint(canvasPos) {
+        this._overPoint = null;
+        this.model.overPoint = null;
+        let cut = this.model.getCurCutPiece();
+        let relationPointIds = this.getRelationPointIds();
+        if (cut && relationPointIds.length > 0) {
+            for (let j = 0, jlen = cut.lines.length; j < jlen; j++) {
+                let line = cut.lines[j];
+                for (let i = 0, len = line.shape.length; i < len; i++) {
+                    let p = line.shape[i];
+                    if (p && relationPointIds.indexOf(p.hashCode) >= 0) {
+                        if (this.overPoint(canvasPos, p.point)) {
+                            this.model.overPoint = p.hashCode;
+                            this._overPoint = p;
+                            break;
+                        }
+                    }
+                }
+                if (this._overPoint != null) {
+                    break;
+                }
+            }
+        }
+    }
+    overPoint(p0, p1) {
+        let scale = this.view ? this.view.stageScale : 1;
+        let overDis = (this.overSize / scale);
+        if (p0.x - overDis < p1.x &&
+            p0.x + overDis > p1.x &&
+            p0.y - overDis < p1.y &&
+            p0.y + overDis > p1.y) {
+            return true;
+        }
+        return false;
+    }
+    checkRectangleSelect() {
+        let startX = 0;
+        let startY = 0;
+        let endX = 0;
+        let endY = 0;
+        if (this.rectStartPoint == null || this.rectEndPoint == null) {
+            return;
+        }
+        if (this.rectStartPoint.x < this.rectEndPoint.x) {
+            startX = this.rectStartPoint.x;
+            endX = this.rectEndPoint.x;
+        }
+        else {
+            startX = this.rectEndPoint.x;
+            endX = this.rectStartPoint.x;
+        }
+        if (this.rectStartPoint.y < this.rectEndPoint.y) {
+            startY = this.rectStartPoint.y;
+            endY = this.rectEndPoint.y;
+        }
+        else {
+            startY = this.rectEndPoint.y;
+            endY = this.rectStartPoint.y;
+        }
+        let selectPoints = [];
+        let cut = this.model.getCurCutPiece();
+        let relationPointIds = this.getRelationPointIds();
+        if (cut && relationPointIds.length > 0) {
+            for (let j = 0, jlen = cut.lines.length; j < jlen; j++) {
+                let line = cut.lines[j];
+                for (let i = 0, len = line.shape.length; i < len; i++) {
+                    let p = line.shape[i];
+                    if (p && relationPointIds.indexOf(p.hashCode) >= 0) {
+                        if (this.checkRectanglePoint(p.point, startX, startY, endX, endY)) {
+                            selectPoints.push(p.hashCode);
+                        }
+                    }
+                }
+            }
+        }
+        if (!this.isSameSelect(selectPoints)) {
+            if (this.shortcut.controlDown) {
+                this.model.addSelectPoints(selectPoints);
+            }
+            else {
+                this.model.updateSelectedPoint(selectPoints);
+            }
+            this.lastSelectPoints = selectPoints;
+        }
+    }
+    checkRectanglePoint(p, startX, startY, endX, endY) {
+        // console.log(startX, startY, endX, endY, p);
+        return p.x > startX && p.x < endX && p.y > startY && p.y < endY;
+    }
+    isSameSelect(selectPoints) {
+        if (selectPoints.length != this.lastSelectPoints.length) {
+            return false;
+        }
+        for (let i = 0, len = selectPoints.length; i < len; i++) {
+            if (selectPoints[i] != this.lastSelectPoints[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    getRelationPointIds() {
+        let cut = this.model.getCurCutPiece();
+        let selectBind = this.model.selectedBind;
+        if (cut == null) {
+            return [];
+        }
+        let curRelations = cut.relationship;
+        let selectRelation;
+        if (selectBind == null || selectBind < 0) {
+            return [];
+        }
+        for (let i = 0, len = curRelations.length; i < len; i++) {
+            if (curRelations[i].hashCode == selectBind) {
+                selectRelation = curRelations[i];
+                break;
+            }
+        }
+        if (selectRelation == null) {
+            return [];
+        }
+        let allBindPointIds = [];
+        for (let i = 0, len = selectRelation.relationship.length; i < len; i++) {
+            let rt = selectRelation.relationship[i];
+            allBindPointIds.push(rt.pointId);
+        }
+        return allBindPointIds;
+    }
+    getSelectRelationGroup() {
+        let cut = this.model.getCurCutPiece();
+        let selectBind = this.model.selectedBind;
+        if (cut == null) {
+            return null;
+        }
+        let curRelations = cut.relationship;
+        let selectRelation;
+        if (selectBind == null || selectBind < 0) {
+            return null;
+        }
+        for (let i = 0, len = curRelations.length; i < len; i++) {
+            if (curRelations[i].hashCode == selectBind) {
+                selectRelation = curRelations[i];
+                break;
+            }
+        }
+        return selectRelation;
+    }
+}
+exports.ExpandController = ExpandController;
+
+
+/***/ }),
+
 /***/ "./controller/drawBezier/InsertPointController.ts":
 /*!********************************************************!*\
   !*** ./controller/drawBezier/InsertPointController.ts ***!
@@ -52593,9 +52952,9 @@ exports.DrawBezierBaseController = DrawBezierBaseController;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
-const BezierPoint_1 = __webpack_require__(/*! model/clothModels/BezierPoint */ "./model/clothModels/BezierPoint.ts");
 const BezierUtils_1 = __webpack_require__(/*! utils/BezierUtils */ "./utils/BezierUtils.ts");
 const SubSelectController_1 = __webpack_require__(/*! ./SubSelectController */ "./controller/drawBezier/SubSelectController.ts");
+const BezierTweenPoint_1 = __webpack_require__(/*! model/clothModels/BezierTweenPoint */ "./model/clothModels/BezierTweenPoint.ts");
 class InsertPointController extends SubSelectController_1.SubSelectController {
     static toString() {
         return 'InsertPointController';
@@ -52633,7 +52992,7 @@ class InsertPointController extends SubSelectController_1.SubSelectController {
                 let handle1 = split0.right.points[1];
                 let leftHanlde = split0.left.points[1];
                 let rightHanle = split0.right.points[2];
-                let bp = new BezierPoint_1.default(p.x, p.y, handle0.x, handle0.y, handle1.x, handle1.y);
+                let bp = new BezierTweenPoint_1.default(p.x, p.y, handle0.x, handle0.y, handle1.x, handle1.y);
                 curLine.insertPoint(i0 + 1, bp, leftHanlde, rightHanle);
             }
             else if (this.model.overHandle) {
@@ -52993,6 +53352,7 @@ var MeasureSizeEnum;
     MeasureSizeEnum[MeasureSizeEnum["XXL"] = 4] = "XXL";
     MeasureSizeEnum[MeasureSizeEnum["XXXL"] = 5] = "XXXL";
     MeasureSizeEnum[MeasureSizeEnum["XXXXL"] = 6] = "XXXXL";
+    MeasureSizeEnum[MeasureSizeEnum["FREE"] = 7] = "FREE";
 })(MeasureSizeEnum = exports.MeasureSizeEnum || (exports.MeasureSizeEnum = {}));
 
 
@@ -53547,6 +53907,162 @@ exports.default = BezierPoint;
 
 /***/ }),
 
+/***/ "./model/clothModels/BezierTweenPoint.ts":
+/*!***********************************************!*\
+  !*** ./model/clothModels/BezierTweenPoint.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const mvc = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
+const BasePoint_1 = __webpack_require__(/*! ./BasePoint */ "./model/clothModels/BasePoint.ts");
+const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
+const BezierPoint_1 = __webpack_require__(/*! ./BezierPoint */ "./model/clothModels/BezierPoint.ts");
+class BezierTweenPoint extends mvc.Model {
+    constructor(pointX, pointY, handle0X = undefined, handle0Y = undefined, handle1X = undefined, handle1Y = undefined) {
+        super();
+        this.tweens = [];
+        this.bezierPoint = new BezierPoint_1.default(pointX, pointY, handle0X, handle0Y, handle1X, handle1Y);
+        this._point = new BasePoint_1.default(pointX, pointY);
+        this._handle0 = new BasePoint_1.default(handle0X, handle0Y);
+        this._handle1 = new BasePoint_1.default(handle1X, handle1Y);
+    }
+    static toString() {
+        return 'BezierTweenPoint';
+    }
+    setTempPos(point, handle0, handle1) {
+        this._tempPoint = point;
+        this._tempHanle0 = handle0;
+        this._tempHanle1 = handle1;
+        this._sendNotification(AppConst_1.EditShapeNoti.MODIFY_POINT);
+    }
+    modifyTweenValue(measureName, measureValue, bezierValue) {
+        let curTween;
+        if (this.tweens) {
+            for (let i = 0, len = this.tweens.length; i < len; i++) {
+                let tween = this.tweens[i];
+                if (tween.measurementName == measureName) {
+                    curTween = tween;
+                    break;
+                }
+            }
+        }
+        if (curTween) {
+            curTween.addValue(measureValue, bezierValue);
+            curTween.curMeasureValue = measureValue;
+            this._sendNotification(AppConst_1.EditShapeNoti.MODIFY_POINT);
+        }
+    }
+    get point() {
+        if (this._tempPoint != null) {
+            return this._tempPoint;
+        }
+        if (this.tweens.length == 0) {
+            return this.bezierPoint.point;
+        }
+        this._point.x = this.bezierPoint.point.x;
+        this._point.y = this.bezierPoint.point.y;
+        for (let i = 0, len = this.tweens.length; i < len; i++) {
+            let tween = this.tweens[i];
+            if (tween.curBeziderPoint) {
+                this._point.x += tween.curBeziderPoint.point.x;
+                this._point.y += tween.curBeziderPoint.point.y;
+            }
+        }
+        return this._point;
+    }
+    get handle0() {
+        if (this._tempHanle0 != null) {
+            return this._tempHanle0;
+        }
+        if (this.tweens.length == 0) {
+            return this.bezierPoint.handle0;
+        }
+        this._handle0.x = this.bezierPoint.handle0.x;
+        this._handle0.y = this.bezierPoint.handle0.y;
+        for (let i = 0, len = this.tweens.length; i < len; i++) {
+            let tween = this.tweens[i];
+            if (tween.curBeziderPoint) {
+                this._handle0.x += tween.curBeziderPoint.handle0.x;
+                this._handle0.y += tween.curBeziderPoint.handle0.y;
+            }
+        }
+        return this._handle0;
+    }
+    get handle1() {
+        if (this._tempHanle1 != null) {
+            return this._tempHanle1;
+        }
+        if (this.tweens.length == 0) {
+            return this.bezierPoint.handle1;
+        }
+        this._handle1.x = this.bezierPoint.handle1.x;
+        this._handle1.y = this.bezierPoint.handle1.y;
+        for (let i = 0, len = this.tweens.length; i < len; i++) {
+            let tween = this.tweens[i];
+            if (tween.curBeziderPoint) {
+                this._handle1.x += tween.curBeziderPoint.handle1.x;
+                this._handle1.y += tween.curBeziderPoint.handle1.y;
+            }
+        }
+        return this._handle1;
+    }
+    get type() {
+        return this.bezierPoint.type;
+    }
+    set type(v) {
+        this.bezierPoint.type = v;
+    }
+    addTween(tween) {
+        if (this.tweens.indexOf(tween) >= 0) {
+            console.warn("add same tween ", tween.hashCode);
+            return;
+        }
+        if (tween.pointId != this.hashCode) {
+            console.warn("wrong tween ", tween.hashCode);
+            return;
+        }
+        else {
+            this.tweens.push(tween);
+        }
+    }
+    modifyHandleSymmetric0(x, y) {
+        this.bezierPoint.modifyHandleSymmetric0(x, y);
+    }
+    modifyHandleSymmetric1(x, y) {
+        this.bezierPoint.modifyHandleSymmetric1(x, y);
+    }
+    modifyHandle0(x, y) {
+        this.bezierPoint.modifyHandle0(x, y);
+    }
+    modifyHandle1(x, y) {
+        this.bezierPoint.modifyHandle1(x, y);
+    }
+    modifyPoint(x, y) {
+        this.bezierPoint.modifyPoint(x, y);
+    }
+    modifyType(type) {
+        this.bezierPoint.modifyType(type);
+    }
+    getBezierValue() {
+        return this.bezierPoint.getBezierValue();
+    }
+    getBezierTweenValue() {
+        return {
+            point: { x: this.point.x, y: this.point.y },
+            handle0: { x: this.handle0.x, y: this.handle0.y },
+            handle1: { x: this.handle1.x, y: this.handle1.y },
+        };
+    }
+}
+exports.default = BezierTweenPoint;
+
+
+/***/ }),
+
 /***/ "./model/clothModels/ClothModel.ts":
 /*!*****************************************!*\
   !*** ./model/clothModels/ClothModel.ts ***!
@@ -53580,6 +54096,7 @@ class ClothModel extends mvc.Model {
         this.selectedCuts = [];
         this.selectedLines = [];
         this.selectedPoints = [];
+        this.selectedBind = -1;
         this.selectedHandle = null;
         this.overCut = null;
         this.overLine = null;
@@ -53596,6 +54113,10 @@ class ClothModel extends mvc.Model {
             this._mode = v;
             this.toolType = ClothMakerConst_1.ToolType.SELECT;
             this.clearSelect();
+            if (this._mode == ClothMakerConst_1.ModeType.EXPLAND) {
+                //todo:
+                this.measurement.curSize = ClothModelTypes_1.MeasureSizeEnum.XL;
+            }
             this._sendNotification(AppConst_1.EditModeNoti.MODE_CHANGE);
         }
     }
@@ -53804,6 +54325,12 @@ class ClothModel extends mvc.Model {
         }
         return null;
     }
+    changeAllMeasureValue(measurementValue) {
+        for (let i = 0, len = this.cutPieces.length; i < len; i++) {
+            this.cutPieces[i].changeAllMeasureValue(measurementValue);
+        }
+        this._sendNotification(AppConst_1.EditShapeNoti.MODIFY_POINT);
+    }
     lineIsCircle(line) {
         if (line && line.shape.length > 2) {
             let first = line.shape[0];
@@ -53817,6 +54344,10 @@ __decorate([
     dec.addNotification(ClothMakerConst_1.ToolNoti.TOOL_CHANGE),
     dec.getterSetter(true, true)
 ], ClothModel.prototype, "toolType", void 0);
+__decorate([
+    dec.addNotification(AppConst_1.EditRelationshipNoti.SELECT_RELATIONSHIP),
+    dec.getterSetter(true, true)
+], ClothModel.prototype, "selectedBind", void 0);
 __decorate([
     dec.addNotification(AppConst_1.EditShapeNoti.SELECT_HANDLE),
     dec.getterSetter(true, true)
@@ -53900,6 +54431,11 @@ class CutPieceModel extends mvc.Model {
             }
         }
         return null;
+    }
+    changeAllMeasureValue(measurementValue) {
+        for (let i = 0, len = this.relationship.length; i < len; i++) {
+            this.relationship[i].changeAllMeasureValue(measurementValue);
+        }
     }
 }
 __decorate([
@@ -54123,6 +54659,7 @@ exports.default = MeasureModel;
 Object.defineProperty(exports, "__esModule", { value: true });
 const mvc = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
 const ClothModelTypes_1 = __webpack_require__(/*! model/ClothModelTypes */ "./model/ClothModelTypes.ts");
+const AppConst_1 = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 /*
 PRINTED T-SHIRT 印花T恤
 
@@ -54289,12 +54826,15 @@ class MeasurementModel extends mvc.Model {
         return 'MeasurementModel';
     }
     getNameValues() {
+        return this.getNameValuesBySize(this.curSize);
+    }
+    getNameValuesBySize(size) {
         let nameValues = [];
         for (let i = 0, len = this.measures.length; i < len; i++) {
             let nv = {
                 name: this.measures[i].name,
                 label: this.measures[i].label,
-                value: this.measures[i].getValue(this.curSize)
+                value: this.measures[i].getValue(size)
             };
             nameValues.push(nv);
         }
@@ -54307,8 +54847,50 @@ class MeasurementModel extends mvc.Model {
             }
         }
     }
+    changeSize(size) {
+        this.curSize = size;
+        this._sendNotification(AppConst_1.EditMeasureNoti.MODIFY_MEASURE_SIZE);
+    }
+    getOneNameValuesBySize(name, size = this.curSize) {
+        for (let i = 0, len = this.measures.length; i < len; i++) {
+            if (this.measures[i].name == name) {
+                let nv = {
+                    name: this.measures[i].name,
+                    label: this.measures[i].label,
+                    value: this.measures[i].getValue(size)
+                };
+                return nv;
+            }
+        }
+        return null;
+    }
 }
 exports.default = MeasurementModel;
+
+
+/***/ }),
+
+/***/ "./model/clothModels/PatternModel.ts":
+/*!*******************************************!*\
+  !*** ./model/clothModels/PatternModel.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const mvc = __webpack_require__(/*! common/mvc */ "./common/mvc.ts");
+class PatternModel extends mvc.Model {
+    constructor() {
+        super(...arguments);
+        this.cutPieces = []; // 包含贝塞尔曲线
+    }
+    static toString() {
+        return 'PatternModel';
+    }
+}
+exports.default = PatternModel;
 
 
 /***/ }),
@@ -54339,6 +54921,19 @@ class RelationGroup extends mvc.Model {
             let p = points[i];
             let rt = new RelationTween_1.default(measurementName, p.hashCode, p.getBezierValue(), normalMeasurementValue);
             this.relationship.push(rt);
+            p.addTween(rt);
+        }
+    }
+    changeAllMeasureValue(measurementValue) {
+        for (let i = 0, len = measurementValue.length; i < len; i++) {
+            if (measurementValue[i].name == this.measurementName) {
+                this.changeMeasureValue(measurementValue[i].value);
+            }
+        }
+    }
+    changeMeasureValue(v) {
+        for (let i = 0, len = this.relationship.length; i < len; i++) {
+            this.relationship[i].curMeasureValue = v;
         }
     }
 }
@@ -54374,13 +54969,30 @@ class RelationTween extends mvc.Model {
             handle0: { x: normalPointValue.handle0.x, y: normalPointValue.handle0.y },
             handle1: { x: normalPointValue.handle1.x, y: normalPointValue.handle1.y },
         };
-        this.addValue(normalMeasurementValue, { point: { x: 0, y: 0 },
-            handle0: { x: 0, y: 0 },
-            handle1: { x: 0, y: 0 } });
+        this.addValue(normalMeasurementValue, normalPointValue);
     }
     addValue(measurementValue, pointValue) {
+        let offPointValue = {
+            point: { x: pointValue.point.x - this.normalPointValue.point.x,
+                y: pointValue.point.y - this.normalPointValue.point.y },
+            handle0: { x: pointValue.handle0.x - this.normalPointValue.handle0.x,
+                y: pointValue.handle0.y - this.normalPointValue.handle0.y },
+            handle1: { x: pointValue.handle1.x - this.normalPointValue.handle1.x,
+                y: pointValue.handle1.y - this.normalPointValue.handle1.y }
+        };
+        for (let i = 0, len = this.measurementValues.length; i < len; i++) {
+            if (this.measurementValues[i] === measurementValue) {
+                this.pointValues[i] = offPointValue;
+                return;
+            }
+            else if (this.measurementValues[i] > measurementValue) {
+                this.measurementValues.splice(i, 0, measurementValue);
+                this.pointValues.splice(i, 0, offPointValue);
+                return;
+            }
+        }
         this.measurementValues.push(measurementValue);
-        this.pointValues.push(pointValue);
+        this.pointValues.push(offPointValue);
     }
     getCurPointValues(measurementValue) {
         let index = -1;
@@ -54415,9 +55027,13 @@ class RelationTween extends mvc.Model {
         }
         return null;
     }
+    set curMeasureValue(v) {
+        this._curValue = v;
+        this.curBeziderPoint = this.getCurPointValues(this._curValue);
+    }
     getProgress(start, end, cur) {
         let d = end - start;
-        if (d = 0) {
+        if (d === 0) {
             return 0;
         }
         return (cur - start) / d;
@@ -54452,11 +55068,18 @@ class Shortcut extends mvc.Model {
         this.CTRL = 17;
         this.Z = 90;
         this.Y = 89;
+        this.shiftDown = false;
+        this.controlDown = false;
+        this.altDown = false;
+        this.commandDown = false;
         this._defs = [];
         this.addShortcut([27], types.ShortcutType.CANCEL);
         this.addShortcut([46], types.ShortcutType.DELETE);
         this.addShortcut([this.CTRL, this.Z], types.ShortcutType.UNDO);
         this.addShortcut([this.CTRL, this.Y], types.ShortcutType.REDO);
+    }
+    static toString() {
+        return '[class model.Shortcut]';
     }
     matchShortcut(keycodes) {
         var type = this.getShortcut(keycodes);
@@ -55142,6 +55765,356 @@ exports.getElementPos = getElementPos;
 
 /***/ }),
 
+/***/ "./utils/InOutUtils.ts":
+/*!*****************************!*\
+  !*** ./utils/InOutUtils.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const ClothModel_1 = __webpack_require__(/*! model/clothModels/ClothModel */ "./model/clothModels/ClothModel.ts");
+const ClothModelTypes_1 = __webpack_require__(/*! model/ClothModelTypes */ "./model/ClothModelTypes.ts");
+const CutPieceModel_1 = __webpack_require__(/*! model/clothModels/CutPieceModel */ "./model/clothModels/CutPieceModel.ts");
+const MeasurementModel_1 = __webpack_require__(/*! model/clothModels/MeasurementModel */ "./model/clothModels/MeasurementModel.ts");
+const PatternModel_1 = __webpack_require__(/*! model/clothModels/PatternModel */ "./model/clothModels/PatternModel.ts");
+const BezierLine_1 = __webpack_require__(/*! model/clothModels/BezierLine */ "./model/clothModels/BezierLine.ts");
+const BezierTweenPoint_1 = __webpack_require__(/*! model/clothModels/BezierTweenPoint */ "./model/clothModels/BezierTweenPoint.ts");
+const BezierPoint_1 = __webpack_require__(/*! model/clothModels/BezierPoint */ "./model/clothModels/BezierPoint.ts");
+const BasePoint_1 = __webpack_require__(/*! model/clothModels/BasePoint */ "./model/clothModels/BasePoint.ts");
+const RelationTween_1 = __webpack_require__(/*! model/clothModels/RelationTween */ "./model/clothModels/RelationTween.ts");
+const RelationGroup_1 = __webpack_require__(/*! model/clothModels/RelationGroup */ "./model/clothModels/RelationGroup.ts");
+const MeasureModel_1 = __webpack_require__(/*! model/clothModels/MeasureModel */ "./model/clothModels/MeasureModel.ts");
+const object_1 = __webpack_require__(/*! common/object */ "./common/object.ts");
+/////////////////////////////////////////////////////////////////////////
+//
+//                   out
+//
+/////////////////////////////////////////////////////////////////////////
+let maxHashCode = 0;
+function clothModel2Json(clothModel) {
+    maxHashCode = Math.max(maxHashCode, clothModel.hashCode);
+    let clothType = {
+        maxHashCode: 0,
+        hashCode: clothModel.hashCode,
+        name: clothModel.name,
+        cutPieces: cutPieces2Json(clothModel.cutPieces),
+        measurement: measurement2Json(clothModel.measurement),
+        pattern: pattern2Json(clothModel.pattern)
+    };
+    clothType.maxHashCode = maxHashCode;
+    return clothType;
+}
+exports.clothModel2Json = clothModel2Json;
+function cutPieces2Json(cutPieces) {
+    let cutPieceTypes = [];
+    for (let i = 0, len = cutPieces.length; i < len; i++) {
+        let cutType = cutPiece2Json(cutPieces[i]);
+        cutPieceTypes.push(cutType);
+    }
+    return cutPieceTypes;
+}
+function cutPiece2Json(cutPiece) {
+    maxHashCode = Math.max(maxHashCode, cutPiece.hashCode);
+    let cutType = {
+        hashCode: cutPiece.hashCode,
+        name: cutPiece.name,
+        lines: bezierLines2Json(cutPiece.lines),
+        relationship: relationship2Json(cutPiece.relationship),
+        pic: cutPiece.pic,
+        picX: cutPiece.picX,
+        picY: cutPiece.picY
+    };
+    return cutType;
+}
+function bezierLines2Json(bezierLines) {
+    let bezierLinesTypes = [];
+    for (let i = 0, len = bezierLines.length; i < len; i++) {
+        let bezierLineType = bezierLine2Json(bezierLines[i]);
+        bezierLinesTypes.push(bezierLineType);
+    }
+    return bezierLinesTypes;
+}
+function bezierLine2Json(bezierLine) {
+    maxHashCode = Math.max(maxHashCode, bezierLine.hashCode);
+    let bezierLineType = {
+        hashCode: bezierLine.hashCode,
+        shape: shape2Json(bezierLine.shape)
+    };
+    return bezierLineType;
+}
+function shape2Json(shape) {
+    let shapeTypes = [];
+    for (let i = 0, len = shape.length; i < len; i++) {
+        let bpType = bezierTweenPoint2Json(shape[i]);
+        shapeTypes.push(bpType);
+    }
+    return shapeTypes;
+}
+function bezierTweenPoint2Json(bezierTweenPoint) {
+    maxHashCode = Math.max(maxHashCode, bezierTweenPoint.hashCode);
+    let bezierTweenPointType = {
+        hashCode: bezierTweenPoint.hashCode,
+        bezierPoint: bezierPoint2Json(bezierTweenPoint.bezierPoint),
+        tweens: tweens2Json(bezierTweenPoint.tweens)
+    };
+    return bezierTweenPointType;
+}
+function bezierPoint2Json(bezierPoint) {
+    maxHashCode = Math.max(maxHashCode, bezierPoint.hashCode);
+    let bezierPointType = {
+        hashCode: bezierPoint.hashCode,
+        type: bezierPoint.type,
+        point: basePoint2Json(bezierPoint.point),
+        handle0: basePoint2Json(bezierPoint.handle0),
+        handle1: basePoint2Json(bezierPoint.handle1),
+    };
+    return bezierPointType;
+}
+function basePoint2Json(point) {
+    maxHashCode = Math.max(maxHashCode, point.hashCode);
+    let pointType = {
+        hashCode: point.hashCode,
+        x: point.x,
+        y: point.y
+    };
+    return pointType;
+}
+function tweens2Json(tweens) {
+    let tweensType = [];
+    for (let i = 0, len = tweens.length; i < len; i++) {
+        let tweenType = tween2Json(tweens[i]);
+        tweensType.push(tweenType);
+    }
+    return tweensType;
+}
+function tween2Json(tween) {
+    maxHashCode = Math.max(maxHashCode, tween.hashCode);
+    let tweenType = {
+        hashCode: tween.hashCode,
+        measurementName: tween.measurementName,
+        normalPointValue: tween.normalPointValue,
+        pointId: tween.pointId,
+        measurementValues: tween.measurementValues,
+        pointValues: tween.pointValues,
+        tween: tween.tween,
+        curBeziderPoint: tween.curBeziderPoint
+    };
+    return tweenType;
+}
+function relationship2Json(relationship) {
+    let relationshipType = [];
+    for (let i = 0, len = relationship.length; i < len; i++) {
+        let relationGroupType = relationGroup2Json(relationship[i]);
+        relationshipType.push(relationGroupType);
+    }
+    return relationshipType;
+}
+function relationGroup2Json(relationGroup) {
+    maxHashCode = Math.max(maxHashCode, relationGroup.hashCode);
+    let relationType = {
+        hashCode: relationGroup.hashCode,
+        name: relationGroup.name,
+        relationship: tweens2Json(relationGroup.relationship),
+        measurementName: relationGroup.measurementName,
+        normalMeasurementValue: relationGroup.normalMeasurementValue
+    };
+    return relationType;
+}
+function measurement2Json(measurement) {
+    maxHashCode = Math.max(maxHashCode, measurement.hashCode);
+    let measurementType = {
+        hashCode: measurement.hashCode,
+        measures: measures2Json(measurement.measures),
+        curSize: measurement.curSize
+    };
+    return measurementType;
+}
+function measures2Json(measures) {
+    let measuresType = [];
+    for (let i = 0, len = measures.length; i < len; i++) {
+        let measureType = measure2Json(measures[i]);
+        measuresType.push(measureType);
+    }
+    return measuresType;
+}
+function measure2Json(measure) {
+    maxHashCode = Math.max(maxHashCode, measure.hashCode);
+    let measureType = {
+        hashCode: measure.hashCode,
+        name: measure.name,
+        label: measure.label,
+        value: measure.value
+    };
+    return measureType;
+}
+function pattern2Json(pattern) {
+    if (pattern) {
+        maxHashCode = Math.max(maxHashCode, pattern.hashCode);
+        let patternType = {
+            hashCode: pattern.hashCode,
+            name: pattern.name,
+            cutPieces: cutPieces2Json(pattern.cutPieces),
+            normalMeasurement: measurement2Json(pattern.normalMeasurement)
+        };
+        return patternType;
+    }
+    return null;
+}
+/////////////////////////////////////////////////////////////////////////
+//
+//                   in
+//
+/////////////////////////////////////////////////////////////////////////
+function json2ClothModel(clothJson) {
+    let maxhash = clothJson.maxHashCode;
+    object_1.BaseObject.setInitHashCode(maxhash);
+    let clothModel = new ClothModel_1.default();
+    clothModel.name = clothJson.name,
+        clothModel.cutPieces = json2CutPieces(clothJson.cutPieces);
+    clothModel.measurement = json2Measurement(clothJson.measurement);
+    clothModel.pattern = json2Pattern(clothJson.pattern);
+    return clothModel;
+}
+exports.json2ClothModel = json2ClothModel;
+function json2CutPieces(cutPiecesType) {
+    let cutPieces = [];
+    for (let i = 0, len = cutPiecesType.length; i < len; i++) {
+        let cut = json2CutPiece(cutPiecesType[i]);
+        cutPieces.push(cut);
+    }
+    return cutPieces;
+}
+function json2CutPiece(cutPieceType) {
+    let cutPiece = new CutPieceModel_1.default();
+    cutPiece.hashCode = cutPieceType.hashCode;
+    cutPiece.name = cutPieceType.name;
+    cutPiece.lines = json2BezierLines(cutPieceType.lines);
+    cutPiece.relationship = json2Relationship(cutPieceType.relationship);
+    return cutPiece;
+}
+function json2BezierLines(bezierLinesType) {
+    let bezierLines = [];
+    for (let i = 0, len = bezierLinesType.length; i < len; i++) {
+        let bezierLine = json2BezierLine(bezierLinesType[i]);
+        bezierLines.push(bezierLine);
+    }
+    return bezierLines;
+}
+function json2BezierLine(bezierLineType) {
+    let bezierLine = new BezierLine_1.default();
+    bezierLine.hashCode = bezierLineType.hashCode;
+    bezierLine.shape = json2Shape(bezierLineType.shape);
+    return bezierLine;
+}
+function json2Shape(shapeType) {
+    let shape = [];
+    for (let i = 0, len = shapeType.length; i < len; i++) {
+        let bp = json2BezierTweenPoint(shapeType[i]);
+        shape.push(bp);
+    }
+    return shape;
+}
+function json2BezierTweenPoint(bezierTweenPointType) {
+    let bezierTweenPoint = new BezierTweenPoint_1.default(0, 0);
+    bezierTweenPoint.hashCode = bezierTweenPointType.hashCode;
+    bezierTweenPoint.bezierPoint = json2BezierPoint(bezierTweenPointType.bezierPoint);
+    bezierTweenPoint.tweens = json2Tweens(bezierTweenPointType.tweens);
+    return bezierTweenPoint;
+}
+function json2BezierPoint(bezierPointType) {
+    let bezierPoint = new BezierPoint_1.default(0, 0);
+    bezierPoint.hashCode = bezierPointType.hashCode;
+    bezierPoint.type = bezierPointType.type;
+    bezierPoint.point = json2BasePoint(bezierPointType.point);
+    bezierPoint.handle0 = json2BasePoint(bezierPointType.handle0);
+    bezierPoint.handle1 = json2BasePoint(bezierPointType.handle1);
+    return bezierPoint;
+}
+function json2BasePoint(pointType) {
+    let basePoint = new BasePoint_1.default();
+    basePoint.hashCode = pointType.hashCode;
+    basePoint.x = pointType.x;
+    basePoint.y = pointType.y;
+    return basePoint;
+}
+function json2Tweens(tweensType) {
+    let tweens = [];
+    for (let i = 0, len = tweens.length; i < len; i++) {
+        let tween = json2Tween(tweensType[i]);
+        tweens.push(tween);
+    }
+    return tweens;
+}
+function json2Tween(tweenType) {
+    let tween = new RelationTween_1.default('', 1, { point: { x: 0, y: 0 }, handle0: { x: 0, y: 0 }, handle1: { x: 0, y: 0 } }, 1);
+    tween.hashCode = tweenType.hashCode;
+    tween.measurementName = tweenType.measurementName;
+    tween.normalPointValue = tweenType.normalPointValue;
+    tween.pointId = tweenType.pointId;
+    tween.measurementValues = tweenType.measurementValues;
+    tween.pointValues = tweenType.pointValues;
+    tween.tween = tweenType.tween;
+    tween.curBeziderPoint = tweenType.curBeziderPoint;
+    return tween;
+}
+function json2Relationship(relationshipType) {
+    let relationship = [];
+    for (let i = 0, len = relationshipType.length; i < len; i++) {
+        let relationGroup = json2RelationGroup(relationshipType[i]);
+        relationship.push(relationGroup);
+    }
+    return relationship;
+}
+function json2RelationGroup(relationGroupType) {
+    let relation = new RelationGroup_1.default('', '', 1, []);
+    relation.hashCode = relationGroupType.hashCode;
+    relation.name = relationGroupType.name;
+    relation.relationship = json2Tweens(relationGroupType.relationship);
+    relation.measurementName = relationGroupType.measurementName;
+    relation.normalMeasurementValue = relationGroupType.normalMeasurementValue;
+    return relation;
+}
+function json2Measurement(measurementType) {
+    let measurement = new MeasurementModel_1.default();
+    measurement.hashCode = measurementType.hashCode;
+    measurement.measures = json2Measures(measurementType.measures);
+    measurement.curSize = measurementType.curSize;
+    return measurement;
+}
+function json2Measures(measuresType) {
+    let measures = [];
+    for (let i = 0, len = measuresType.length; i < len; i++) {
+        let measure = json2Measure(measuresType[i]);
+        measures.push(measure);
+    }
+    return measures;
+}
+function json2Measure(measureType) {
+    let measure = new MeasureModel_1.default(ClothModelTypes_1.MeasureNameEnum.ARM_LENGTH, '', 1, 1);
+    measure.hashCode = measureType.hashCode;
+    measure.name = measureType.name;
+    measure.label = measureType.label;
+    measure.value = measureType.value;
+    return measure;
+}
+function json2Pattern(patternType) {
+    if (patternType) {
+        let pattern = new PatternModel_1.default();
+        pattern.hashCode = patternType.hashCode;
+        pattern.name = patternType.name;
+        pattern.cutPieces = json2CutPieces(patternType.cutPieces);
+        pattern.normalMeasurement = json2Measurement(patternType.normalMeasurement);
+        return pattern;
+    }
+    return null;
+}
+
+
+/***/ }),
+
 /***/ "./utils/Logger.ts":
 /*!*************************!*\
   !*** ./utils/Logger.ts ***!
@@ -55704,6 +56677,9 @@ class MainView extends base_1.BaseView {
         this._addNotification(c.EditShapeNoti.CHANGE_PIC, this.onChangePic);
         this._addNotification(c.EditShapeNoti.CHANGE_PIC_POS, this.onChangePicPos);
         this._addNotification(c.EditModeNoti.MODE_CHANGE, this.onChangeMode);
+        this._addNotification(c.EditRelationshipNoti.SELECT_RELATIONSHIP, this.onUpdateDisplay);
+        this._addNotification(c.EditMeasureNoti.MODIFY_MEASURE_SIZE, this.onChangeCurMeasureSize);
+        this._addNotification(c.EditMeasureNoti.MODIFY_MEASURE, this.onChangeCurMeasureSize);
         this.document = this.application.getCurDocument();
         this.model = this.application.getCurDocument();
     }
@@ -55821,6 +56797,11 @@ class MainView extends base_1.BaseView {
         if (this.component) {
             this.component.updateMode();
         }
+    }
+    onChangeCurMeasureSize(noti) {
+        let measurement = this.model.clothModel.measurement;
+        let measurementValue = measurement.getNameValues();
+        this.model.clothModel.changeAllMeasureValue(measurementValue);
     }
 }
 MainView.onlyOne = 0;
@@ -55974,11 +56955,144 @@ class MeasurementBind extends React.Component {
                     React.createElement("span", null, item.label ? item.label : item.name)));
             })),
             React.createElement(antd_1.Button, { disabled: !this.props.bindEnable, onClick: this.onBind }, "\u5EFA\u7ACB\u5173\u8054"),
-            React.createElement(ListTree_1.default, { defaultExpandAll: true, prefixCls: "rc-tree", showIcon: true, selectable: false, draggable: false, className: "cc-tree" },
+            React.createElement(ListTree_1.default, { defaultExpandAll: true, expandedKeys: ['root'], prefixCls: "rc-tree", showIcon: true, selectable: false, draggable: false, className: "cc-tree" },
                 React.createElement(TreeNode_1.default, { key: 'root', title: '关联列表', data: 'root' }, this.renderListNode()))));
     }
 }
 exports.MeasurementBind = MeasurementBind;
+
+
+/***/ }),
+
+/***/ "./view/MeasurementExpand.tsx":
+/*!************************************!*\
+  !*** ./view/MeasurementExpand.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(/*! react */ "react");
+const antd_1 = __webpack_require__(/*! antd */ "antd");
+const NumberInput_1 = __webpack_require__(/*! ./components/NumberInput */ "./view/components/NumberInput.tsx");
+const ClothModelTypes_1 = __webpack_require__(/*! model/ClothModelTypes */ "./model/ClothModelTypes.ts");
+const ListTree_1 = __webpack_require__(/*! ./components/tree/ListTree */ "./view/components/tree/ListTree.tsx");
+const TreeNode_1 = __webpack_require__(/*! ./components/tree/TreeNode */ "./view/components/tree/TreeNode.tsx");
+const RadioGroup = antd_1.Radio.Group;
+class MeasurementExpand extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderListNode = () => {
+            let relationship = this.props.relationship;
+            if (relationship) {
+                return relationship.map((item) => {
+                    return (React.createElement(TreeNode_1.default, { key: item.hashCode, title: item.name, data: item }));
+                });
+            }
+        };
+        this.onSelectBind = (e) => {
+            let selected = e;
+            let selectStr = selected[0];
+            let selectId = parseInt(selectStr);
+            if (selectId) {
+                if (this.props && this.props.onSelect) {
+                    this.props.onSelect(selectId);
+                }
+            }
+            // this.setState({
+            //     name: e.target.value,
+            // });
+        };
+        this.onChangeSize = (e) => {
+            let size = e.target.value;
+            if (this.props && this.props.onChangeSize) {
+                this.props.onChangeSize(size);
+            }
+        };
+        this.onChangeMode = (e) => {
+            let mode = e.target.value;
+            this.setState({ mode: mode });
+            if (this.props && this.props.onChangeMode) {
+                this.props.onChangeMode(mode);
+            }
+        };
+        this.expandMeasureChange = (name, value) => {
+            // console.log(name, value);
+            if (this.props && this.props.onChangeMeasureValue) {
+                this.props.onChangeMeasureValue(name, value);
+            }
+        };
+        this.state = {
+            name: null,
+            mode: 'bind'
+        };
+    }
+    render() {
+        // let measurements = this.props.measurements;
+        let selectedBind = this.props.selectedBind;
+        let measurement = this.props.measurement;
+        let measurements = measurement.getNameValues();
+        let curSize = measurement.curSize;
+        let relationship = this.props.relationship;
+        let curRelation;
+        for (let i = 0, len = relationship.length; i < len; i++) {
+            if (relationship[i].hashCode == selectedBind) {
+                curRelation = relationship[i];
+                break;
+            }
+        }
+        if (curRelation) {
+            let measurementName = curRelation.measurementName;
+            let m = measurement.getOneNameValuesBySize(measurementName);
+            if (m) {
+                measurements.length = 0;
+                measurements.push(m);
+            }
+        }
+        let selectBindKeys = [];
+        if (selectedBind) {
+            selectBindKeys.push(selectedBind.toString());
+        }
+        let curMode = this.state.mode;
+        if (curMode == 'bind') {
+            return (React.createElement("div", { style: {
+                    width: '100%',
+                } },
+                React.createElement("div", null,
+                    React.createElement(antd_1.Radio.Group, { defaultValue: 'bind', size: 'small', value: curMode, onChange: this.onChangeMode },
+                        React.createElement(antd_1.Radio.Button, { value: 'bind' }, "\u7ED1\u5B9A"),
+                        React.createElement(antd_1.Radio.Button, { value: 'expand' }, "\u6269\u7248"))),
+                React.createElement("div", null,
+                    React.createElement(antd_1.Radio.Group, { defaultValue: curSize, size: 'small', value: curSize, onChange: this.onChangeSize },
+                        React.createElement(antd_1.Radio.Button, { value: ClothModelTypes_1.MeasureSizeEnum.L, disabled: true }, "L"),
+                        React.createElement(antd_1.Radio.Button, { value: ClothModelTypes_1.MeasureSizeEnum.XL }, "XL"))),
+                measurements.map((item, index) => {
+                    return (React.createElement("div", { key: item.name },
+                        React.createElement("span", { className: 'property_label' }, item.label ? item.label : item.name),
+                        React.createElement(NumberInput_1.default, { min: 1, max: 2000, value: item.value, disable: true, onChange: null })));
+                }),
+                React.createElement(ListTree_1.default, { defaultExpandAll: true, expandedKeys: ['root'], selectedKeys: selectBindKeys, prefixCls: "rc-tree", showIcon: true, selectable: true, draggable: false, className: "cc-tree", onSelect: this.onSelectBind },
+                    React.createElement(TreeNode_1.default, { key: 'root', title: '关联列表', data: 'root', selectable: false }, this.renderListNode()))));
+        }
+        else {
+            return (React.createElement("div", { style: {
+                    width: '100%',
+                } },
+                React.createElement("div", null,
+                    React.createElement(antd_1.Radio.Group, { defaultValue: 'bind', size: 'small', value: curMode, onChange: this.onChangeMode },
+                        React.createElement(antd_1.Radio.Button, { value: 'bind' }, "\u7ED1\u5B9A"),
+                        React.createElement(antd_1.Radio.Button, { value: 'expand' }, "\u6269\u7248"))),
+                measurements.map((item, index) => {
+                    return (React.createElement("div", { key: item.name },
+                        React.createElement("span", { className: 'property_label' }, item.label ? item.label : item.name),
+                        React.createElement(NumberInput_1.default, { min: 1, max: 2000, value: item.value, onChange: this.expandMeasureChange.bind(this, item.name) })));
+                })));
+        }
+    }
+}
+exports.MeasurementExpand = MeasurementExpand;
 
 
 /***/ }),
@@ -55995,18 +57109,36 @@ exports.MeasurementBind = MeasurementBind;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "react");
 const NumberInput_1 = __webpack_require__(/*! ./components/NumberInput */ "./view/components/NumberInput.tsx");
+const ClothModelTypes_1 = __webpack_require__(/*! model/ClothModelTypes */ "./model/ClothModelTypes.ts");
+const antd_1 = __webpack_require__(/*! antd */ "antd");
 class MeasurementProperty extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.onChangeSize = (e) => {
+            let size = e.target.value;
+            if (this.props && this.props.onChangeSize) {
+                this.props.onChangeSize(size);
+            }
+        };
+    }
     render() {
-        let measurements = this.props.measurements;
-        return (React.createElement("div", { style: {
-                width: '100%',
-            } },
-            " ",
-            measurements.map((item, index) => {
-                return (React.createElement("div", { key: item.name },
-                    React.createElement("span", { className: 'property_label' }, item.label ? item.label : item.name),
-                    React.createElement(NumberInput_1.default, { min: 1, max: 2000, value: item.value, onChange: this.props.onChange.bind(this, item.name) })));
-            })));
+        let measurement = this.props.measurement;
+        let measurements = measurement.getNameValues();
+        let curSize = measurement.curSize;
+        return (React.createElement("div", null,
+            React.createElement("div", null,
+                React.createElement(antd_1.Radio.Group, { defaultValue: curSize, size: 'small', value: curSize, onChange: this.onChangeSize },
+                    React.createElement(antd_1.Radio.Button, { value: ClothModelTypes_1.MeasureSizeEnum.L }, "L"),
+                    React.createElement(antd_1.Radio.Button, { value: ClothModelTypes_1.MeasureSizeEnum.XL }, "XL"))),
+            React.createElement("div", { style: {
+                    width: '100%',
+                } },
+                " ",
+                measurements.map((item, index) => {
+                    return (React.createElement("div", { key: item.name },
+                        React.createElement("span", { className: 'property_label' }, item.label ? item.label : item.name),
+                        React.createElement(NumberInput_1.default, { min: 1, max: 2000, value: item.value, onChange: this.props.onChange.bind(this, item.name) })));
+                }))));
     }
 }
 exports.MeasurementProperty = MeasurementProperty;
@@ -56061,9 +57193,11 @@ const base_1 = __webpack_require__(/*! ../base */ "./base.ts");
 const Lang_1 = __webpack_require__(/*! i18n/Lang */ "./i18n/Lang.ts");
 const CutPieceProperty_1 = __webpack_require__(/*! ./CutPieceProperty */ "./view/CutPieceProperty.tsx");
 const MeasurementProperty_1 = __webpack_require__(/*! ./MeasurementProperty */ "./view/MeasurementProperty.tsx");
+const ClothModelTypes_1 = __webpack_require__(/*! model/ClothModelTypes */ "./model/ClothModelTypes.ts");
 __webpack_require__(/*! ./RightPanel.css */ "./view/RightPanel.css");
 const ClothMakerConst_1 = __webpack_require__(/*! ClothMakerConst */ "./ClothMakerConst.ts");
 const MeasurementBind_1 = __webpack_require__(/*! ./MeasurementBind */ "./view/MeasurementBind.tsx");
+const MeasurementExpand_1 = __webpack_require__(/*! ./MeasurementExpand */ "./view/MeasurementExpand.tsx");
 class RightPanel extends boxlayout.TabPanel {
     constructor() {
         super();
@@ -56079,6 +57213,9 @@ exports.RightPanel = RightPanel;
 class RightView extends base_1.BaseView {
     constructor() {
         super(...arguments);
+        this.onRefresh = () => {
+            this.component.refresh();
+        };
         this.onChangePic = () => {
             this.component.refresh();
         };
@@ -56116,9 +57253,34 @@ class RightView extends base_1.BaseView {
                 }
             }
         };
+        this.onMeasurementSelect = (selectId) => {
+            if (this.model) {
+                this.model.selectedBind = selectId;
+            }
+        };
         this.onMeasurementChange = (name, v) => {
             if (this.model) {
                 this.model.measurement.change(name, v);
+            }
+        };
+        this.onMeasurementChangeSize = (size) => {
+            if (this.model) {
+                this.model.measurement.changeSize(size);
+            }
+        };
+        this.onMeasurementChangeMode = (mode) => {
+            if (mode == 'bind') {
+                //
+                this.model.measurement.changeSize(ClothModelTypes_1.MeasureSizeEnum.XL);
+            }
+            else if (mode == 'expand') {
+                this.model.selectedBind = null;
+                this.model.measurement.changeSize(ClothModelTypes_1.MeasureSizeEnum.FREE);
+            }
+        };
+        this.onMeasurementChangeValue = (measurementName, value) => {
+            if (this.model) {
+                this.model.measurement.change(measurementName, value);
             }
         };
     }
@@ -56131,6 +57293,8 @@ class RightView extends base_1.BaseView {
         this._addNotification(c.EditModeNoti.MODE_CHANGE, this.onChangeMode);
         this._addNotification(c.EditShapeNoti.SELECT_POINT, this.onChangeSelect);
         this._addNotification(c.EditRelationshipNoti.ADD_RELATIONSHIP, this.onChangeSelect);
+        this._addNotification(c.EditMeasureNoti.MODIFY_MEASURE_SIZE, this.onRefresh);
+        this._addNotification(c.EditRelationshipNoti.SELECT_RELATIONSHIP, this.onRefresh);
     }
     getCutPieceProp() {
         let x = 0;
@@ -56160,10 +57324,33 @@ class RightView extends base_1.BaseView {
             }
         }
         return {
+            measurement: this.model.measurement,
             measurements: measures,
             onChange: this.onMeasurementChange,
+            onChangeSize: this.onMeasurementChangeSize,
             onBind: this.onMeasurementBind,
             bindEnable: this.model.selectedPoints.length > 0,
+            relationship: relationship
+        };
+    }
+    getMeasurementExpandProp() {
+        let measures = [];
+        let relationship = [];
+        if (this.model && this.model.measurement) {
+            measures = this.model.measurement.getNameValues();
+            let cut = this.model.getCurCutPiece();
+            if (cut) {
+                relationship = cut.relationship;
+            }
+        }
+        return {
+            measurement: this.model.measurement,
+            measurements: measures,
+            selectedBind: this.model.selectedBind,
+            onChangeSize: this.onMeasurementChangeSize,
+            onChangeMode: this.onMeasurementChangeMode,
+            onChangeMeasureValue: this.onMeasurementChangeValue,
+            onSelect: this.onMeasurementSelect,
             relationship: relationship
         };
     }
@@ -56208,13 +57395,15 @@ class RightComponent extends React.Component {
                     React.createElement("h2", null, "\u4E09\u56F4\u5C5E\u6027"),
                     measureBind));
             case ClothMakerConst_1.ModeType.EXPLAND:
+                let measureExpand;
+                let expandProp = this._view.getMeasurementExpandProp();
+                measureExpand = React.createElement(MeasurementExpand_1.MeasurementExpand, Object.assign({}, expandProp));
                 return (React.createElement("div", { style: {
                         width: '100%',
                         height: '100%',
                     } },
                     React.createElement("h2", null, "\u4E09\u56F4\u5C5E\u6027"),
-                    React.createElement("h2", null, "\u53C2\u8003\u56FE"),
-                    content));
+                    measureExpand));
         }
     }
 }
@@ -56233,65 +57422,72 @@ exports.RightComponent = RightComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const c = __webpack_require__(/*! AppConst */ "./AppConst.ts");
 const React = __webpack_require__(/*! react */ "react");
 const ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
 const base_1 = __webpack_require__(/*! ../base */ "./base.ts");
 const IconButton_1 = __webpack_require__(/*! ./uiComponents/IconButton */ "./view/uiComponents/IconButton.tsx");
 const Lang_1 = __webpack_require__(/*! i18n/Lang */ "./i18n/Lang.ts");
+const InOutUtils_1 = __webpack_require__(/*! utils/InOutUtils */ "./utils/InOutUtils.ts");
+const antd_1 = __webpack_require__(/*! antd */ "antd");
 class ToolBarView extends base_1.BaseView {
     static toString() {
-        return "[class render.view.ToolBarView]";
+        return '[class render.view.ToolBarView]';
     }
     _initialize() {
+        this.model = this.application.getCurDocument().clothModel;
         this.component.setState({});
-        this._addNotification(c.DocumentNoti.IMPORT, this.onImport);
-        this._addNotification(c.DocumentNoti.EXPORT, this.onExport);
-        this._addNotification(c.DocumentNoti.RESET, this.reset);
     }
     onImport(e) {
         this.import();
-    }
-    onExport(e) {
-        this.export();
-    }
-    onTextureChange(e) {
     }
     renderContent(container) {
         ReactDOM.render(React.createElement(ToolBarComponent, { view: this }), container);
     }
     import() {
+        let clothModel = this.model;
+        let clothJson = InOutUtils_1.clothModel2Json(clothModel);
+        let clothStr = JSON.stringify(clothJson);
+        let blob = new Blob([clothStr], { type: 'text/plain;charset=utf-8' });
+        saveAs(blob, clothModel.name + '.json');
     }
-    export() {
-    }
-    reset() {
-    }
-    replay() {
-        this._sendNotification(c.DocumentNoti.REPLAY);
+    export(clothModel) {
+        let curDoc = this.application.getCurDocument();
+        // curDoc.clothModel = clothModel;
     }
 }
 exports.ToolBarView = ToolBarView;
 class ToolBarComponent extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.handleUpload = (info) => {
+            let file = info.file;
+            let len = file.name.length;
+            let reader = new FileReader();
+            let that = this;
+            reader.onload = function (fileData) {
+                let clothStr = fileData.target.result;
+                let clothJson = JSON.parse(clothStr);
+                let clothModel = InOutUtils_1.json2ClothModel(clothJson);
+                console.log('aa', clothStr);
+                console.log(clothModel);
+                that._view.export(clothModel);
+            };
+            reader.readAsText(file);
+        };
+    }
     componentWillMount() {
         this._view = ToolBarView.getInstance(ToolBarView);
         this._view.initialize(null, this);
     }
     render() {
-        return (React.createElement("div", { style: { display: 'flex', marginLeft: "0px", borderBottomWidth: "2px", borderBottomColor: "#2a2a2a", borderBottomStyle: "solid" } },
+        return (React.createElement("div", { style: { display: 'flex', marginLeft: '0px', borderBottomWidth: '2px', borderBottomColor: '#2a2a2a', borderBottomStyle: 'solid' } },
             React.createElement("div", null, "\u670D\u88C5\u5B9A\u5236\u6253\u7248\u7F16\u8F91\u5668"),
-            React.createElement(IconButton_1.default, { id: "import2", icon: "assets/Import.png", tip: Lang_1.tr("ToolBar.import"), onClick: this.onImport.bind(this) })));
-    }
-    onExport(e) {
-        this._view.export();
+            React.createElement(IconButton_1.default, { id: "import2", icon: "assets/Import.png", tip: Lang_1.tr('ToolBar.import'), onClick: this.onImport.bind(this) }),
+            React.createElement(antd_1.Upload, { key: 'aa', name: 'file', showUploadList: false, beforeUpload: () => { return false; }, onChange: (info) => { this.handleUpload(info); }, accept: '.*', className: "material-upload" },
+                React.createElement("div", { className: "material-browse-toupload" }, "\u6D4F\u89C8..."))));
     }
     onImport(e) {
         this._view.import();
-    }
-    onReset(e) {
-        this._view.reset();
-    }
-    onReplay(e) {
-        this._view.replay();
     }
 }
 exports.ToolBarComponent = ToolBarComponent;
@@ -58930,6 +60126,9 @@ class BezierEditLayer extends PIXI.Container {
             case ClothMakerConst_1.ModeType.BIND:
                 this.refreshBindMode();
                 break;
+            case ClothMakerConst_1.ModeType.EXPLAND:
+                this.refreshExpandMode();
+                break;
         }
     }
     refreshEditMode() {
@@ -58959,6 +60158,47 @@ class BezierEditLayer extends PIXI.Container {
                     color = ClothMakerConst_1.SELECTED_POINT_COLOR;
                 }
                 this.drawColorPoint(p.point.x, p.point.y, color);
+            }
+        }
+    }
+    refreshExpandMode() {
+        let lines = this._curPiece.lines;
+        let selectedPoints = this._model.selectedPoints;
+        let overPoint = this._model.overPoint;
+        let selectBind = this._model.selectedBind;
+        let curRelations = this._curPiece.relationship;
+        let selectRelation;
+        if (selectBind == null || selectBind < 0) {
+            return;
+        }
+        for (let i = 0, len = curRelations.length; i < len; i++) {
+            if (curRelations[i].hashCode == selectBind) {
+                selectRelation = curRelations[i];
+                break;
+            }
+        }
+        if (selectRelation == null) {
+            return;
+        }
+        let allBindPointIds = [];
+        for (let i = 0, len = selectRelation.relationship.length; i < len; i++) {
+            let rt = selectRelation.relationship[i];
+            allBindPointIds.push(rt.pointId);
+        }
+        for (let i = 0, len = lines.length; i < len; i++) {
+            let line = lines[i];
+            for (let j = 0, jlen = line.shape.length; j < jlen; j++) {
+                let p = line.shape[j];
+                if (allBindPointIds.indexOf(p.hashCode) >= 0) {
+                    let color = ClothMakerConst_1.NORMAL_POINT_COLOR;
+                    if (p.hashCode == overPoint) {
+                        color = ClothMakerConst_1.OVER_POINT_COLOR;
+                    }
+                    else if (selectedPoints.includes(p.hashCode)) {
+                        color = ClothMakerConst_1.SELECTED_POINT_COLOR;
+                    }
+                    this.drawColorPoint(p.point.x, p.point.y, color);
+                }
             }
         }
     }
@@ -59179,6 +60419,7 @@ const InsertPointController_1 = __webpack_require__(/*! controller/drawBezier/In
 const BaseLayer_1 = __webpack_require__(/*! ./BaseLayer */ "./view/stage/BaseLayer.ts");
 const RectangleSelectViewController_1 = __webpack_require__(/*! controller/RectangleSelectViewController */ "./controller/RectangleSelectViewController.ts");
 const BindSelectController_1 = __webpack_require__(/*! controller/drawBezier/BindSelectController */ "./controller/drawBezier/BindSelectController.ts");
+const ExpandController_1 = __webpack_require__(/*! controller/drawBezier/ExpandController */ "./controller/drawBezier/ExpandController.ts");
 class MainStage extends PIXI.Application {
     constructor(model, options = null) {
         super(options);
@@ -59291,15 +60532,18 @@ class MainStage extends PIXI.Application {
             case ClothMakerConst_1.ModeType.EDIT:
                 this.modeTxt.text = '编辑模式';
                 this.bindSelectController.stop();
+                this.expandController.stop();
                 break;
             case ClothMakerConst_1.ModeType.BIND:
                 this.modeTxt.text = '关联模式';
                 this.bindSelectController.start();
+                this.expandController.stop();
                 Logger_1.Logger.showTip(ClothMakerConst_1.TIP_BIND_MODE);
                 break;
             case ClothMakerConst_1.ModeType.EXPLAND:
                 this.modeTxt.text = '扩版模式';
                 this.bindSelectController.stop();
+                this.expandController.start();
                 Logger_1.Logger.showTip(ClothMakerConst_1.TIP_EXPLAND_MODE);
                 break;
         }
@@ -59348,6 +60592,8 @@ class MainStage extends PIXI.Application {
         this.rectangleSelectViewController.start();
         this.bindSelectController = BindSelectController_1.BindSelectController.getInstance(BindSelectController_1.BindSelectController);
         this.bindSelectController.initialize(this.model.clothModel, this._bezierEditLayer);
+        this.expandController = ExpandController_1.ExpandController.getInstance(ExpandController_1.ExpandController);
+        this.expandController.initialize(this.model.clothModel, this._bezierEditLayer);
         this.tool = this.model.clothModel.toolType;
     }
     initData() {
