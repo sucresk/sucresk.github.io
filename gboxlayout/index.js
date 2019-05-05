@@ -300,7 +300,7 @@ class InitDataCommand extends gmvc.Command {
             "width": 1806,
             "height": 842,
             "children": [],
-            "panels": ["test"],
+            "panels": ["panel0"],
             "panelIndex": 0
         };
     }
@@ -356,13 +356,13 @@ class InitLayoutCommand extends gmvc.Command {
             "width": 1806,
             "height": 842,
             "children": [],
-            "panels":["test"],
+            "panels":["panel0"],
             "panelIndex": 0
         }`;
         let layout4 = JSON.parse(layout4Str);
         if (appContainer) {
             let layout = new gboxLayout.GBoxLayout();
-            layout.registPanel('test', new LayoutPanel_1.default('panel0'));
+            layout.registPanel('panel0', new LayoutPanel_1.default('panel0'));
             layout.setContainer(appContainer);
             layout.setData(layout4);
             App_1.default.model.boxLayout = layout;
@@ -542,6 +542,16 @@ class LayoutController extends gmvc.ViewController {
         this.changeName = (panel, name) => {
             panel.name = name;
             panel.renderLabel();
+            let box = panel.parent;
+            let panelList = box['_panelList'];
+            if (panelList) {
+                for (let i = 0, len = panelList.length; i < len; i++) {
+                    if (panelList[i] == panel) {
+                        box.panels[i] = name;
+                        break;
+                    }
+                }
+            }
         };
         this.changeMaxW = (box, value) => {
             if (!isNaN(value)) {
